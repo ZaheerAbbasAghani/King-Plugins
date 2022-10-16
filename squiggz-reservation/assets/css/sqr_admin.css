@@ -1,0 +1,106 @@
+.sqr_wrapper td {
+    padding: 3px;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    text-align: center;
+}
+
+table.sqr_wrapper{
+        border-spacing: 0;
+    width: 100%;
+    margin: 0 0 1.41575em;
+    border-collapse: collapse;
+}
+
+.spot{
+     visibility: hidden;
+}
+
+.gamelist{
+     list-style: none;
+     margin:0px 0px 30px 0px;
+}
+
+.gamelist li{
+     font-weight: bold;
+     width: 15%;
+     display: inline-block;
+}
+
+#reservation_start_date_time {
+    width: 96%;
+    display: block;
+    border: 1px solid #ddd;
+    padding: 6px;
+}    
+
+#reservation_end_date_time {
+    width: 96%;
+    display: block;
+    border: 1px solid #ddd;
+    padding: 6px;
+}
+
+#reservation_start_time {
+    width: 96%;
+    display: block;
+    border: 1px solid #ddd;
+    padding: 6px;
+}    
+
+#reservation_end_time {
+    width: 96%;
+    display: block;
+    border: 1px solid #ddd;
+    padding: 6px;
+}
+
+#game {
+    width: 100%;
+    display: block;
+    border: 1px solid #ddd;
+    padding: 6px;
+}
+
+
+table.sqr_wrapper td.highlighted {
+  background-color:#ccc;
+}
+.hideit{
+    display: none;
+}
+
+table.sqr_wrapper td.user_selectable{
+     background-color:#ef1921;    
+}
+
+.makeReservation{
+     margin-bottom: 20px;
+}
+
+#reservation_start_time_only,#reservation_end_time_only{
+     width: 99%;
+     display: block;
+     border: 1px solid #ddd;
+     padding: 6px;
+}
+
+#reservation_start_time_only:focus,#reservation_end_time_only:focus{
+     outline: none;
+}
+
+#game{
+     width: 99%;
+    display: block;
+    border: 1px solid #ddd;
+    padding: 6px;
+}
+.makeReservation{
+    margin-bottom: 20px;
+}
+@media(min-width: 320px) and (max-width: 768px){
+
+    .adminReservationBar{overflow: scroll;}
+
+}
