@@ -18,9 +18,16 @@ function sqr_fetch_reserved_spots(){
 	$res = array();
 	foreach ($results as $key => $value) {
 		$dt = date( 'H:i', current_time( 'timestamp', 0 ) );
-		if(strtotime($value->end_time) > strtotime($dt)){
-			array_push($res, array("start_date" => $value->start_date, "start_time" =>strtotime($value->start_time), "end_time" => strtotime($value->end_time),"correct_start_time" => $value->start_time, "correct_end_time" => $value->end_time,  "spot_selected" => $value->spot_selected, "color" => $value->color));
-		}
+		
+				
+			if(strtotime($dateToday) == strtotime(date("Y-m-d"))){
+				if(strtotime($value->end_time) > strtotime($dt)){
+					array_push($res, array("start_date" => $value->start_date, "start_time" =>strtotime($value->start_time), "end_time" => strtotime($value->end_time),"correct_start_time" => $value->start_time, "correct_end_time" => $value->end_time,  "spot_selected" => $value->spot_selected, "color" => $value->color));
+
+				}
+			}else{
+				array_push($res, array("start_date" => $value->start_date, "start_time" =>strtotime($value->start_time), "end_time" => strtotime($value->end_time),"correct_start_time" => $value->start_time, "correct_end_time" => $value->end_time,  "spot_selected" => $value->spot_selected, "color" => $value->color));
+			}
 	}
 
 	//echo date( 'H:i', current_time( 'timestamp', 0 ) );

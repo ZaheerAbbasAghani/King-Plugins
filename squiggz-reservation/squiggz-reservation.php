@@ -41,7 +41,8 @@ function sqr_start_from_here() {
 	require_once plugin_dir_path(__FILE__) . 'front/sqr_fetch_reserved_spots.php';
 	require_once plugin_dir_path(__FILE__) . 'front/sqr_make_it_reservable.php';
 	require_once plugin_dir_path(__FILE__) . 'front/sqr_check_empty_seats.php';
-
+	require_once plugin_dir_path(__FILE__) . 'front/sqr_double_check_date_time.php';
+	
 	require_once plugin_dir_path(__FILE__) . 'back/sqr_permission_needed.php';
 	require_once plugin_dir_path(__FILE__) . 'back/sqr_edit_reserve_information.php';
 	require_once plugin_dir_path(__FILE__) . 'back/sqr_update_reserve_information.php';

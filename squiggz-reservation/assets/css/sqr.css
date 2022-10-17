@@ -33,14 +33,15 @@
      outline: none;
 }
 
-#reservation_start_time_only,#reservation_end_time_only{
+#reservation_start_time_only,#reservation_end_time_only,#reservation_start_date_only{
      width: 100%;
      display: block;
      border: 1px solid #ddd;
      padding: 6px;
 }
 
-#reservation_start_time_only:focus,#reservation_end_time_only:focus{
+
+#reservation_start_time_only:focus,#reservation_end_time_only:focus,#reservation_start_date_only:focus{
      outline: none;
 }
 
@@ -101,6 +102,9 @@ table.sqr_wrapper td.user_selectable{
 
 @media(min-width: 320px) and (max-width: 768px){
 
-    .adminReservationBar{overflow: scroll;}
+    .adminReservationBar{
+          overflow: scroll;
+          white-space: nowrap;
+     }
 
 }

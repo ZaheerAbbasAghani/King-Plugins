@@ -67,6 +67,12 @@ table.sqr_wrapper{
 table.sqr_wrapper td.highlighted {
   background-color:#ccc;
 }
+
+table.sqr_wrapper td.blocked {
+  background-color:#ef1923;
+}
+
+
 .hideit{
     display: none;
 }

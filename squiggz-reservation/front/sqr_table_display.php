@@ -13,7 +13,7 @@ function sqr_games_shortcode($atts){
    $display  = is_admin() == 1 ? "hideit" : "showit";
 
    $return_string .= '<div class="adminReservationBar '. $display.'" name="adminReservationBar">
-   <form method="post" action="" name="reserveNow" id="rereserveNowser">
+   <form method="post" action="" name="reserveNow" id="rereserveNowser" autocomplete="off">
 
    <div class="" style="display: flex;margin-bottom: 20px;">
 
@@ -71,20 +71,8 @@ function sqr_games_shortcode($atts){
    $return_string .= "</tr>";
    $return_string .= "</table>";
 
-/*   if(is_admin()):
-      $return_string .= '<input type="submit" name="" value="Submit" class="button button-primary"><br><br><br><br>';
-   endif;*/
    $return_string .='</form></div>';
 
-
-   // List of Games
-  /* $return_string .= "<ul class='gamelist'>";
-   $i=0;
-   foreach (unserialize($sqr_game_name) as $value) {
-      $return_string .= "<li style='color:".unserialize($sqr_game_color)[$i]."'>".$value." = ". unserialize($seats_to_fill)[$i] ."</li>";
-      $i++;
-   }
-   $return_string .= "</ul>";*/
 
    return $return_string;
 }

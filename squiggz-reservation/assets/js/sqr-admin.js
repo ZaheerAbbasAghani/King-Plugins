@@ -76,36 +76,7 @@ jQuery.post(sqr_ajax_object.ajax_url, data, function(response) {
 });
 
 
-var spotName = [];
-jQuery(document).on("click","td.highlighted", function(){
-    if(!jQuery(this).hasClass("user_selectable") && !jQuery(this).hasClass("reserved")){
-        if(jQuery("td.user_selectable").length <= 3 && !jQuery(this).hasClass("loginPlease")){
-            jQuery(this).addClass("user_selectable");
-            spotName.push( jQuery(this).find("span").text() );
-        }
 
-        if(jQuery("td.user_selectable").length == 1 && !jQuery(this).hasClass("loginPlease")){
-            jQuery(".adminReservationBar").append("<a href='#' class='button makeReservation'> Make Reservation </a>");
-        }
-
-    }else{
-
-        var index = spotName.indexOf(jQuery(this).find("span").text());
-        
-        if (index > -1) {
-            spotName.splice(index, 1);
-        }
-
-        jQuery(this).removeClass("user_selectable");
-        if(jQuery("td.user_selectable").length == 0){
-            jQuery(".makeReservation").remove();
-        }
-    }
-    
-});
-
-
- 
     // Add Color Picker to all inputs that have 'color-field' class
     jQuery(function() {
         jQuery('.sqr_game_color').each(function(){
@@ -149,7 +120,7 @@ jQuery(document).on("click","td.highlighted", function(){
 
 
     jQuery('#reservationTable').DataTable({ 
-       "order": [[ 5, "desc" ]],
+       "order": [[ 6, "desc" ]],
        "pageLength": 15,
     });
 
@@ -260,10 +231,19 @@ jQuery(document).on("click",".makeReservation", function(){
             },
         });
 
+        
+
+
 });
 
 jQuery(document).on("submit","#reservation_information", function(e){
     e.preventDefault();
+
+    var spotName = [];
+    jQuery(".sqr_wrapper td.blocked").each(function(){
+        spotName.push( jQuery(this).find("span").text() );
+    });
+
 
     var data = {
       'action': 'sqr_make_reservation',
@@ -339,9 +319,10 @@ jQuery(".makeReserve").on("click", function(){
     jQuery(".adminReservationBar").slideToggle();
     if(jQuery.trim(jQuery(this).text()) == 'Reserve a Seat'){
         jQuery(this).text("Close Reservation");
-
+        jQuery(".adminReservationBar").append("<a href='#' class='button makeReservation'> Make Reservation </a>");
     }else{  
         jQuery(this).text("Reserve a Seat");
+         jQuery(".makeReservation").remove();
     }
 
 });
@@ -652,7 +633,42 @@ jQuery(document).on("submit","#floor_plan", function(e){
         });*/
     }); 
 });
-    
+
+jQuery(function () {
+  var isMouseDown = false,
+    isHighlighted;
+    jQuery(".sqr_wrapper tr td").mousedown(function () {
+
+        //if(jQuery(".reservation_start_date_time").val() != ""){
+
+          isMouseDown = true;
+          jQuery(this).toggleClass("blocked");
+          isHighlighted = jQuery(this).hasClass("blocked");
+          return false; // prevent text selection
+
+       // }
+
+    })
+    .mouseover(function () {
+      //  if(jQuery(".reservation_start_date_time").val() != ""){
+              if (isMouseDown) {
+                jQuery(this).toggleClass("blocked", isHighlighted);
+              }
+       // }
+    })
+    .bind("selectstart", function () {
+        //if(jQuery(".reservation_start_date_time").val() != ""){
+            return false;
+        //}
+    })
+
+    jQuery(document).mouseup(function () {
+       // if(jQuery(".reservation_start_date_time").val() != ""){
+            isMouseDown = false;
+        //}
+    });
+});    
+
 
 jQuery(".reserved").attr("title","");
      

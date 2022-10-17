@@ -371,7 +371,7 @@ function squizz_tables_settings() {
         </tr>
 
         <?php  
-        /*
+      
             $options = get_option( 'reservation_before_time' ); 
             $options1 = get_option( 'reservation_after_days' );
 
@@ -383,7 +383,7 @@ function squizz_tables_settings() {
                     <option value="">Any Time</option>
                     <?php
 
-                    $periods = array( "1" => "1 hour","2" => "2 hours", "3" => "3 hours", "4" => "4 hours", "5" => "5 hours", "6" => "6 hours", "7" => "7 hours", "8" => "8 hours", "9" => "9 hours", "10" => "10 hours", "11" => "11 hours", "12" => "12 hours", "13" => "13 hours", "14" => "14 hours", "15" => "15 hours", "16" => "16 hours", "17" => "17 hours", "18" => "18 hours", "19" => "19 hours", "20" => "20 hours", "21" => "21 hours", "22" => "22 hours", "23" => "23 hours", "24" => "24 hours");
+                    $periods = array( "1" => "1 day","2" => "2 days", "3" => "3 days", "4" => "4 days", "5" => "5 days", "6" => "6 days", "7" => "7 days", "8" => "8 days", "9" => "9 days", "10" => "10 days", "11" => "11 days", "12" => "12 days", "13" => "13 days", "14" => "14 days", "15" => "15 days", "16" => "16 days", "17" => "17 days", "18" => "18 days", "19" => "19 days", "20" => "20 days", "21" => "21 days", "22" => "22 days", "23" => "23 days", "24" => "24 days", "25" => "25 days", "26" => "26 days", "27" => "27 days", "28" => "28 days", "29" => "29 days", "30" => "30 days");
 
                     if( $periods ){
                         foreach( $periods as $key => $period ){
@@ -412,7 +412,7 @@ function squizz_tables_settings() {
 
 
         <?php  
-
+  /*
             $option  = get_option( 'restrict_min_duration' ); 
             $option1 = get_option( 'restrict_max_duration' );
 
