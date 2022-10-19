@@ -100,11 +100,8 @@ table.sqr_wrapper td.user_selectable{
      font-size: 14px;
 }
 
-@media(min-width: 320px) and (max-width: 768px){
 
-    .adminReservationBar{
-          overflow: scroll;
-          white-space: nowrap;
-     }
-
+.adminReservationBar{
+     overflow: scroll;
+     white-space: nowrap;
 }

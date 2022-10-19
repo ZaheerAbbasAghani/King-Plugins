@@ -17,7 +17,7 @@ function sqr_games_shortcode($atts){
 
    <div class="" style="display: flex;margin-bottom: 20px;">
 
-      <input type="text" name="reservation_start_date_time" id="reservation_start_date_time" style="margin:0px 10px 0px 0px;display: block;width: 100%;padding: 5px 12px;font-size: 17px;" placeholder="Choose any date for reservation" readonly required>
+      <input type="text" name="reservation_start_date_time" id="reservation_start_date_time" style="margin:0px 10px 0px 0px;display: block;width: 100%;padding: 5px 12px;font-size: 17px;" placeholder="Choose any date for reservation" readonly required value="'.date( 'Y-m-d', current_time( 'timestamp', 0 ) ).'">
 
       <input type="text" name="reservation_start_time" id="reservation_start_time" style="margin: 0px 10px;display: block;width: 100%;padding: 5px 12px;font-size: 17px;border:1px solid #ddd;" placeholder="Check booked seats by time" value="'.date( 'H:i', current_time( 'timestamp', 0 ) ).'"  required readonly>
    </div>';

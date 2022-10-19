@@ -49,6 +49,8 @@ function sqr_start_from_here() {
 	require_once plugin_dir_path(__FILE__) . 'back/sqr_delete_reserve_information.php';
 	require_once plugin_dir_path(__FILE__) . 'back/sqr_get_reserved_seats_table.php';
 	require_once plugin_dir_path(__FILE__) . 'back/sqr_floor_plan_maker.php';
+	require_once plugin_dir_path(__FILE__) . 'back/sqr_floor_plan_delete.php';
+	
 
 }
 
@@ -70,6 +72,11 @@ function sqr_files_to_enqueue(){
 
 	wp_enqueue_script('sqr-moment', 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js',array('jquery'),'2.17.1', true);
 
+
+	wp_enqueue_style('sqr-dataTables', 'https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css','1.12.1','all');
+    wp_enqueue_script('sqr-dataTables','https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js',array('jquery'),'1.12.1', true);
+
+
 	wp_enqueue_script('sqr-script', plugins_url('assets/js/sqr.js', __FILE__),array('jquery'),'1.0.0', false);
 
 	$options 	= 	get_option( 'reservation_before_time' );
@@ -78,9 +85,7 @@ function sqr_files_to_enqueue(){
 	$option  = get_option( 'restrict_min_duration' ); 
     $option1 = get_option( 'restrict_max_duration' );
 
-  //  echo get_option( 'after_login_redirect');
-
-	wp_localize_script('sqr-script', 'sqr_object',array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'sqrTime' => $options['period'], 'sqrDays' => $options1['day'], 'sqrMinDuration' => $option['time'], 'sqrMaxDuration' => $option1['time'], "login_redirect" => get_the_permalink( get_option( 'after_login_redirect')['page_id'] )) );
+	wp_localize_script('sqr-script', 'sqr_object',array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'sqrTime' => $options['period'], 'sqrDays' => $options1['day'], 'sqrMinDuration' => $option['time'], 'sqrMaxDuration' => $option1['time'], "login_redirect" => get_the_permalink( get_option( 'after_login_redirect')['page_id'] ),'todayDate' => date( 'Y-m-d', current_time( 'timestamp', 0 ) ),'todayTime' => date( 'H:i', current_time( 'timestamp', 0 ) )));
 
 }
 
@@ -96,7 +101,6 @@ function sqr_add_color_picker( $hook ) {
 
 		wp_enqueue_style('sqr-datetimepicker', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css','2.5.20','all');
 
-    	
         wp_enqueue_style('sqr-dataTables', 'https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css','1.12.1','all');
         wp_enqueue_script('sqr-dataTables','https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js',array('jquery'),'1.12.1', true);
 

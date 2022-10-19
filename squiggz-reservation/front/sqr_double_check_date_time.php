@@ -15,13 +15,23 @@ function sqr_double_check_date_time(){
 	$startTime 	= $_POST['startTime'];
 	$endTime 	= $_POST['endTime'];
 	$intervals 	= $_POST['intervals'];
+	$spots 		= $_POST['spots'];
 
-	$results = $wpdb->get_results("SELECT start_date,start_time,end_time FROM $table_name where start_date='$startDate'");
-	
-	foreach ($results as $key => $result) {
+	$results = $wpdb->get_results("SELECT start_date,start_time,end_time,spot_selected FROM $table_name where start_date='$startDate'");
 
-		if(in_array($result->start_time, $intervals) || in_array($result->end_time, $intervals)){
-			$response = array("status" => 0, "message" => "Please choose correct time.");
+//	print_r($results);
+
+	foreach($results as $key => $result) {
+
+		$arr3 = array_diff($spots, explode(",", $result->spot_selected));
+
+		if(in_array($result->start_time, $intervals) && count($arr3) == 0 && strtotime($endTime) != strtotime($result->start_time)){
+			$response = array("status" => 0, "message" => "This seat is blocked during the time.");
+			wp_send_json( $response );
+		}
+
+		if(in_array($result->end_time, $intervals) && count($arr3) == 0 && strtotime($startTime) != strtotime($result->end_time)){
+			$response = array("status" => 0, "message" => "This seat is blocked during the time.");
 			wp_send_json( $response );
 		}
 

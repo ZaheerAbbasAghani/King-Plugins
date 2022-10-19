@@ -101,17 +101,6 @@ jQuery.post(sqr_ajax_object.ajax_url, data, function(response) {
         
         if (confirm('Are you sure?')) {
             jQuery(this).closest('.gameBlock').remove();
-           /* var data = {
-                'action': 'sqr_delete_game',
-                'post_id':jQuery("#post_ID").val()
-            };
-
-            // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-            jQuery.post(sqr_ajax_object.ajax_url, data, function(response) {
-                console.log(response);
-                //location.reload();
-            });*/
-
         }else{
             return false;
         }
@@ -131,8 +120,6 @@ jQuery.post(sqr_ajax_object.ajax_url, data, function(response) {
 
             var val = jQuery(this).val();
             var row_id = jQuery(this).find("option:selected").attr("data-id");
-           // console.log(row_id);
-
             var data = {
                 'action': 'sqr_permission_needed',
                 'val': val,
@@ -144,8 +131,6 @@ jQuery.post(sqr_ajax_object.ajax_url, data, function(response) {
                 alert(response);
                 location.reload();
             });
-
-
 
         }else{
             return false;
@@ -579,12 +564,12 @@ jQuery(document).on("submit", "#rereserveNowser", function(e){
     }); 
 });
 
-jQuery(document).on("click", ".standard_floor_plan", function(e){
+jQuery(document).on("click", ".createPlan", function(e){
     e.preventDefault();
 
     Swal.fire({
         title: 'Create Standard Floor Plan <hr>',
-        html: "<form method='post' action='' id='floor_plan' style='text-align:left;'><label> Start Date <input type='text' name='reservation_start_date_time' id='reservation_start_date_time' class='floor_plan_start_date' value='' required></label> <br><label> End Date  <input type='text' name='reservation_end_date_time' id='reservation_end_date_time' class='floor_plan_end_date' value='' required></label> <br> <input type='submit' value='Submit' class='button button-primary'></form>",
+        html: "<form method='post' autocomplete='off' action='' id='floor_plan' style='text-align:left;'><label> Start Date <input type='text' name='reservation_start_date_time' id='reservation_start_date_time' class='floor_plan_start_date' value='' required></label> <br><label> End Date  <input type='text' name='reservation_end_date_time' id='reservation_end_date_time' class='floor_plan_end_date' value=''></label> <br> <input type='submit' value='Submit' class='button button-primary'></form>",
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
@@ -596,13 +581,10 @@ jQuery(document).on("click", ".standard_floor_plan", function(e){
 
 
     jQuery('.floor_plan_start_date').datetimepicker({
-       // minDate : new Date("YYYY-dd-MM"),
+        value: new Date("YYYY-dd-MM"),
         format: "Y-m-d",
         timepicker:false,
         step: 15,
-        onSelectDate:function(dp,$input){
-            jQuery(".floor_plan_end_date").val($input.val());
-        }
     });
 
     jQuery('.floor_plan_end_date').datetimepicker({
@@ -617,20 +599,28 @@ jQuery(document).on("click", ".standard_floor_plan", function(e){
 jQuery(document).on("submit","#floor_plan", function(e){
     e.preventDefault();
    
+    var highlighted = [];
+    jQuery("td.highlighted").each(function(){
+       highlighted.push(jQuery(this).find("span").text());
+    });
+
+    jQuery("td.blocked").each(function(){
+       highlighted.push(jQuery(this).find("span").text());
+    });
+
+
     var data = {
       'action': 'sqr_floor_plan_maker',
       'startDate': jQuery(".floor_plan_start_date").val(),
       'endDate': jQuery(".floor_plan_end_date").val(),
-
+      'highlighted': highlighted,
     };
     // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
     jQuery.post(sqr_ajax_object.ajax_url, data, function(response) {
 
-        alert(response);
-        location.reload();
-        /*Swal.fire('', response,'success').then(function() {
+        Swal.fire('', response,'success').then(function() {
             location.reload();
-        });*/
+        });
     }); 
 });
 
@@ -638,38 +628,112 @@ jQuery(function () {
   var isMouseDown = false,
     isHighlighted;
     jQuery(".sqr_wrapper tr td").mousedown(function () {
-
-        //if(jQuery(".reservation_start_date_time").val() != ""){
-
           isMouseDown = true;
           jQuery(this).toggleClass("blocked");
           isHighlighted = jQuery(this).hasClass("blocked");
           return false; // prevent text selection
-
-       // }
-
     })
     .mouseover(function () {
-      //  if(jQuery(".reservation_start_date_time").val() != ""){
-              if (isMouseDown) {
-                jQuery(this).toggleClass("blocked", isHighlighted);
-              }
-       // }
+      if (isMouseDown) {
+        jQuery(this).toggleClass("blocked", isHighlighted);
+      }
     })
     .bind("selectstart", function () {
-        //if(jQuery(".reservation_start_date_time").val() != ""){
-            return false;
-        //}
+         return false;
     })
 
     jQuery(document).mouseup(function () {
-       // if(jQuery(".reservation_start_date_time").val() != ""){
-            isMouseDown = false;
-        //}
+        isMouseDown = false;
     });
 });    
 
-
 jQuery(".reserved").attr("title","");
+
+
+jQuery(".standard_floor_plan").on("click", function(){
+    jQuery(".adminReservationBar").slideToggle();
+    if(jQuery.trim(jQuery(this).text()) == 'Create Standard Floor Plan'){
+        jQuery(this).text("Close");
+        jQuery(".adminReservationBar").append("<a href='#' class='button createPlan'> Create a plan </a>");
+        jQuery(".adminReservationBar").append("<a href='#' class='button deletePlan' style='margin-left:10px; margin-bottom:10px;'> Delete a plan </a>");
+        
+        jQuery(".sqr_wrapper tr").each(function(k,v){
+            jQuery(this).find("td").each(function(){
+                jQuery("#reservation_start_time").remove();
+            });
+        });
+
+    }else{  
+        jQuery(this).text("Create Standard Floor Plan");
+        jQuery(".createPlan").remove();
+        jQuery(".deletePlan").remove();
+    }
+});
+
+jQuery(document).on("click", ".deletePlan", function(e){
+
+    e.preventDefault();
+
+     Swal.fire({
+        title: 'Delete Standard Floor Plan <hr>',
+        html: "<form method='post' autocomplete='off' action='' id='floor_plan_delete' style='text-align:left;'><label> Start Date <input type='text' name='reservation_start_date_time' id='reservation_start_date_time' class='floor_plan_start_date' value='' required></label> <br><label> End Date  <input type='text' name='reservation_end_date_time' id='reservation_end_date_time' class='floor_plan_end_date' value=''></label> <br> <input type='submit' value='Submit' class='button button-primary'></form>",
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        showConfirmButton: false,
+        showCancelButton: false,
+        showCloseButton: true,
+        
+    });
+
+
+    jQuery('.floor_plan_start_date').datetimepicker({
+        value: new Date("YYYY-dd-MM"),
+        format: "Y-m-d",
+        timepicker:false,
+        step: 15,
+    });
+
+    jQuery('.floor_plan_end_date').datetimepicker({
+        //value: new Date("YYYY-dd-MM"),
+        format: "Y-m-d",
+        timepicker:false,
+        step: 15,
+    });
+
+});
+
+
+jQuery(document).on("submit","#floor_plan_delete", function(e){
+    e.preventDefault();
+
+    var highlighted = [];
+    jQuery("td.highlighted").each(function(){
+            if(!jQuery(this).hasClass("blocked")){
+                highlighted.push(jQuery(this).find("span").text());
+            }
+    });
+
+
+    if(!jQuery("td.highlighted").hasClass("blocked")){
+        var highlighted = "";
+    }
+
+    var data = {
+      'action': 'sqr_floor_plan_delete',
+      'startDate': jQuery(".floor_plan_start_date").val(),
+      'endDate': jQuery(".floor_plan_end_date").val(),
+      'highlighted': highlighted,
+    };
+    // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+    jQuery.post(sqr_ajax_object.ajax_url, data, function(response) {
+      //      console.log(response);
+        Swal.fire('', response,'success').then(function() {
+            location.reload();
+        });
+    }); 
+});
+
+
      
 })( jQuery );

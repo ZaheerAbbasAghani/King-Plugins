@@ -11,7 +11,7 @@ function sqr_fetch_reserved_spots(){
 	global $wpdb;
 	$table_name = $wpdb->prefix . 'sqr_squizz_reservation';
 	$table 		= $_POST['table_id'];
-	$dateToday 	= $_POST['dateToday'] == "" ? date("Y-m-d") : $_POST['dateToday'];
+	$dateToday 	= $_POST['dateToday'] == "" ? date('Y-m-d', current_time( 'timestamp', 0 )) : $_POST['dateToday'];
 
 	$results = $wpdb->get_results("SELECT start_date,start_time,end_time,spot_selected,color FROM $table_name where floor_id='$table' AND start_date='$dateToday'");
 
@@ -19,14 +19,16 @@ function sqr_fetch_reserved_spots(){
 	foreach ($results as $key => $value) {
 		$dt = date( 'H:i', current_time( 'timestamp', 0 ) );
 		
-				
-			if(strtotime($dateToday) == strtotime(date("Y-m-d"))){
+			if(strtotime($dateToday) == strtotime(date('Y-m-d', current_time( 'timestamp', 0 )))){
 				if(strtotime($value->end_time) > strtotime($dt)){
 					array_push($res, array("start_date" => $value->start_date, "start_time" =>strtotime($value->start_time), "end_time" => strtotime($value->end_time),"correct_start_time" => $value->start_time, "correct_end_time" => $value->end_time,  "spot_selected" => $value->spot_selected, "color" => $value->color));
 
 				}
 			}else{
-				array_push($res, array("start_date" => $value->start_date, "start_time" =>strtotime($value->start_time), "end_time" => strtotime($value->end_time),"correct_start_time" => $value->start_time, "correct_end_time" => $value->end_time,  "spot_selected" => $value->spot_selected, "color" => $value->color));
+
+				//if(strtotime($value->end_time) > strtotime($dt)){
+					array_push($res, array("start_date" => $value->start_date, "start_time" =>strtotime($value->start_time), "end_time" => strtotime($value->end_time),"correct_start_time" => $value->start_time, "correct_end_time" => $value->end_time,  "spot_selected" => $value->spot_selected, "color" => $value->color));
+				//}
 			}
 	}
 
