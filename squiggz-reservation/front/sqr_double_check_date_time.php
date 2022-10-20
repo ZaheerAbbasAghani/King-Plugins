@@ -26,12 +26,12 @@ function sqr_double_check_date_time(){
 		$arr3 = array_diff($spots, explode(",", $result->spot_selected));
 
 		if(in_array($result->start_time, $intervals) && count($arr3) == 0 && strtotime($endTime) != strtotime($result->start_time)){
-			$response = array("status" => 0, "message" => "This seat is blocked during the time.");
+			$response = array("status" => 0, "message" => __(get_option("reservation_blocked_already")));
 			wp_send_json( $response );
 		}
 
 		if(in_array($result->end_time, $intervals) && count($arr3) == 0 && strtotime($startTime) != strtotime($result->end_time)){
-			$response = array("status" => 0, "message" => "This seat is blocked during the time.");
+			$response = array("status" => 0, "message" => __(get_option("reservation_blocked_already")));
 			wp_send_json( $response );
 		}
 

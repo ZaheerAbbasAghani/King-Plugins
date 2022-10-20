@@ -32,15 +32,6 @@ function sqr_make_reservation(){
 		}
 	}
 
-	/*	if($found == true){
-
-			$response = array(
-				"status" => "0", 
-				"message" => "You have to select ".$seats_to_fill." empty spots for this game, Spots not selected properly."
-			);
-		 	wp_send_json( $response );
-
-		}else{*/
 		
 		$now = current_time('mysql');
 		$insert_array = array(
@@ -70,27 +61,6 @@ function sqr_make_reservation(){
 	 			wp_send_json( $response );
 			}
 		}
-	//}
 	
-/*
-
-global $wpdb;
-	$table_name = $wpdb->prefix.'sqr_squizz_reservation';
-
-	$results =$wpdb->get_results("SELECT spot_selected FROM $table_name where floor_id='$floor_id' AND start_date='$startDate'", ARRAY_A);
-	$found = false;
-	foreach ($results as $key => $value) {
-		foreach($spot as $spo){
-			if(in_array($spo, explode(",", $value['spot_selected'])) && $startTime < $value['end_time']){
-				$found = true;
-			}
-		}
-	}
-
-	echo $found;
-
-*/
-
-
 	wp_die();	
 }

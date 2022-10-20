@@ -224,7 +224,6 @@ function squizz_table_reservation() {
             <?php } ?>
             <th>Created at</th>
             <th>Action</th>
-            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -257,7 +256,6 @@ function squizz_table_reservation() {
                 <option value="0" <?php echo $result->status == 0 ?  "selected" : ""; ?>  data-id="<?php echo $result->id; ?>"> Pending </option>
             </select></td>
             <?php } ?>
-            <td><?php echo "<a href='#' data-id='".$result->id."' class='button button-default editit'> Edit </a>"; ?></td>
             <td><?php echo "<a href='#' data-id='".$result->id."' class='button button-default deleteit'> Delete </a>"; ?></td>
 
         </tr>
@@ -277,7 +275,6 @@ function squizz_table_reservation() {
                 <th>Status</th>
             <?php } ?>
             <th>Created at</th>
-            <th>Action</th>
             <th>Action</th>
         </tr>
     </tfoot>
@@ -324,6 +321,18 @@ function squizz_table_plugin_settings_page() {
     
     register_setting( 'squizz-plugin-settings-group', 'restrict_min_duration' );
     register_setting( 'squizz-plugin-settings-group', 'restrict_max_duration' );
+
+    register_setting( 'squizz-plugin-settings-group', 'make_reservation' );   
+    register_setting( 'squizz-plugin-settings-group', 'reservation_form_title' );    
+    register_setting( 'squizz-plugin-settings-group', 'reservation_start_time_label' );
+    register_setting( 'squizz-plugin-settings-group', 'reservation_end_time_label' );
+    register_setting( 'squizz-plugin-settings-group', 'reservation_choose_game_label' );
+    register_setting( 'squizz-plugin-settings-group', 'reservation_submit_button_text' );  
+
+    register_setting( 'squizz-plugin-settings-group', 'reservation_before_after_time_message' );  
+    register_setting( 'squizz-plugin-settings-group', 'reservation_login_message' );  
+
+    register_setting( 'squizz-plugin-settings-group', 'reservation_blocked_already');  
 
 }
 
@@ -410,9 +419,67 @@ function squizz_tables_settings() {
             </td>
         </tr>
 
+        <tr valign="top">
+        <th scope="row"> Make Reservation Button Text </th>
+        <td><input type="text" name="make_reservation" value="<?php echo esc_attr( get_option('make_reservation') ); ?>" style="width:100%;"/></td>
+        </tr>
+
+        <tr valign="top">
+        <th scope="row"> Reservation Form Title </th>
+        <td><input type="text" name="reservation_form_title" value="<?php echo esc_attr( get_option('reservation_form_title') ); ?>" style="width:100%;"/></td>
+        </tr>
+
+        <tr valign="top">
+        <th scope="row"> Reservation Start Time Label </th>
+        <td><input type="text" name="reservation_start_time_label" value="<?php echo esc_attr( get_option('reservation_start_time_label') ); ?>" style="width:100%;"/></td>
+        </tr>
+
+        <tr valign="top">
+        <th scope="row"> Reservation End Time Label </th>
+        <td><input type="text" name="reservation_end_time_label" value="<?php echo esc_attr( get_option('reservation_end_time_label') ); ?>" style="width:100%;"/></td>
+        </tr>
+
+         <tr valign="top">
+        <th scope="row"> Reservation End Time Label </th>
+        <td><input type="text" name="reservation_end_time_label" value="<?php echo esc_attr( get_option('reservation_end_time_label') ); ?>" style="width:100%;"/></td>
+        </tr>
+
+        <tr valign="top">
+        <th scope="row"> Reservation Submit Button Text </th>
+        <td><input type="text" name="reservation_submit_button_text" value="<?php echo esc_attr( get_option('reservation_submit_button_text') ); ?>" style="width:100%;"/></td>
+        </tr>
+
+        <tr valign="top">
+        <th scope="row"> Reservation Before After Time </th>
+        <td><input type="text" name="reservation_before_after_time_message" value="<?php echo esc_attr( get_option('reservation_before_after_time_message') ); ?>" style="width:100%;"/>
+            <span>use #before to show before time in message, and use #after to show after time in message </span>
+        </td>
+        </tr>
+
+        <tr valign="top">
+        <th scope="row"> Login Message </th>
+        <td><input type="text" name="reservation_login_message" value="<?php echo esc_attr( get_option('reservation_login_message') ); ?>" style="width:100%;"/>
+        </td>
+        </tr>
+
+        <tr valign="top">
+        <th scope="row"> Seat Block Message </th>
+        <td><input type="text" name="reservation_blocked_already" value="<?php echo esc_attr( get_option('reservation_blocked_already') ); ?>" style="width:100%;"/>
+        </td>
+        </tr>
+
+
+
 
         <?php  
   /*
+
+        register_setting( 'squizz-plugin-settings-group', 'reservation_form_title' );    
+        register_setting( 'squizz-plugin-settings-group', 'reservation_start_time_label' );
+        register_setting( 'squizz-plugin-settings-group', 'reservation_end_time_label' );
+        register_setting( 'squizz-plugin-settings-group', 'reservation_choose_game_label' );
+        register_setting( 'squizz-plugin-settings-group', 'reservation_submit_button_text' );  
+
             $option  = get_option( 'restrict_min_duration' ); 
             $option1 = get_option( 'restrict_max_duration' );
 

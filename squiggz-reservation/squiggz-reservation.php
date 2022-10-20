@@ -79,13 +79,36 @@ function sqr_files_to_enqueue(){
 
 	wp_enqueue_script('sqr-script', plugins_url('assets/js/sqr.js', __FILE__),array('jquery'),'1.0.0', false);
 
-	$options 	= 	get_option( 'reservation_before_time' );
-	$options1 	= 	get_option( 'reservation_after_days' );
+	$options 	= 	__(get_option( 'reservation_before_time' ));
+	$options1 	= 	__(get_option( 'reservation_after_days' ));
 
-	$option  = get_option( 'restrict_min_duration' ); 
-    $option1 = get_option( 'restrict_max_duration' );
+	$option  = __(get_option( 'restrict_min_duration' )); 
+    $option1 = __(get_option( 'restrict_max_duration' ));
 
-	wp_localize_script('sqr-script', 'sqr_object',array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'sqrTime' => $options['period'], 'sqrDays' => $options1['day'], 'sqrMinDuration' => $option['time'], 'sqrMaxDuration' => $option1['time'], "login_redirect" => get_the_permalink( get_option( 'after_login_redirect')['page_id'] ),'todayDate' => date( 'Y-m-d', current_time( 'timestamp', 0 ) ),'todayTime' => date( 'H:i', current_time( 'timestamp', 0 ) )));
+    $before_after_message = str_replace(array('#before', '#after'), array($options['period'], $options1['day']), get_option( 'reservation_before_after_time_message' ));
+
+
+	wp_localize_script('sqr-script', 'sqr_object',
+		array( 
+				'ajax_url' => admin_url( 'admin-ajax.php' ), 
+				'sqrTime' => $options['period'], 
+				'sqrDays' => $options1['day'], 
+				'sqrMinDuration' => $option['time'], 
+				'sqrMaxDuration' => $option1['time'], 
+				"login_redirect" => get_the_permalink( get_option( 'after_login_redirect')['page_id'] ),
+				'todayDate' => date( 'Y-m-d', current_time( 'timestamp', 0 ) ),
+				'todayTime' => date( 'H:i', current_time( 'timestamp', 0 ) ),	
+				'make_reservation' => __(get_option( 'make_reservation' )),
+				'reservation_form_title' => __(get_option( 'reservation_form_title' )),
+				'reservation_start_time_label' => __(get_option( 'reservation_start_time_label' )),
+				'reservation_end_time_label' 		=> __(get_option( 'reservation_end_time_label' )),
+				'reservation_choose_game_label' 	=> __(get_option( 'reservation_choose_game_label' )),
+				'reservation_submit_button_text' 	=> __(get_option( 'reservation_submit_button_text' )),
+				'reservation_before_after_time_message' 	=> __($before_after_message),
+				'loginMessage' => __(esc_attr( get_option('reservation_login_message') )),
+				
+			)
+		);
 
 }
 
@@ -214,10 +237,10 @@ function sqr_reservation_support_content() { ?>
         <tr data-id="<?php echo $result->id; ?>" class='row_<?php echo $i; ?>'>
 
         	<td><?php echo $result->choose_game; ?></td>
-            <td><?php echo "<input type='text' value='".$result->start_date."' class='sqr_startDate_".$i."' style='width:100%;' data-id='".$result->id."' readonly>"; ?></td>
-            <td><?php echo "<input type='text' value='".$result->start_time."' class='sqr_endDate_".$i."' style='width:100%;' data-id='".$result->id."' readonly>"; ?></td>
-            <td><?php echo "<input type='text' value='".$result->end_time."' class='sqr_endDate_".$i."' style='width:100%;' data-id='".$result->id."' readonly>"; ?></td>
-             <td><?php echo "<input type='text' value='".$result->spot_selected."' class='sqr_endDate_".$i."' style='width:100%;' data-id='".$result->spot_selected."' readonly>"; ?></td>
+            <td><?php echo $result->start_date; ?></td>
+            <td><?php echo $result->start_time; ?></td>
+            <td><?php echo $result->end_time; ?></td>
+            <td><?php echo $result->spot_selected; ?></td>
 
         </tr>
 

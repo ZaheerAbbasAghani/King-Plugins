@@ -190,6 +190,7 @@ jQuery(document).on("click",".makeReservation", function(){
         jQuery('#reservation_start_time_only').datetimepicker({
             dateFormat: '',
             datepicker:false,
+            dayOfWeekStart:1,
             pickDate: false,
             format: "H:i",
             timeOnly:true,
@@ -205,6 +206,7 @@ jQuery(document).on("click",".makeReservation", function(){
             dateFormat: '',
             datepicker:false,
             pickDate: false,
+            dayOfWeekStart:1,
             format: "H:i",
             timeOnly:true,
             defaultTime:'00:00',
@@ -266,6 +268,7 @@ jQuery("#table_id tr").each(function(k,v){
     jQuery('.sqr_startDate_'+k).datetimepicker({
         minDate : new Date("YYYY-dd-MM"),
         minTime : new Date("hh-mm"),
+        dayOfWeekStart:1,
         step: 15,
         onChangeDateTime:function(dp,jQueryinput){
             jQuery('.sqr_endDate_'+k).val(jQueryinput.val());
@@ -275,6 +278,7 @@ jQuery("#table_id tr").each(function(k,v){
 
         minDate : jQuery('.sqr_startDate_'+k).val(),
         minTime : jQuery('.sqr_startDate_'+k).val().split(" ")[1],
+        dayOfWeekStart:1,
         step: 15,
             onShow:function( ct ){
                 this.setOptions({
@@ -340,6 +344,7 @@ jQuery(document).on("click", ".editit", function(e){
             minDate : new Date("YYYY-dd-MM"),
             minTime : new Date("hh-mm"),
             formatDate:'d.m.Y h:i',
+            dayOfWeekStart:1,
             step: 15,
             onChangeDateTime:function(dp,jQueryinput){
                 jQuery("#reservation_end_date_time").val(jQueryinput.val());
@@ -348,6 +353,7 @@ jQuery(document).on("click", ".editit", function(e){
          jQuery('#reservation_end_date_time').datetimepicker({
             minDate : new Date("YYYY-dd-MM"),
             minTime : new Date("hh-mm"),
+            dayOfWeekStart:1,
             step: 15,
 
         });
@@ -402,6 +408,7 @@ jQuery('#reservation_start_date_time').datetimepicker({
     minDate : new Date("YYYY-dd-MM"),
     format: "Y-m-d",
     timepicker:false,
+    dayOfWeekStart:1,
     step: 15,
     onSelectDate:function(dp,$input){
 
@@ -471,6 +478,7 @@ jQuery('#reservation_start_time').datetimepicker({
     pickDate: false,
     format: "H:i",
     timeOnly:true,
+    dayOfWeekStart:1,
     defaultTime: "00:00",
     step: 15,
     onSelectTime:function(dp,$input){
@@ -527,6 +535,7 @@ jQuery('#reservation_end_time').datetimepicker({
     format: "H:i",
     timeOnly:true,
     defaultTime: "00:00",
+    dayOfWeekStart:1,
     onShow:function( ct, $input ){
         this.setOptions({
             minTime: jQuery("#reservation_start_time").val()
@@ -584,12 +593,14 @@ jQuery(document).on("click", ".createPlan", function(e){
         value: new Date("YYYY-dd-MM"),
         format: "Y-m-d",
         timepicker:false,
+        dayOfWeekStart:1,
         step: 15,
     });
 
     jQuery('.floor_plan_end_date').datetimepicker({
        // minDate : new Date("YYYY-dd-MM"),
         format: "Y-m-d",
+        dayOfWeekStart:1,
         timepicker:false,
         step: 15,
     });
@@ -692,6 +703,7 @@ jQuery(document).on("click", ".deletePlan", function(e){
         format: "Y-m-d",
         timepicker:false,
         step: 15,
+        dayOfWeekStart:1,
     });
 
     jQuery('.floor_plan_end_date').datetimepicker({
@@ -699,6 +711,7 @@ jQuery(document).on("click", ".deletePlan", function(e){
         format: "Y-m-d",
         timepicker:false,
         step: 15,
+        dayOfWeekStart:1,
     });
 
 });

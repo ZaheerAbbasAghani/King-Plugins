@@ -50,7 +50,9 @@ jQuery.post(sqr_object.ajax_url, data, function(response) {
       }
     });
 
-    jQuery(".sqr_wrapper td.highlighted").attr("title", "Click here to make reservation");
+    if(!jQuery("td.highlighted").hasClass("reserved")){
+        jQuery(".sqr_wrapper td.highlighted").attr("title", "Click here to make reservation");
+    }
 
 }); 
 
@@ -77,8 +79,8 @@ jQuery.post(sqr_object.ajax_url, data, function(response) {
 
                     jQuery("."+jQuery.trim(value)).parent().css("background",v.color);
                     jQuery("."+jQuery.trim(value)).parent().addClass("reserved");
-                    jQuery("."+jQuery.trim(value)).parent().attr("title","");
-                    
+                    jQuery("."+jQuery.trim(value)).parent().attr("title","Reserved: "+v.start_date+" "+v.correct_start_time+" "+v.correct_end_time);
+
                     jQuery("."+jQuery.trim(value)).parent().attr("start-time",v.start_time);
                     jQuery("."+jQuery.trim(value)).parent().attr("end-time",v.end_time);
 
@@ -107,7 +109,7 @@ jQuery(document).on("click","td.highlighted", function(){
         }
 
         if(jQuery("td.user_selectable").length == 1 && !jQuery(this).hasClass("loginPlease")){
-            jQuery(".adminReservationBar").append("<a href='#' class='button makeReservation' style='margin-left:"+localStorage.getItem("btnLeft")+"px;'> Make Reservation </a>");
+            jQuery(".adminReservationBar").append("<a href='#' class='button makeReservation' style='margin-left:"+localStorage.getItem("btnLeft")+"px;'> "+sqr_object.make_reservation+" </a>");
         }
 
     }else{
@@ -133,7 +135,7 @@ jQuery(document).on("click",".sqr_wrapper tr td", function(){
 
         Swal.fire({
             title: 'Login <hr>',
-            html: "You need to login/register to make reservation",
+            html: sqr_object.loginMessage,
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -176,8 +178,8 @@ jQuery(document).on("click",".makeReservation", function(){
         var ctime = jQuery(".user_selectable").eq(0).attr("correct-start-time") == undefined ? "" : jQuery(".user_selectable").eq(0).attr("correct-start-time");
 
         Swal.fire({
-            title: 'Reservation Information <hr>',
-            html: "<form method='post' autocomplete='off' action='' id='reservation_information' data-table='"+jQuery(this).parent().parent().parent().attr("data-table")+"' style='text-align:left;'><label> Start Time <input type='text' name='reservation_start_time_only' id='reservation_start_time_only' value='"+ctime+"' required></label> <br> <label> End Time <input type='text' name='reservation_end_time_only' id='reservation_end_time_only' required></label> <br> <label> Choose a game <select name='game' id='game' required disabled> <option value=''> Click to choose </option></select></label> <br> <input type='submit' value='Submit' disabled></form>",
+            title: sqr_object.reservation_form_title+' <hr>',
+            html: "<form method='post' autocomplete='off' action='' id='reservation_information' data-table='"+jQuery(this).parent().parent().parent().attr("data-table")+"' style='text-align:left;'><label> "+sqr_object.reservation_start_time_label+" <input type='text' name='reservation_start_time_only' id='reservation_start_time_only' value='"+ctime+"' required></label> <br> <label> "+sqr_object.reservation_end_time_label+" <input type='text' name='reservation_end_time_only' id='reservation_end_time_only' required></label> <br> <label> "+sqr_object.reservation_choose_game_label+" <select name='game' id='game' required disabled> <option value=''> --- </option></select></label> <br> <input type='submit' value='"+sqr_object.reservation_submit_button_text+"' disabled></form>",
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -192,7 +194,8 @@ jQuery(document).on("click",".makeReservation", function(){
             minDate : new Date("YYYY-dd-MM"),
             format: "Y-m-d",
             timepicker:false,
-            step: 15
+            step: 15,
+            dayOfWeekStart:1
         });
 
 
@@ -209,11 +212,12 @@ jQuery(document).on("click",".makeReservation", function(){
 
 
         jQuery('#reservation_start_time_only').datetimepicker({
-            value: sqr_object.todayTime, 
+            value: jQuery("#reservation_start_time").val(), 
             dateFormat: '',
             datepicker:false,
             pickDate: false,
             format: "H:i",
+            dayOfWeekStart:1,
             timeOnly:true,
             step: 15,
             onShow:function( ct, $input ){
@@ -228,12 +232,13 @@ jQuery(document).on("click",".makeReservation", function(){
         });
 
         jQuery('#reservation_end_time_only').datetimepicker({
-            value: sqr_object.todayTime,
+            value: jQuery("#reservation_start_time").val(),
             dateFormat: '',
             datepicker:false,
             pickDate: false,
             format: "H:i",
             timeOnly:true,
+            dayOfWeekStart:1,
             minTime: jQuery("#reservation_start_time_only").val(),
             step: 15,
             onShow:function( ct, $input ){
@@ -290,7 +295,7 @@ jQuery(document).on("submit","#reservation_information", function(e){
     if(Date.parse(choosenDate) < Date.parse(minDateDisplay) || Date.parse(choosenDate) > Date.parse(maxDateDisplay)){
 
         var before = sqr_object.sqrTime > 1 ? sqr_object.sqrTime+" days" : sqr_object.sqrTime+" day";
-        Swal.fire('', "No reservations before "+before+" and more then "+sqr_object.sqrDays+" days",'error').then(function() {
+        Swal.fire('', sqr_object.reservation_before_after_time_message,'error').then(function() {
             //location.reload();
         });
         return false;
@@ -333,8 +338,11 @@ jQuery('#reservation_start_date_time').datetimepicker({
     minDate : sqr_object.todayDate,
     format: "Y-m-d",
     timepicker:false,
+    dayOfWeekStart:1,
     step: 15,
     onSelectDate:function(dp,$input){
+
+        jQuery("#reservation_start_time").val(sqr_object.todayTime);
 
         var data = {
           'action': 'sqr_get_reserved_seats_table',
@@ -370,13 +378,18 @@ jQuery('#reservation_start_date_time').datetimepicker({
                         var spots = v.spot_selected.split(',');
                         jQuery(spots).each(function(key,value){
                             
-                            if(v.correct_end_time > moment().format('H:i')){
+
+                            if(v.correct_end_time > sqr_object.todayTime){
 
                                 jQuery("."+jQuery.trim(value)).parent().css("background",v.color);
                                 jQuery("."+jQuery.trim(value)).parent().addClass("reserved");
                                 jQuery("."+jQuery.trim(value)).parent().attr("title","Reserved: "+v.start_date+" "+v.correct_start_time+" "+v.correct_end_time);
                                 jQuery("."+jQuery.trim(value)).parent().attr("start-time",v.start_time);
                                 jQuery("."+jQuery.trim(value)).parent().attr("end-time",v.end_time);
+
+                                jQuery("."+jQuery.trim(value)).parent().attr("correct-start-time",v.correct_start_time);
+                                jQuery("."+jQuery.trim(value)).parent().attr("correct-end-time",v.correct_end_time);
+
                                 jQuery("."+jQuery.trim(value)).parent().attr("color",v.color);
                                 jQuery("."+jQuery.trim(value)).parent().attr("dt",v.start_date);
 
@@ -384,7 +397,7 @@ jQuery('#reservation_start_date_time').datetimepicker({
 
                                 jQuery("."+jQuery.trim(value)).parent().css("background","");
                                 jQuery("."+jQuery.trim(value)).parent().removeClass("reserved");
-                                jQuery("."+jQuery.trim(value)).parent().attr("title","Reserved: "+v.start_date+" "+v.correct_start_time+" "+v.correct_end_time);
+                                jQuery("."+jQuery.trim(value)).parent().attr("title","Click here to make reservation");
                                 jQuery("."+jQuery.trim(value)).parent().attr("start-time",v.start_time);
                                 jQuery("."+jQuery.trim(value)).parent().attr("end-time",v.end_time);
                                 jQuery("."+jQuery.trim(value)).parent().attr("color",v.color);
@@ -431,6 +444,7 @@ jQuery('#reservation_start_time').datetimepicker({
     pickDate: false,
     format: "H:i",
     timeOnly:true,
+    dayOfWeekStart:1,
     step: 15,
     onSelectTime:function(dp,$input){
 
@@ -459,7 +473,8 @@ jQuery('#reservation_start_time').datetimepicker({
                             if(Date.parse(jQuery(this).attr("dt"))==Date.parse(jQuery("#reservation_start_date_time").val())){
                                 
                                 jQuery(this).addClass("reserved");
-                                jQuery(this).attr("title","");
+                                jQuery(this).attr("title","Reserved: "+jQuery(this).attr("dt")+" "+jQuery(this).attr("correct-start-time")+" "+jQuery(this).attr("correct-end-time"));
+
                                 jQuery(this).css("background",jQuery(this).attr("color"));
 
                             }
@@ -467,7 +482,7 @@ jQuery('#reservation_start_time').datetimepicker({
                              if(Date.parse(jQuery(this).attr("dt"))==Date.parse(jQuery("#reservation_start_date_time").val())){
                                 
                                 jQuery(this).addClass("reserved");
-                                jQuery(this).attr("title","");
+                                jQuery(this).attr("title","Reserved: "+jQuery(this).attr("dt")+" "+jQuery(this).attr("correct-start-time")+" "+jQuery(this).attr("correct-end-time"));
                                 jQuery(this).css("background",jQuery(this).attr("color"));
 
                             }
@@ -485,6 +500,7 @@ jQuery('#reservation_end_time').datetimepicker({
     pickDate: false,
     format: "H:i",
     timeOnly:true,
+    dayOfWeekStart:1,
     defaultTime: sqr_object.todayTime,
     onShow:function( ct, $input ){
         this.setOptions({

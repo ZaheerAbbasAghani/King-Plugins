@@ -61,7 +61,7 @@ function sqr_games_shortcode($atts){
          $return_string.="<td><span class='spot ".$i."'> ".$i."</span></td>";
 
       else:
-         $return_string.="<td title='Please login to make reservation' class='loginPlease'><span class='spot ".$i." makeLogin'>".$i."</span></td>";
+         $return_string.="<td title='".esc_attr( get_option('reservation_login_message') )."' class='loginPlease'><span class='spot ".$i." makeLogin'>".$i."</span></td>";
       endif;
 
 
