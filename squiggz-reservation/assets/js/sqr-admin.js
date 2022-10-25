@@ -1,10 +1,28 @@
 (function( jQuery ) {
 
+function intervals(startString, endString) {
+    var start = moment(startString, 'HH:mm');
+    var end = moment(endString, 'HH:mm');
+
+    // round starting minutes up to nearest 15 (12 --> 15, 17 --> 30)
+    // note that 59 will round up to 60, and moment.js handles that correctly
+    start.minutes(Math.ceil(start.minutes() / 15) * 15);
+
+    var result = [];
+
+    var current = moment(start);
+
+    while (current <= end) {
+        result.push(current.format('HH:mm'));
+        current.add(15, 'minutes');
+    }
+
+    return result;
+}
+
 
 // Check if bookable blocks available.
-var d = new Date();
-var today = d.getDate() >= 10 ? d.getDate() : "0"+d.getDate();
-var selected_date = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + today;
+var selected_date = sqr_ajax_object.todayDate;
 
 var data = {
   'action': 'sqr_get_reserved_seats_table',
@@ -48,32 +66,32 @@ var data = {
 };
 // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
 jQuery.post(sqr_ajax_object.ajax_url, data, function(response) {
-//    console.log(response);
+
     jQuery(response.results).each(function(k,v){
 
         var spots = v.spot_selected.split(',');
         jQuery(spots).each(function(key,value){
             
             if(value != ""){
-                jQuery("."+jQuery.trim(value)).parent().css("background",v.color);
-                jQuery("."+jQuery.trim(value)).parent().addClass("reserved");
-                jQuery("."+jQuery.trim(value)).parent().attr("title","");
-                
-                jQuery("."+jQuery.trim(value)).parent().attr("start-time",v.start_time);
-                jQuery("."+jQuery.trim(value)).parent().attr("end-time",v.end_time);
 
-                jQuery("."+jQuery.trim(value)).parent().attr("correct-start-time",v.correct_start_time);
-                jQuery("."+jQuery.trim(value)).parent().attr("correct-end-time",v.correct_end_time);
+                if(v.correct_end_time > moment().format('H:i')){
 
-                jQuery("."+jQuery.trim(value)).parent().attr("color",v.color);
-                jQuery("."+jQuery.trim(value)).parent().attr("dt",v.start_date);
+                    jQuery("."+jQuery.trim(value)).parent().css("background",v.color);
+                    jQuery("."+jQuery.trim(value)).parent().addClass("reserved");
+                    jQuery("."+jQuery.trim(value)).parent().attr("title","Reserved: "+v.start_date+" "+v.correct_start_time+" "+v.correct_end_time);
+                    jQuery("."+jQuery.trim(value)).parent().attr("start-time",v.start_time);
+                    jQuery("."+jQuery.trim(value)).parent().attr("end-time",v.end_time);
+                    jQuery("."+jQuery.trim(value)).parent().attr("correct-start-time",v.correct_start_time);
+                    jQuery("."+jQuery.trim(value)).parent().attr("correct-end-time",v.correct_end_time);
+                    jQuery("."+jQuery.trim(value)).parent().attr("color",v.color);
+                    jQuery("."+jQuery.trim(value)).parent().attr("dt",v.start_date);
 
+                }
             }
-
         });
     });
-
 });
+
 
 
 
@@ -159,22 +177,20 @@ jQuery(document).on("click",".makeReservation", function(){
             var seats   = response.seats; 
             var colors  = response.colors; 
             jQuery(response.games).each(function(k,v){
-               // if(seats[k] == jQuery(".user_selectable").length){
                   jQuery('#game').append(jQuery('<option>', { 
                       value: v,
                       text : v,
                       'data-id' : seats[k],
                       'data-color': colors[k],
                   }));
-             //   }
             });
         });
 
         var ctime = jQuery(".user_selectable").eq(0).attr("correct-start-time") == undefined ? "" : jQuery(".user_selectable").eq(0).attr("correct-start-time");
 
         Swal.fire({
-            title: 'Reservation Information <hr>',
-            html: "<form method='post' action='' id='reservation_information' data-table='"+jQuery(this).parent().parent().parent().attr("data-table")+"' style='text-align:left;'><label> Start Time <input type='text' name='reservation_start_time_only' id='reservation_start_time_only' value='"+ctime+"' required></label> <br> <label> End Time <input type='text' name='reservation_end_time_only' id='reservation_end_time_only' required></label> <br> <label> Choose a game <select name='game' id='game' required> <option value=''> Click to choose </option></select></label> <br> <input type='submit' value='Submit' class='button button-primary'></form>",
+            title: sqr_ajax_object.reservation_form_title+' <hr>',
+            html: "<form method='post' autocomplete='off' action='' id='reservation_information' data-table='"+jQuery(this).parent().parent().parent().attr("data-table")+"' style='text-align:left;'><label> "+sqr_ajax_object.reservation_start_time_label+" <input type='text' name='reservation_start_time_only' id='reservation_start_time_only' value='"+ctime+"' required></label> <br> <label> "+sqr_ajax_object.reservation_end_time_label+" <input type='text' name='reservation_end_time_only' id='reservation_end_time_only' required></label> <br> <label> "+sqr_ajax_object.reservation_choose_game_label+" <select name='game' id='game' required disabled> <option value=''> --- </option></select></label> <br> <input type='submit' value='"+sqr_ajax_object.reservation_submit_button_text+"' disabled></form>",
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -184,52 +200,145 @@ jQuery(document).on("click",".makeReservation", function(){
             //confirmButtonText: 'Yes, delete it!'
         });
 
-        jQuery("#reservation_start_time_only").val(jQuery(".sqr_wrapper").attr("current-time"));
+        jQuery('#reservation_start_date_only').datetimepicker({
+            value:new Date("YYYY-dd-MM"),
+            minDate : new Date("YYYY-dd-MM"),
+            format: "Y-m-d",
+            timepicker:false,
+            step: 15,
+            dayOfWeekStart:1
+        });
+
+
+        // Booking restricted before 24 hours.
+        if(jQuery("#reservation_start_date_time").val() == moment().format('YYYY-MM-DD') || jQuery("#reservation_start_date_time").val() == moment().add(1,'days').format('YYYY-MM-DD')){
+            var todayTimeOnly = sqr_ajax_object.todayTime;
+                localStorage.setItem("minTimeOnly", todayTimeOnly);
+
+        }else{
+            var todayTimeOnly = "";
+            localStorage.setItem("minTimeOnly", "00:00");
+        }
+
 
 
         jQuery('#reservation_start_time_only').datetimepicker({
+            value: jQuery("#reservation_start_time").val(), 
             dateFormat: '',
             datepicker:false,
-            dayOfWeekStart:1,
             pickDate: false,
             format: "H:i",
+            dayOfWeekStart:1,
             timeOnly:true,
-            minTime: jQuery(".user_selectable").eq(0).attr("correct-start-time"),
-            defaultTime:'00:00',
             step: 15,
+            onShow:function( ct, $input ){
+                this.setOptions({
+                    minTime: localStorage.getItem("minTimeOnly")
+                });
+            },
             onSelectTime:function(dp,$input){
                 jQuery("#reservation_end_time_only").val($input.val());
             }
+        
         });
 
         jQuery('#reservation_end_time_only').datetimepicker({
+            value: jQuery("#reservation_start_time").val(),
             dateFormat: '',
             datepicker:false,
             pickDate: false,
-            dayOfWeekStart:1,
             format: "H:i",
             timeOnly:true,
-            defaultTime:'00:00',
+            dayOfWeekStart:1,
+            minTime: jQuery("#reservation_start_time_only").val(),
             step: 15,
             onShow:function( ct, $input ){
                 this.setOptions({
                     minTime: jQuery("#reservation_start_time_only").val()
                 });
             },
+            onSelectTime:function(dp,$input){
+                var start_time  = jQuery("#reservation_start_time_only").val();
+                var end_time    = $input.val();
+
+                var spots = [];
+                jQuery("td.user_selectable").each(function(k,v){
+                    spots.push(jQuery(this).find("span").text());
+                }); 
+
+                //console.log(spots);
+
+                var data = {
+                  'action': 'sqr_double_check_date_time',
+                  'startDate': jQuery("#reservation_start_date_time").val(),
+                  'startTime': start_time,
+                  'endTime': end_time,
+                  'intervals': intervals(start_time, end_time),
+                  'spots':spots
+                };
+                // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+                jQuery.post(sqr_ajax_object.ajax_url, data, function(response) {
+
+                    if(response.status == 0){
+                        alert(response.message);
+                         jQuery("#game").attr("disabled", true);
+                        jQuery("input[type='submit']").attr("disabled", true);
+                    }else{
+                        jQuery("#game").attr("disabled", false);
+                        jQuery("input[type='submit']").attr("disabled", false);
+                    }
+                }); 
+
+
+            }
         });
 
-        
-
-
 });
+
+
+var spotName = [];
+jQuery(document).on("click","td.highlighted", function(){
+    if(!jQuery(this).hasClass("user_selectable") && !jQuery(this).hasClass("reserved")){
+        if(jQuery("td.user_selectable").length <= 3 && !jQuery(this).hasClass("loginPlease")){
+            jQuery(this).addClass("user_selectable");
+            spotName.push( jQuery(this).find("span").text() );
+        }
+
+        /*if(jQuery("td.user_selectable").length == 1 && !jQuery(this).hasClass("loginPlease")){
+            jQuery(".adminReservationBar").append("<a href='#' class='button makeReservation' style='margin-left:"+localStorage.getItem("btnLeft")+"px;'> "+sqr_ajax_object.make_reservation+" </a>");
+        }*/
+
+    }else{
+
+        var index = spotName.indexOf(jQuery(this).find("span").text());
+        
+        if (index > -1) {
+            spotName.splice(index, 1);
+        }
+
+        jQuery(this).removeClass("user_selectable");
+        if(jQuery("td.user_selectable").length == 0){
+            jQuery(".makeReservation").remove();
+        }
+    }
+});
+
 
 jQuery(document).on("submit","#reservation_information", function(e){
     e.preventDefault();
 
-    var spotName = [];
-    jQuery(".sqr_wrapper td.blocked").each(function(){
-        spotName.push( jQuery(this).find("span").text() );
-    });
+    var choosenDate = jQuery("#reservation_start_date_time").val();
+    var minDateDisplay = moment().add(sqr_ajax_object.sqrTime,'d').format('YYYY-MM-DD');
+    var maxDateDisplay = moment().add(sqr_ajax_object.sqrDays,'d').format('YYYY-MM-DD');
+
+    if(Date.parse(choosenDate) < Date.parse(minDateDisplay) || Date.parse(choosenDate) > Date.parse(maxDateDisplay)){
+
+        var before = sqr_ajax_object.sqrTime > 1 ? sqr_ajax_object.sqrTime+" days" : sqr_ajax_object.sqrTime+" day";
+        Swal.fire('', sqr_ajax_object.reservation_before_after_time_message,'error').then(function() {
+            //location.reload();
+        });
+        return false;
+    }
 
 
     var data = {
@@ -245,9 +354,9 @@ jQuery(document).on("submit","#reservation_information", function(e){
     };
     // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
     jQuery.post(sqr_ajax_object.ajax_url, data, function(response) {
-       console.log(response);
+      // console.log(response);
         if(response.status == 0){
-            Swal.fire('', response.message,'error').then(function() {
+            Swal.fire('', sqr_ajax_object.AlreadyBlocked,'error').then(function() {
                 //location.reload();
             });
         }else if(response.status == 2){
@@ -317,7 +426,7 @@ jQuery(".makeReserve").on("click", function(){
 });
 
 
-jQuery(document).on("click", ".editit", function(e){
+/*jQuery(document).on("click", ".editit", function(e){
 
     e.preventDefault(); 
 
@@ -360,7 +469,7 @@ jQuery(document).on("click", ".editit", function(e){
 
     });
 
-});
+});*/
 
 
 
@@ -405,12 +514,15 @@ jQuery(document).on("click",".deleteit", function(e){
 
 
 jQuery('#reservation_start_date_time').datetimepicker({
-    minDate : new Date("YYYY-dd-MM"),
+    value:sqr_ajax_object.todayDate,
+    minDate : sqr_ajax_object.todayDate,
     format: "Y-m-d",
     timepicker:false,
     dayOfWeekStart:1,
     step: 15,
     onSelectDate:function(dp,$input){
+
+        jQuery("#reservation_start_time").val(sqr_ajax_object.todayTime);
 
         var data = {
           'action': 'sqr_get_reserved_seats_table',
@@ -419,13 +531,15 @@ jQuery('#reservation_start_date_time').datetimepicker({
         // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
         jQuery.post(sqr_ajax_object.ajax_url, data, function(response) {
 
+            jQuery(".highlighted").removeClass("user_selectable");
+            jQuery(".makeReservation").remove();
+
             var status = response.status;
             if(status == 1){
 
                 jQuery(".sqr_wrapper td").removeClass("highlighted");
                 jQuery(".sqr_wrapper td.reserved").css("background","");
                 jQuery(".sqr_wrapper td").removeClass("reserved");
-
 
                 jQuery(response.result).each(function(k,v){
                     var val = jQuery.trim(v);
@@ -444,11 +558,26 @@ jQuery('#reservation_start_date_time').datetimepicker({
                         var spots = v.spot_selected.split(',');
                         jQuery(spots).each(function(key,value){
                             
-                            if(value != ""){
+
+                            if(v.correct_end_time > sqr_ajax_object.todayTime){
 
                                 jQuery("."+jQuery.trim(value)).parent().css("background",v.color);
                                 jQuery("."+jQuery.trim(value)).parent().addClass("reserved");
                                 jQuery("."+jQuery.trim(value)).parent().attr("title","Reserved: "+v.start_date+" "+v.correct_start_time+" "+v.correct_end_time);
+                                jQuery("."+jQuery.trim(value)).parent().attr("start-time",v.start_time);
+                                jQuery("."+jQuery.trim(value)).parent().attr("end-time",v.end_time);
+
+                                jQuery("."+jQuery.trim(value)).parent().attr("correct-start-time",v.correct_start_time);
+                                jQuery("."+jQuery.trim(value)).parent().attr("correct-end-time",v.correct_end_time);
+
+                                jQuery("."+jQuery.trim(value)).parent().attr("color",v.color);
+                                jQuery("."+jQuery.trim(value)).parent().attr("dt",v.start_date);
+
+                            }else{
+
+                                jQuery("."+jQuery.trim(value)).parent().css("background","");
+                                jQuery("."+jQuery.trim(value)).parent().removeClass("reserved");
+                                jQuery("."+jQuery.trim(value)).parent().attr("title","Click here to make reservation");
                                 jQuery("."+jQuery.trim(value)).parent().attr("start-time",v.start_time);
                                 jQuery("."+jQuery.trim(value)).parent().attr("end-time",v.end_time);
                                 jQuery("."+jQuery.trim(value)).parent().attr("color",v.color);
@@ -467,27 +596,37 @@ jQuery('#reservation_start_date_time').datetimepicker({
                 jQuery(".sqr_wrapper td").removeClass("reserved");
             }
 
+
+            // Booking restricted before 24 hours.
+            if($input.val() == moment().format('YYYY-MM-DD') ||  $input.val() == moment().add(1,'days').format('YYYY-MM-DD')){
+
+                var todayTime = sqr_ajax_object.todayTime;
+                localStorage.setItem("minTime", todayTime);
+
+                jQuery("#reservation_start_time").val(sqr_ajax_object.todayTime);
+
+            }else{
+                var todayTime = "";
+                localStorage.setItem("minTime", "00:00");
+            }
+
+
+
         }); 
     }
 });
 
+
+// Start Time Field
 jQuery('#reservation_start_time').datetimepicker({
-    timeFormat: "hh:mm",
     dateFormat: '',
     datepicker:false,
     pickDate: false,
     format: "H:i",
     timeOnly:true,
     dayOfWeekStart:1,
-    defaultTime: "00:00",
     step: 15,
     onSelectTime:function(dp,$input){
-        if($input.val() == ""){
-            jQuery("#reservation_end_time").attr("disabled", true);    
-        }else{
-            jQuery("#reservation_end_time").attr("disabled", false);
-        }
-        jQuery("#reservation_end_time").val($input.val());
 
         var start_time = $input.val();
         var data = {
@@ -499,43 +638,50 @@ jQuery('#reservation_start_time').datetimepicker({
 
             jQuery("td.highlighted").each(function(k,v){
 
-                    if( response.start_time > jQuery(this).attr("end-time") ){
-                        if(Date.parse(jQuery(this).attr("dt"))==Date.parse(jQuery("#reservation_start_date_time").val())){
+                    if( response.start_time < jQuery(this).attr("start-time") || response.start_time > jQuery(this).attr("end-time")){
+                        
+                         if(Date.parse(jQuery(this).attr("dt"))==Date.parse(jQuery("#reservation_start_date_time").val())){
 
                             jQuery(this).removeClass("reserved");
                             jQuery(this).attr("title","Click here to make reservation");
                             jQuery(this).css("background","");
                         }
+                       
+                    }else{
 
-                    }
+                        if(  response.start_time < jQuery(this).attr("end-time")){
+                            if(Date.parse(jQuery(this).attr("dt"))==Date.parse(jQuery("#reservation_start_date_time").val())){
+                                
+                                jQuery(this).addClass("reserved");
+                                jQuery(this).attr("title","Reserved: "+jQuery(this).attr("dt")+" "+jQuery(this).attr("correct-start-time")+" "+jQuery(this).attr("correct-end-time"));
 
-                    if( response.start_time < jQuery(this).attr("end-time") ){
-                        
-                        //console.log("Right");
+                                jQuery(this).css("background",jQuery(this).attr("color"));
 
-                        if(Date.parse(jQuery(this).attr("dt"))==Date.parse(jQuery("#reservation_start_date_time").val())){
-                            
-                            jQuery(this).addClass("reserved");
-                            jQuery(this).attr("title","");
-                            jQuery(this).css("background",jQuery(this).attr("color"));
+                            }
+                        }else{
+                             if(Date.parse(jQuery(this).attr("dt"))==Date.parse(jQuery("#reservation_start_date_time").val())){
+                                
+                                jQuery(this).addClass("reserved");
+                                jQuery(this).attr("title","Reserved: "+jQuery(this).attr("dt")+" "+jQuery(this).attr("correct-start-time")+" "+jQuery(this).attr("correct-end-time"));
+                                jQuery(this).css("background",jQuery(this).attr("color"));
 
+                            }
                         }
                     }
 
             });
-
         });
     }
 });
 
 jQuery('#reservation_end_time').datetimepicker({
-    dateFormat: '',
+   dateFormat: '',
     datepicker:false,
     pickDate: false,
     format: "H:i",
     timeOnly:true,
-    defaultTime: "00:00",
     dayOfWeekStart:1,
+    defaultTime: sqr_ajax_object.todayTime,
     onShow:function( ct, $input ){
         this.setOptions({
             minTime: jQuery("#reservation_start_time").val()
@@ -685,6 +831,7 @@ jQuery(document).on("click", ".deletePlan", function(e){
 
     e.preventDefault();
 
+
      Swal.fire({
         title: 'Delete Standard Floor Plan <hr>',
         html: "<form method='post' autocomplete='off' action='' id='floor_plan_delete' style='text-align:left;'><label> Start Date <input type='text' name='reservation_start_date_time' id='reservation_start_date_time' class='floor_plan_start_date' value='' required></label> <br><label> End Date  <input type='text' name='reservation_end_date_time' id='reservation_end_date_time' class='floor_plan_end_date' value=''></label> <br> <input type='submit' value='Submit' class='button button-primary'></form>",
@@ -697,9 +844,9 @@ jQuery(document).on("click", ".deletePlan", function(e){
         
     });
 
-
+    
     jQuery('.floor_plan_start_date').datetimepicker({
-        value: new Date("YYYY-dd-MM"),
+        value: jQuery("#rereserveNowser #reservation_start_date_time").val(),
         format: "Y-m-d",
         timepicker:false,
         step: 15,
@@ -707,7 +854,7 @@ jQuery(document).on("click", ".deletePlan", function(e){
     });
 
     jQuery('.floor_plan_end_date').datetimepicker({
-        //value: new Date("YYYY-dd-MM"),
+        //value: jQuery("#rereserveNowser #reservation_start_date_time").val(),
         format: "Y-m-d",
         timepicker:false,
         step: 15,
@@ -722,11 +869,10 @@ jQuery(document).on("submit","#floor_plan_delete", function(e){
 
     var highlighted = [];
     jQuery("td.highlighted").each(function(){
-            if(!jQuery(this).hasClass("blocked")){
-                highlighted.push(jQuery(this).find("span").text());
-            }
+        if(!jQuery(this).hasClass("blocked")){
+            highlighted.push(jQuery(this).find("span").text());
+        }
     });
-
 
     if(!jQuery("td.highlighted").hasClass("blocked")){
         var highlighted = "";
@@ -740,7 +886,7 @@ jQuery(document).on("submit","#floor_plan_delete", function(e){
     };
     // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
     jQuery.post(sqr_ajax_object.ajax_url, data, function(response) {
-      //      console.log(response);
+      //     console.log(response);
         Swal.fire('', response,'success').then(function() {
             location.reload();
         });

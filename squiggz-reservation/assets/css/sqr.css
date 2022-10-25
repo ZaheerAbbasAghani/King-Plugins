@@ -104,4 +104,15 @@ table.sqr_wrapper td.user_selectable{
 .adminReservationBar{
      overflow: scroll;
      white-space: nowrap;
+     margin-bottom: 20px;
+}
+
+
+.sqr_wrapper_top{
+    position: relative;
+}
+
+.sqr_loader{
+    position: absolute;
+    top: 0px;
 }

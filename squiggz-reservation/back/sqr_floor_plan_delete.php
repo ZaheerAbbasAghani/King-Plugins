@@ -16,9 +16,13 @@ function sqr_floor_plan_delete(){
 	$booked_spot 	= $_POST['highlighted'];
 
 
+//	echo $booked_spot;
+
+	$more_more_day = date('Y-m-d', strtotime($endDate . ' +1 day'));
+	
 	if(!empty($endDate) && !empty($startDate) && empty($booked_spot)){
 		
-		$more_more_day = date('Y-m-d', strtotime($endDate . ' +1 day'));
+		
 
 		$period = new DatePeriod(
 		     new DateTime($startDate),
@@ -36,6 +40,8 @@ function sqr_floor_plan_delete(){
 
 	}else{
 
+
+		//echo "Multiple";
 
 		if (empty($endDate) && !empty($startDate)) {
 		

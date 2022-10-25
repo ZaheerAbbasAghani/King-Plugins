@@ -106,6 +106,7 @@ function sqr_files_to_enqueue(){
 				'reservation_submit_button_text' 	=> __(get_option( 'reservation_submit_button_text' )),
 				'reservation_before_after_time_message' 	=> __($before_after_message),
 				'loginMessage' => __(esc_attr( get_option('reservation_login_message') )),
+				'AlreadyBlocked' => __(esc_attr( get_option('reservation_blocked_already') )),
 				
 			)
 		);
@@ -135,12 +136,36 @@ function sqr_add_color_picker( $hook ) {
 
 		wp_enqueue_script('sqr-datetimepickerFull', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js',array('jquery'),'2.5.20', true);
 
+		wp_enqueue_script('sqr-moment', 'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment-with-locales.min.js',array('jquery'),'2.17.1', true);
+
+
         // Include our custom jQuery file with WordPress Color Picker dependency
         wp_enqueue_script( 'custom-script-handle', plugins_url( 'assets/js/sqr-admin.js', __FILE__ ), array( 'wp-color-picker' ), false, true ); 
 
         // in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value
 		wp_localize_script( 'custom-script-handle', 'sqr_ajax_object',
-            array( 'ajax_url' => admin_url( 'admin-ajax.php' )) );
+			array( 
+				'ajax_url' => admin_url( 'admin-ajax.php' ), 
+				'sqrTime' => $options['period'], 
+				'sqrDays' => $options1['day'], 
+				'sqrMinDuration' => $option['time'], 
+				'sqrMaxDuration' => $option1['time'], 
+				"login_redirect" => get_the_permalink( get_option( 'after_login_redirect')['page_id'] ),
+				'todayDate' => date( 'Y-m-d', current_time( 'timestamp', 0 ) ),
+				'todayTime' => date( 'H:i', current_time( 'timestamp', 0 ) ),	
+				'todayTime2' => strtotime(date( 'H:i', current_time( 'timestamp', 0 ) )),	
+				'make_reservation' => __(get_option( 'make_reservation' )),
+				'reservation_form_title' => __(get_option( 'reservation_form_title' )),
+				'reservation_start_time_label' => __(get_option( 'reservation_start_time_label' )),
+				'reservation_end_time_label' 		=> __(get_option( 'reservation_end_time_label' )),
+				'reservation_choose_game_label' 	=> __(get_option( 'reservation_choose_game_label' )),
+				'reservation_submit_button_text' 	=> __(get_option( 'reservation_submit_button_text' )),
+				'reservation_before_after_time_message' 	=> __($before_after_message),
+				'loginMessage' => __(esc_attr( get_option('reservation_login_message') )),
+				'AlreadyBlocked' => __(esc_attr( get_option('reservation_blocked_already') )),
+				
+			)
+		);
 
     }
 }

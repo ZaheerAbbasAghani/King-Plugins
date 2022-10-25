@@ -22,45 +22,54 @@ function sqr_make_reservation(){
 	global $wpdb;
 	$table_name = $wpdb->prefix.'sqr_squizz_reservation';
 
-	$results =$wpdb->get_results("SELECT spot_selected FROM $table_name where floor_id='$floor_id' AND start_date='$startDate'", ARRAY_A);
-	$found = false;
-	foreach ($results as $key => $value) {
-		foreach($spot as $spo){
-			if(in_array($spo, explode(",", $value['spot_selected']))){
-				$found = true;
+		$results =$wpdb->get_results("SELECT spot_selected FROM $table_name where floor_id='$floor_id' AND start_date='$startDate'", ARRAY_A);
+		$found = false;
+		foreach ($results as $key => $value) {
+			foreach($spot as $spo){
+				if(in_array($spo, explode(",", $value['spot_selected']))){
+					$found = true;
+				}
 			}
 		}
-	}
 
-		
-		$now = current_time('mysql');
-		$insert_array = array(
-	        'start_date' 	=> $startDate,
-	        'start_time' 	=> $startTime,
-	        'end_time' 		=> $endTime,
-	        'choose_game' 	=> $game,
-	        'spot_reserve' 	=> $seats_to_fill,
-	        'spot_selected' => implode(",", $spot),
-	        'color' 		=> $color,
-	        'status' 		=> get_option( 'auto_approve_permission' ) == 1 ? 0 : 1,
-	        'floor_id' 		=> $floor_id,
-	        'user_id'		=> get_current_user_id(),
-	        'created_at' 	=> $now
-		);
-		$success = $wpdb->insert($table_name,$insert_array);
+		//echo $found;
 
-		if($success == 1){
-			if(get_option( 'auto_approve_permission' ) == 1){
+		if($found == 1){
+			$response = array("status" => "0");
+		 	wp_send_json( $response );
+		}
+		else{
+			$now = current_time('mysql');
+			$insert_array = array(
+		        'start_date' 	=> $startDate,
+		        'start_time' 	=> $startTime,
+		        'end_time' 		=> $endTime,
+		        'choose_game' 	=> $game,
+		        'spot_reserve' 	=> $seats_to_fill,
+		        'spot_selected' => implode(",", $spot),
+		        'color' 		=> $color,
+		        'status' 		=> get_option( 'auto_approve_permission' ) == 1 ? 0 : 1,
+		        'floor_id' 		=> $floor_id,
+		        'user_id'		=> get_current_user_id(),
+		        'created_at' 	=> $now
+			);
+			$success = $wpdb->insert($table_name,$insert_array);
 
-				$response = array("status" => "2", "message" => get_option( 'reservation_pending_message' ));
-	 			wp_send_json( $response );
+			if($success == 1){
+				if(get_option( 'auto_approve_permission' ) == 1){
 
-			}else{
+					$response = array("status" => "2", "message" => get_option( 'reservation_pending_message' ));
+		 			wp_send_json( $response );
 
-				$response = array("status" => "1", "message" => get_option( 'reservation_publish_message' ));
-	 			wp_send_json( $response );
+				}else{
+
+					$response = array("status" => "1", "message" => get_option( 'reservation_publish_message' ));
+		 			wp_send_json( $response );
+				}
 			}
 		}
+
+
 	
 	wp_die();	
 }
