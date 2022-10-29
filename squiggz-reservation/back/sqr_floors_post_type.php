@@ -198,7 +198,12 @@ function squizz_table_reservation() {
     }
 </style>
 <div class="wrap" style="background:#fff; padding:10px 20px;">
-<h1> Squiggz Table Reservation  <a href="#" class="button button-primary makeReserve" style="float:right;"> Reserve a Seat </a> <a href="#" class="button button-default standard_floor_plan" style="float:right;margin-right: 5px;"> Create Standard Floor Plan  </a> </h1><hr>
+<h1> Squiggz Table Reservation  
+    <a href="#" class="button button-default delete_all_reservations" style="float:right;margin-left: 5px;"> Delete All Reservations  </a> 
+    <a href="#" class="button button-primary makeReserve" style="float:right;"> Reserve a Seat </a> 
+    <a href="#" class="button button-default standard_floor_plan" style="float:right;margin-right: 5px;"> Create Standard Floor Plan  </a> 
+</h1>
+<hr>
 
         <?php  echo do_shortcode( '[table table_id=99129929244]' ); ?>
       

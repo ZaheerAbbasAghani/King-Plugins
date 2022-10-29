@@ -50,6 +50,7 @@ function sqr_start_from_here() {
 	require_once plugin_dir_path(__FILE__) . 'back/sqr_get_reserved_seats_table.php';
 	require_once plugin_dir_path(__FILE__) . 'back/sqr_floor_plan_maker.php';
 	require_once plugin_dir_path(__FILE__) . 'back/sqr_floor_plan_delete.php';
+	require_once plugin_dir_path(__FILE__) . 'back/sqr_delete_all_reservations.php';
 	
 
 }
@@ -141,6 +142,15 @@ function sqr_add_color_picker( $hook ) {
 
         // Include our custom jQuery file with WordPress Color Picker dependency
         wp_enqueue_script( 'custom-script-handle', plugins_url( 'assets/js/sqr-admin.js', __FILE__ ), array( 'wp-color-picker' ), false, true ); 
+
+        $options 	= 	__(get_option( 'reservation_before_time' ));
+	$options1 	= 	__(get_option( 'reservation_after_days' ));
+
+	$option  = __(get_option( 'restrict_min_duration' )); 
+    $option1 = __(get_option( 'restrict_max_duration' ));
+
+    $before_after_message = str_replace(array('#before', '#after'), array($options['period'], $options1['day']), get_option( 'reservation_before_after_time_message' ));
+
 
         // in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value
 		wp_localize_script( 'custom-script-handle', 'sqr_ajax_object',

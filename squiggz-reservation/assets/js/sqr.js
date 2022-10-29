@@ -374,12 +374,13 @@ jQuery(document).on("submit","#reservation_information", function(e){
       'game': jQuery("#game option:selected").val(),
       'reserve_game': jQuery("#game option:selected").attr("data-id"),
       'choosen_spot': spotName,
+      'intervals': intervals(jQuery("#reservation_start_time_only").val(),jQuery("#reservation_end_time_only").val()),
       'color': jQuery("#game option:selected").attr("data-color"),
       'floor_id': jQuery(".sqr_wrapper").attr("data-table")
     };
     // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
     jQuery.post(sqr_object.ajax_url, data, function(response) {
-      // console.log(response);
+       //console.log(response);
         if(response.status == 0){
             Swal.fire('', sqr_object.AlreadyBlocked,'error').then(function() {
                 //location.reload();
@@ -415,18 +416,60 @@ jQuery('#reservation_start_date_time').datetimepicker({
         // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
         jQuery.post(sqr_object.ajax_url, data, function(response) {
 
-            //console.log(response);
 
-  //      setTimeout(function(){
             jQuery("td.highlighted").removeClass("reserved");
             jQuery("td.highlighted").attr("title","Click here to make reservation");
             jQuery("td.highlighted").css("background","");
-    //    }, 1000);
-
 
 
             jQuery(".sqr_wrapper_top").css("opacity","0.1");
             jQuery(".adminReservationBar").append("<img src='../../wp-content/plugins/squiggz-reservation/images/loader.gif' class='sqr_loader'>");
+
+            // Remove Layout of table
+
+            jQuery("table.sqr_wrapper tr").each(function(k,v){
+                jQuery(this).find("td").each(function(k,v){
+                    jQuery(this).removeClass("highlighted");
+                });
+            });
+
+
+            var data = {
+              'action': 'sqr_get_reserved_seats_table',
+              'selected_date': $input.val()
+            };
+            // since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+            jQuery.post(sqr_object.ajax_url, data, function(response) {
+
+                var status = response.status;
+                if(status == 1){
+
+                    jQuery(response.result).each(function(k,v){
+                        var val = jQuery.trim(v);
+                        jQuery("."+val).parent().addClass("highlighted");
+                    });
+
+                }else{
+
+                    jQuery(".sqr_wrapper td").removeClass("highlighted");
+                    jQuery("#reservation_start_date_time").val("");
+
+                }
+
+                jQuery(document).find("td.reserved").tooltip({
+                  show: {
+                    effect: "slideTop",
+                    delay: 250
+                  }
+                });
+
+                if(!jQuery("td.highlighted").hasClass("reserved")){
+                    jQuery(".sqr_wrapper td.highlighted").attr("title", "Click here to make reservation");
+                }
+
+            }); 
+
+
 
 
             jQuery(response.results).each(function(k,v){

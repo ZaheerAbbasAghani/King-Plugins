@@ -16,17 +16,21 @@ function sqr_make_reservation(){
 	$spot 			= $_POST['choosen_spot'];
 	$seats_to_fill 	= $_POST['reserve_game'];
 	$color 			= $_POST['color'];
+	$intervals 		= $_POST['intervals'];
 
-	//print_r($_POST);
 
 	global $wpdb;
 	$table_name = $wpdb->prefix.'sqr_squizz_reservation';
 
-		$results =$wpdb->get_results("SELECT spot_selected FROM $table_name where floor_id='$floor_id' AND start_date='$startDate'", ARRAY_A);
+		$results =$wpdb->get_results("SELECT spot_selected,start_time,end_time FROM $table_name where floor_id='$floor_id' AND start_date='$startDate'", ARRAY_A);
 		$found = false;
 		foreach ($results as $key => $value) {
 			foreach($spot as $spo){
-				if(in_array($spo, explode(",", $value['spot_selected']))){
+				if(in_array($spo, explode(",", $value['spot_selected'])) && in_array($value['start_time'], $intervals)){
+					$found = true;
+				}
+
+				if(in_array($spo, explode(",", $value['spot_selected'])) && in_array($value['end_time'], $intervals)){
 					$found = true;
 				}
 			}
