@@ -1,0 +1,281 @@
+body,.entry-content{
+	font-family: 'Roboto', sans-serif !important;
+}
+
+.entry-content > *:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
+    max-width: initial !important; 
+}
+
+.eventList .aem_box {
+    padding: 8px 15px 20px 15px;
+    box-shadow: 2px 2px 30px #ccc;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.eventList .aem_box h5{
+	margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.aem_dt{
+	background: #fff;
+	border: 1px solid #ddd;
+	float: left;
+	padding: 5px 10px;
+	margin: 1px;
+}
+
+.aem_box .btn{
+    padding: 10px 16px;
+    font-size: 20px;
+    text-decoration: none;
+    display: block;
+    clear: both;
+    margin-top: 22px !important;
+}
+
+#aem_timer{
+	display: block;
+	height: auto;
+	overflow: hidden;
+}
+
+.aem_box a.title{
+	text-decoration: none;
+	color: #000;
+}
+
+.eventList .bx a.aem_cover{
+	text-decoration: none;
+	color: #000;	
+}
+.leave_now {
+    background: #cd2653 !important;
+    padding: 10px 16px !important;
+    font-size: 20px !important;
+    text-decoration: none;
+    clear: both;
+    margin-top: 22px !important;
+    border: none !important;
+}
+
+.single .join_now {
+    padding: 10px 16px !important;
+    font-size: 20px !important;
+    text-decoration: none;
+    clear: both;
+    margin-top: 22px !important;
+    border: none !important;
+}
+
+
+/* Profile container */
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+    padding: 20px 0 10px 0;
+    background: #eee;
+    box-shadow: 1px 1px 4px #ddd, -1px -1px 4px #ddd;
+    margin-bottom: 25%;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 40%;
+  height: 40%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+    border-bottom: 1px solid #ddd;
+    list-style: none;
+    display: block;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+    color: #93a3b5;
+    font-size: 14px;
+    font-weight: 400;
+    width: 100%;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    display: block;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+    color: #5b9bd1;
+    background-color: #f6f9fb;
+    border-left: 2px solid #5b9bd1;
+    margin-left: -2px;
+    width: 100%;
+    display: block;
+    padding: 13px 1px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
+.profile_settings{
+    list-style: none;
+    padding: 0px;
+}
+
+.profile_settings .tab-content{
+    padding:0px 0px;
+}
+.profile_settings ul{ padding: 0px !important;    margin: 0px; }
+.profile_settings ul li .nav-link {
+    display: block;
+    padding: 14px;
+}
+
+.profile_settings ul li.nav-item {
+    list-style: none;
+    padding:0px !important;
+    margin: 0px;
+}
+
+#points_table_wrapper .dt-buttons{
+    margin-top: 2%;
+    float: left;
+}
+
+#total_points h1{
+    background: #ddd;
+    padding: 40px 10px;
+    font-size: 40px;
+    border-radius: 20em;
+}
+
+#giveaway-join .input-group-addon{
+      padding: 5px 20px;
+}
+
+#giveaway-join .input-daterange{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#giveaway-join input[type="date"] {   padding: 20px 15px !important; }
+
+#points_table_filter input[type="search"] {
+    padding: 0px !important;
+    margin-left: -2px;
+}
+
+#points_table_wrapper .dt-button{
+padding: 10px 20px;
+}
+
+.missing_details p {
+    float: left;
+    background: #fff;
+    border-right: 1px solid #eee;
+    padding: 9px;
+    box-shadow: 1px 1px 6px #ddd;
+} 
+.missing_details table.table{
+  background: #fff;
+}
+
+.list_of_category ul{
+
+    margin: 0px;
+     background: #ddd;
+}
+
+.list_of_category ul li{
+  margin: 0px !important;
+ padding: 18px 10px;
+}
+
+.list_of_category ul li a{
+  text-decoration: none;
+  color: #000;
+    padding: 20px 10px;
+}
+
+.list_of_category ul li a:hover{
+  background: #28a745;
+  color: #fff;
+  transition: 0.4s;
+}
+
+.current_item a{
+    background: #28a745;
+    color: #fff !important;
+}
+.reset{
+  background: #cccccc8c;
+}

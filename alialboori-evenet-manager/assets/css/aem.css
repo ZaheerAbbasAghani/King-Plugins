@@ -1,0 +1,58 @@
+.aem_liteBox {
+    background: #000;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 99999;
+    padding: 15% 35% 0% 35%;
+}
+
+.aem_liteBox form input[type='email']{
+	margin-top: 20px !important;
+    margin: 0px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+}
+.aem_liteBox form input[type='date']{
+	margin-top: 20px !important;
+    padding: 10px;
+    width: 100%;
+    border: none;
+}
+.aem_liteBox h3 {
+    color: #fff;
+    position: relative;
+}
+
+.aem_liteBox h3 span{
+    position: absolute;
+    left: 0px;
+    cursor: pointer;
+    font-size: 30px;
+    top: -13px;
+}
+
+#eventform label{
+	color:red;
+}
+.aem_liteBox input[type="submit"]{
+	margin-top: 20px;
+    cursor:pointer;
+}
+#aem_join_event {
+    background: #da2f60;
+    padding: 10px 30px;
+    font-size: 18px;
+    font-family: inherit;
+    color: #fff;
+}
+.btn-create-reminder{
+background:#da2f60;
+padding: 6px 25px;
+    font-size: 16px;
+    border: none;
+    color:#fff;
+}
