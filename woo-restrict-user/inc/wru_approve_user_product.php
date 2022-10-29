@@ -9,6 +9,9 @@ $user = get_user_by( 'email', $email );
 $userid =  $user->ID;
 $select_variaton = $_POST['select_variaton'];
 
+//print_r($select_variaton);
+
+
 $selected_variation_user_id = array();
 foreach ($select_variaton as $val) {
 	//echo $val;

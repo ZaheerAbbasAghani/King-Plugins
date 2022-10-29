@@ -1,0 +1,57 @@
+.custom-rent-wrap{
+	margin-top: 10px;
+}
+.custom-rent-wrap p{
+	padding: 0px !important;	
+}
+.variation-radios input[type="radio"]{
+	display: none;
+}
+
+.variation-radios label {
+       display: inline-block;
+    text-align: center;
+    min-width: 36px;
+    padding: 6px 10px;
+    border: 1px solid #dfdfdf;
+    color: #939393;
+    cursor: pointer;
+    margin: 10px 10px 10px 0px;
+}
+
+
+#from_date, #to_date {
+    padding: 9px;
+    width: 88%;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.custom-date-wrap p{
+	padding: 0px !important;	
+}
+select#duration{
+    display: none;
+}
+.reset_variations{
+    display: none !important;
+}
+
+.ui-datepicker-mouseover1 {
+    border: 1px solid red !important;
+}
+
+.custom-date-wrap{
+        float: left;
+    margin-right: 10px;
+}
+
+
+
+#from_date, #to_date {
+    background: #fafafa;
+}
+
+.woocommerce-order-received ul.wc-item-meta{
+    display: none !important;
+}

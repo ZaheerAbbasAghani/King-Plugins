@@ -1,0 +1,449 @@
+#testform label.error {
+  display: block;
+}
+
+.fbox {
+  display: inline-block;
+}
+
+.personal-data {
+  position: relative;
+}
+
+label.error {
+  position: absolute;
+
+  top: 0px;
+}
+
+.list li:before {
+  content: none !important;
+}
+
+.list__item {
+  margin: 0 0 0.5rem 0;
+
+  padding: 0;
+}
+
+ul.list li .label--checkbox,
+.label--radio {
+  position: relative;
+
+  margin: 0.5rem;
+
+  line-height: 135%;
+
+  cursor: pointer;
+}
+
+ul.list li .checkbox {
+  position: relative;
+
+  top: -0.375rem;
+
+  margin: 0 1rem 0 0;
+
+  cursor: pointer;
+}
+
+ul.list li .checkbox:before {
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+
+  -moz-transition: -moz-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+
+  transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+
+  -webkit-transform: rotate(-45deg) scale(0, 0);
+
+  -moz-transform: rotate(-45deg) scale(0, 0);
+
+  -ms-transform: rotate(-45deg) scale(0, 0);
+
+  -o-transform: rotate(-45deg) scale(0, 0);
+
+  transform: rotate(-45deg) scale(0, 0);
+
+  content: "";
+
+  position: absolute;
+
+  left: 0.1875rem;
+
+  top: 0.125rem;
+
+  z-index: 1;
+
+  width: 0.75rem;
+
+  height: 0.375rem;
+
+  border: 2px solid #510253;
+
+  border-top-style: none;
+
+  border-right-style: none;
+}
+
+ul.list li .checkbox:checked:before {
+  -webkit-transform: rotate(-45deg) scale(1, 1);
+
+  -moz-transform: rotate(-45deg) scale(1, 1);
+
+  -ms-transform: rotate(-45deg) scale(1, 1);
+
+  -o-transform: rotate(-45deg) scale(1, 1);
+
+  transform: rotate(-45deg) scale(1, 1);
+}
+
+ul.list li .checkbox:after {
+  content: "";
+
+  position: absolute;
+
+  top: -0.1rem;
+
+  left: 0;
+
+  width: 1rem;
+
+  height: 1rem;
+
+  background: #fff;
+
+  border: 2px solid #ddd;
+
+  cursor: pointer;
+}
+
+ul.list li .radio {
+  position: relative;
+
+  margin: 0 1rem 0 0;
+
+  cursor: pointer;
+}
+
+ul.list li .radio:before {
+  -webkit-transition: -webkit-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+
+  -moz-transition: -moz-transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+
+  transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
+
+  -webkit-transform: scale(0, 0);
+
+  -moz-transform: scale(0, 0);
+
+  -ms-transform: scale(0, 0);
+
+  -o-transform: scale(0, 0);
+
+  transform: scale(0, 0);
+
+  content: "";
+
+  position: absolute;
+
+  top: 0.7px;
+
+  left: 1px;
+
+  z-index: 1;
+
+  width: 0.75rem;
+
+  height: 0.75rem;
+
+  background: #510253;
+
+  border-radius: 50%;
+}
+
+ul.list li .radio:checked:before {
+  -webkit-transform: scale(1, 1);
+
+  -moz-transform: scale(1, 1);
+
+  -ms-transform: scale(1, 1);
+
+  -o-transform: scale(1, 1);
+
+  transform: scale(1, 1);
+}
+
+ul.list li .radio:after {
+  content: "";
+
+  position: absolute;
+
+  top: -1px;
+
+  left: -1px;
+
+  width: 1rem;
+
+  height: 1rem;
+
+  background: #fff;
+
+  border: 2px solid #ddd;
+
+  border-radius: 50%;
+}
+
+ul.list li {
+  display: block !important;
+}
+
+.paragraph {
+  background: #510253;
+
+  padding: 20px;
+
+  text-align: center;
+
+  color: #fff !important;
+
+  border: 1px solid #ddd;
+
+  border-radius: 4px;
+}
+
+.searchWrap .message {
+  background: #eee;
+
+  padding: 23px;
+
+  margin: 20px 0px;
+
+  box-shadow: 2px 2px 5px #ddd, -2px -2px 7px #ddd;
+}
+
+.searchWrap h4 {
+  line-height: 30px;
+}
+
+.searchWrap h3 {
+  color: #ff0000ab;
+
+  margin: 25px 0px;
+}
+
+.owl-carousel .owl-item {
+  width: 250px !important;
+
+  background: #eee;
+
+  padding: 5px;
+
+  box-shadow: 2px 2px 5px #ddd;
+
+  /* border: 1px solid #ddd; */
+}
+
+.owl-carousel .owl-item .featuredImage img {
+  height: 300px;
+}
+
+.owl-carousel .owl-item p {
+  font-size: 18px;
+
+  margin: 10px 0px;
+}
+
+.owl-carousel .owl-item .button {
+  width: 100%;
+
+  margin-bottom: 5px;
+
+  display: block;
+
+  line-height: 10px !important;
+
+  height: 50px !important;
+
+  text-transform: uppercase;
+}
+
+.owl-carousel {
+  height: 600px;
+}
+
+.yith-wcwl-wishlistexistsbrowse {
+  padding: 10px;
+
+  border: 1px solid #ddd;
+
+  margin-bottom: 10px;
+}
+
+.owl-item .fa-gift:before {
+  content: none !important;
+}
+
+.button-gift-finder {
+  padding: 7px 11px !important;
+
+  background: #510253 !important;
+
+  color: #fff !important;
+
+  z-index: 999;
+
+  cursor: pointer;
+
+  font-size: 15px !important;
+
+  border-radius: 5px !important;
+
+  font-weight: bold;
+
+  letter-spacing: 1px;
+
+  animation: text-shadow 2.5s ease-in-out infinite;
+}
+
+.header-mobile-menu .btn2 {
+  position: absolute;
+
+  bottom: 45px;
+}
+
+.header-mobile-menu .btn2 a {
+  width: auto !important;
+}
+
+.button-gift-finder-2 {
+  padding: 7px 11px !important;
+
+  background: #510253 !important;
+
+  color: #fff !important;
+
+  z-index: 999;
+
+  cursor: pointer;
+
+  font-size: 15px !important;
+
+  border-radius: 5px !important;
+
+  font-weight: bold;
+
+  letter-spacing: 1px;
+}
+
+@keyframes text-shadow {
+  0% {
+    transform: translateY(0);
+  }
+
+  20% {
+    transform: translateY(-1em);
+  }
+
+  40% {
+    transform: translateY(0.5em);
+  }
+
+  60% {
+    transform: translateY(-0.25em);
+  }
+
+  80% {
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 320px) and (max-width: 568px) {
+  .button-gift-finder-2 {
+    position: absolute;
+
+    right: 14px;
+
+    bottom: 5px;
+  }
+
+  .header-mobile-menu .btn2 {
+    left: 40px;
+
+    bottom: 30px !important;
+  }
+
+  ul.list li .radio:after {
+    top: 0px;
+
+    left: 0px;
+  }
+
+  ul.list li .radio:before {
+    top: 1.6px;
+
+    left: 1.6px;
+  }
+
+  ul.list li .checkbox:after {
+    top: 0rem;
+  }
+
+   #example_wrapper{
+      width: 95%;
+      margin: auto;
+      overflow: scroll;
+  }
+
+
+}
+
+#adm_user_response {
+
+  margin: auto;
+  background: #f2f2f2;
+  padding: 20px;
+  box-shadow: 2px 2px 2px #ddd;
+}
+
+#adm_user_response input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 0px 10px;
+  height: 45px;
+}
+
+#adm_user_response label {
+  color: #3A3A3A;
+}
+
+#adm_user_response input[type="submit"] {
+  padding: 6px 40px;
+  margin-top: 30px;
+}
+
+.toast-message {
+  font-size: 16px !important;
+}
+
+
+
+@media (min-width: 820px) and (max-width: 1100px) {
+  .button-gift-finder-2 {
+    position: absolute;
+
+    right: 51px;
+
+    bottom: 5px;
+  }
+
+  .header-mobile-menu .btn2 {
+    left: 40px;
+
+    bottom: 30px !important;
+  }
+
+ 
+}

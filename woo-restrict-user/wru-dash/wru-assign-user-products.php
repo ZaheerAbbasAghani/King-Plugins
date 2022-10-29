@@ -40,9 +40,9 @@ function wru_search_user_by_name_email_process() {
     $post = get_post_meta( $post->ID,'wru_approve_user', false );
     $access_date = get_post_meta( $post_id,'wru_till_dt', false );
     $variations = get_post_meta( $post_id,'wru_approve_variation', false );
-	   $all_approved_data = get_post_meta( $post_id,'wru_all_approved_data', false );
+	  $all_approved_data = get_post_meta( $post_id,'wru_all_approved_data', false );
 
-	//print_r($access_date);
+	//print_r($variations);
 
     $i=0;
     foreach ($post as $value) {

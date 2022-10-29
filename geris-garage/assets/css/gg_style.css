@@ -1,0 +1,92 @@
+.gg_list_products {
+    margin: 40px 0px;
+    height: auto;
+    overflow: hidden;
+    padding: 5px;
+}
+.gg_list_products .gg-col {
+    width: 24%;
+    box-shadow: 2px 2px 5px #ddd, -2px -2px 5px #ddd;
+    float: left;
+    padding-bottom: 10px;
+    margin: 5px 5px 10px 5px;
+}
+.gg-col a {
+    padding: 10px;
+    color: #000 !important;
+    font-family: inherit;
+}
+.gg-col .gg-product-description{
+	padding: 10px;
+}
+
+.gg_list_products .gg-col img{
+	height:200px;
+}
+.gg_buy_now{
+	background: #ddd;
+    padding: 8px 10px;
+    display: block;
+    text-align: center;
+    margin: auto 10px;
+    border-radius: 4px;
+}
+
+.gg_buy_now:hover{
+	background: #eee;
+}
+
+.gg-product-price {
+    padding: 0px 10px;
+    margin-bottom: 20px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.gg_pagination{
+	clear: both;
+    padding-top: 30px;
+    display: block;
+    text-align: center;
+}
+
+.gg_pagination .page-numbers{
+	    background: #ddd;
+    padding: 5px 10px;
+}
+
+.gg_purchase_history {
+	max-width: 100% !important;
+}
+
+@media(min-width: 320px) and (max-width: 480px){
+    .gg_list_products .gg-col{
+        width: 97%;
+    }
+
+    #gg_history_table_wrapper{
+    	overflow: scroll;
+    }
+
+    #gg_history_table td span{
+	    background:transparent !important;
+	    padding: 0px !important;
+	    color: #000 !important;
+    }
+    .day_by_day{
+    	width: 100% !important;
+    	overflow: scroll;
+    }
+
+    .month_by_month{
+    	width: 100% !important;
+    	overflow: scroll;
+    }
+
+    .year_by_year{
+    	width: 100% !important;
+    	overflow: scroll;
+    }
+
+    
+}

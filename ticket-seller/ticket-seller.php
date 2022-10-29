@@ -1,0 +1,399 @@
+<?php
+/*
+Plugin Name: Ticket Seller
+Plugin URI: https://www.fiverr.com/zaheerabbasagha
+Description: The plugin allow the person to sell tickets online via API.
+Version: 1.0
+Author: Zaheer Abbas Aghani
+Author URI: https://profiles.wordpress.org/zaheer01/
+License: GPLv3 or later
+Text Domain: ticket-seller
+Domain Path: /languages
+*/
+
+defined("ABSPATH") or die("No direct access!");
+
+header("Content-Type: image/png");
+require_once plugin_dir_path(__FILE__) .'vendor/autoload.php';
+use Endroid\QrCode\QrCode;
+
+class TicketSeller {
+function __construct() {
+
+
+
+	add_action('init', array($this, 'tks_start_from_here'));
+	add_action('wp_enqueue_scripts', array($this, 'tks_enqueue_script_front'));
+	add_action('admin_enqueue_scripts', array($this, 'tks_enqueue_script_admin'));
+	add_action("woocommerce_payment_complete", array($this, "tks_ticket_sold"));
+	//add_action('woocommerce_thankyou',array($this, 'tks_ticket_sold'));
+	//add_filter("woocommerce_should_load_paypal_standard",  "__return_true");
+
+	add_action('woocommerce_thankyou',array($this, 'tks_change_order_status'));
+	add_filter( 'wp_mail_from_name', array($this, 'tks_wp_mail_from_name') );
+
+
+	if(get_option("tks_enable_disable_date") == 1){
+
+		add_action( 'woocommerce_after_checkout_billing_form', array($this,'tks_add_custom_checkout_field') );
+		add_action( 'woocommerce_checkout_process',array($this,'tks_validate_new_checkout_field') );
+		add_action( 'woocommerce_checkout_update_order_meta',array($this,'tks_save_new_checkout_field'));
+		add_action( 'woocommerce_admin_order_data_after_billing_address', array($this,'tks_show_new_checkout_field_order'), 10, 1 );
+		add_action( 'woocommerce_email_after_order_table', array($this,'tks_show_new_checkout_field_emails'), 20, 4 );
+	}
+
+	add_action( 'add_meta_boxes', array($this, 'tks_color_picker') );
+	add_action( 'save_post', array($this, 'tks_save_header_meta_box') );
+
+	
+}
+
+
+
+function tks_start_from_here() {
+
+	require_once plugin_dir_path(__FILE__) . 'back/tks_options_page.php';
+	require_once plugin_dir_path(__FILE__) . 'back/tks_update_products.php';
+	require_once plugin_dir_path(__FILE__) . 'front/tks_show_product_list.php';
+
+	//delete_transient( 'tks_times' );
+
+}
+
+// Enqueue Style and Scripts
+
+function tks_enqueue_script_front() {
+	//Style & Script
+	wp_enqueue_style('tks-style', plugins_url('assets/css/tks.css', __FILE__),'1.0.0','all');
+	wp_enqueue_script('tks-script', plugins_url('assets/js/tks.js', __FILE__),array('jquery'),'1.0.0', true);
+}
+
+function tks_enqueue_script_admin($hook){
+
+	//Style & Script
+	//echo $hook;
+	//if($hook != "toplevel_page_tks_ticket_seller")
+	//	return 0;
+
+	wp_enqueue_style( 'wp-color-picker');
+	wp_enqueue_script( 'wp-color-picker');
+
+	wp_enqueue_script('tks-admin-script', plugins_url('assets/js/tks_admin.js', __FILE__),array('jquery'),'1.0.0', true);
+
+	wp_localize_script( 'tks-admin-script', 'tks_ajax_object',
+            array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) );
+
+
+}
+
+
+function tks_store_data_temprory(){
+
+
+
+	// Get any existing copy of our transient data
+	if ( false === ( $special_query_results = get_transient( 'tks_records' ) )) {
+
+		$wp_request_url =  esc_attr( get_option('tks_get_product_url') );
+		$username =  esc_attr( get_option('tks_username') );
+		$password =  esc_attr( get_option('tks_password') );
+		$wp_request_headers = array(
+			'Authorization' => 'Basic ' . base64_encode( "$username:$password" )
+		);
+		$wp_response = wp_remote_request(
+		  $wp_request_url,
+		  array(
+		      'method'    => 'GET',
+		      'headers'   => $wp_request_headers
+		  )
+		);
+
+		$recods = json_decode($wp_response['body']);
+		set_transient('tks_records', $recods, 24 * HOUR_IN_SECONDS );
+
+		$results = get_transient( 'tks_records' );
+
+		foreach ($results as $result) {
+		    if ( post_exists( $result->Description ) == 0 ) {
+		        $post_id = wp_insert_post( array(
+		            'post_title' => $result->Description,
+		            'post_content' => $result->MainDescription,
+		            'post_excerpt' => $result->ShortDescription,
+		            'post_status' => 'publish',
+		            'post_type' => "product",
+		        ) );
+				wp_set_object_terms( $post_id, 'simple', 'product_type' );
+				$product = wc_get_product( $post_id );
+				$product->set_price( $result->Price->Price->Amount );
+				$product->set_regular_price( $result->Price->Price->Amount );
+				$product->set_stock_quantity("100");
+				$product->save();
+		    }
+		}
+	}
+}
+
+function tks_ticket_sold($order_id) { 
+
+	//create an order instance
+
+
+
+	$order = wc_get_order($order_id); 
+	$order_data = $order->get_data();
+
+	$OrderFolder = plugin_dir_path(__FILE__) .'assets/QRCode/'.$order_id;
+
+	if (!file_exists($OrderFolder)) {
+    	mkdir($OrderFolder, 0777, true);
+	}
+
+	$total = $order->get_total();
+	$items = $order->get_items();
+
+	$message = "";
+
+	$QrCodeUrl = array();
+
+		foreach ( $items as $item ) {
+			$product_name = $item->get_name();
+			$product_id = $item->get_product_id();
+
+			$product = wc_get_product($product_id);
+
+			$description = $product->get_description();
+			$shortDescription = $product->get_short_description();
+
+			$BusAgencyId = get_post_meta( $product_id, "BusAgencyId", true);
+			$ProductId = get_post_meta( $product_id, "ProductId", true);
+			$Rate = get_post_meta( $product_id, "Rate", true);
+			$IsAvailable = get_post_meta( $product_id, "IsAvailable", true);
+			$RunCounter = get_post_meta( $product_id, "RunCounter", true);
+			$validityMinutes = get_post_meta( $product_id, "validityMinutes", true);
+
+
+			for ($i=1; $i <= $item->get_quantity(); $i++) { 
+
+				$username =  esc_attr( get_option('tks_username') );
+				$password =  esc_attr( get_option('tks_password') );
+
+				$wp_request_headers = array(
+				'Authorization' => 'Basic ' . base64_encode( "$username:$password" )
+				);
+				$url =  esc_attr( get_option('tks_ticket_sold_url') );
+
+				$societyId = esc_attr(get_option('tks_societyId')); 
+				$pointOfSaleId = esc_attr(get_option('tks_pointOfSaleId')); 
+				$year = date("Y");
+				$numberOfTheYear = esc_attr(get_option('tks_numberOfTheYear')); 
+				$userId = esc_attr(get_option('tks_userId')); 
+				$username = esc_attr(get_option('tks_username')); 
+				$busAgencyName = esc_attr(get_option('tks_busAgencyName')); 
+
+				$printStatus = 20;
+				$runCounter = 1;
+				$validityMinutes = 0;
+
+
+				$body = [
+				'societyId'  => $societyId,
+				'pointOfSaleId' => $pointOfSaleId,
+				'year' => $year,
+				'numberOfTheYear' => $numberOfTheYear,
+				'userId' => $userId,
+				'userName' => $username,
+				'busAgencyId' => $BusAgencyId,
+				'busAgencyName' => $busAgencyName,
+				'productId' => $ProductId,
+				'description' => $description,
+				'shortDescription' => $shortDescription,
+				'rate' => $Rate,
+				'price' => $total,
+				'printStatus' => $printStatus,
+				'runCounter' => $runCounter,
+				'validityMinutes' => $validityMinutes
+
+				];
+
+				$body = wp_json_encode( [$body] );
+
+				$options = [
+				'method'    => 'PUT',
+				'body'        => $body,
+				'headers'     => [
+				    'Content-Type' => 'application/json',
+				    'username' => $username,
+					'password' => $password,
+				    'Authorization' => 'Basic ' . base64_encode( "$username:$password" )
+				],
+
+				'timeout'     => 60,
+				'redirection' => 5,
+				'blocking'    => true,
+				'httpversion' => '1.0',
+				'sslverify'   => false,
+				'data_format' => 'body',
+				];
+
+				$response = wp_remote_post( $url, $options );
+
+
+				if ( is_wp_error( $response ) ) {
+				$error_message = $response->get_error_message();
+				echo $error_message;
+				} else {
+
+
+					$result = json_decode($response['body']);
+					$QrCodeID = $result[0]->Id;
+
+					$qrCode = new QrCode($QrCodeID);
+					$qrCode->writeFile(__DIR__.'/assets/QRCode/'.$order_id."/".$QrCodeID.'.png');
+
+
+					$billing_first_name = $order->get_billing_first_name();
+					$billing_last_name  = $order->get_billing_last_name();
+
+					$customer_name =  $billing_first_name.' '.$billing_last_name;
+					$id = $QrCodeID;
+					$QrCodeUrl = plugins_url('/assets/QRCode/'.$order_id."/".$QrCodeID.'.png', __FILE__ );
+
+					//$description = $product_name;
+					$ShortDescription = $shortDescription;
+					$EmissionDate = $result[0]->EmissionDate == "" ? "NULL" : $result[0]->EmissionDate;
+					$ExpirationDate = $result[0]->ExpirationDate == "" ? "NULL" : $result[0]->ExpirationDate;
+
+					$order_billing_email = $order_data['billing']['email'];
+
+					$date_picker = get_post_meta($order_id, 'tks_date_picker', true );
+
+					$Price = $product->get_price();
+
+					$message .= "<div style='font-size:17px;font-family:Google Sans;border:1px solid #ddd;width: 60%;padding: 20px 20px 0px 20px;margin-bottom: 20px;'><img src='https://www.riprovaci.it/romeapt/wp-content/uploads/2021/08/logo.jpg' style='width:400px;'><hr><p> ".$product_name."</p> <p> <img src='".$QrCodeUrl."' style='width:140px;'><p> Ticket Number: ".$QrCodeID."</p><p>".$description."</p><p> ".get_woocommerce_currency_symbol().' '.$Price."</p> <p> Issued On: ".$EmissionDate."</p><p> Expired at: ".$ExpirationDate."</p><p> Trip Date: ".$date_picker."</p><p> ".wp_specialchars_decode( get_option('tks_description'), ENT_QUOTES )."</p></div>";
+				}
+
+			
+			}
+
+	}
+
+	$to = $order_billing_email;
+	$subject = " Your ticket booked at: ". get_bloginfo('name');
+	$headers = array('Content-Type: text/html; charset=UTF-8');
+
+	wp_mail( $to, $subject,"<p style='font-size:18px;font-family:Google Sans;'> Dear $billing_first_name $billing_last_name your tickets: </p>".$message, $headers);
+
+}
+
+
+  
+function tks_add_custom_checkout_field( $checkout ) { 
+   $current_user = wp_get_current_user();
+   $savedtks_date_picker = $current_user->tks_date_picker;
+   woocommerce_form_field( 'tks_date_picker', array(        
+      'type' => 'date',        
+      'class' => array( 'form-row-wide' ),        
+      'label' => 'Trip Date',        
+      //'placeholder' => 'CA12345678',        
+      'required' => true,        
+      'default' => $savedtks_date_picker,        
+   ), $checkout->get_value( 'tks_date_picker' ) ); 
+}
+
+
+
+  
+function tks_validate_new_checkout_field() {    
+   if ( ! $_POST['tks_date_picker'] ) {
+      wc_add_notice( 'Please enter your Trip Date', 'error' );
+   }
+}
+
+
+
+  
+function tks_save_new_checkout_field( $order_id ) { 
+    if ( $_POST['tks_date_picker'] ) update_post_meta( $order_id, 'tks_date_picker', esc_attr( $_POST['tks_date_picker'] ) );
+}
+  
+
+   
+function tks_show_new_checkout_field_order( $order ) {    
+   $order_id = $order->get_id();
+   if ( get_post_meta( $order_id, 'tks_date_picker', true ) ) echo '<p><strong>Trip Date:</strong> ' . get_post_meta( $order_id, 'tks_date_picker', true ) . '</p>';
+}
+  
+function tks_show_new_checkout_field_emails( $order, $sent_to_admin, $plain_text, $email ) {
+    if ( get_post_meta( $order->get_id(), 'tks_date_picker', true ) ) echo '<p><strong>Trip Date:</strong> ' . get_post_meta( $order->get_id(), 'tks_date_picker', true ) . '</p>';
+}
+
+
+function   tks_change_order_status( $order_id ) {  
+    if ( ! $order_id ) {return;}            
+    $order = wc_get_order( $order_id );
+    if( 'processing'== $order->get_status() ) {
+        $order->update_status( 'wc-completed' );
+    }
+}
+
+
+
+function tks_wp_mail_from_name( $original_email_from ) {
+    return esc_attr( get_option('tks_subject_name') );
+}
+
+
+
+
+function tks_color_picker(){
+	add_meta_box( 'color-picker-metabox-options', esc_html__('Background Color', 'ticket-seller' ),  array($this, 'tks_color_picker_function'), 'product', 'side', 'low');
+}
+
+
+
+function tks_color_picker_function( $post ) {
+		$custom = get_post_custom( $post->ID );
+		$tks_color_picker = ( isset( $custom['tks_color_picker'][0] ) ) ? $custom['tks_color_picker'][0] : '';
+		wp_nonce_field( 'tks_color_picker_function', 'tks_color_picker_function_nonce' );
+		?>
+		<script>
+		jQuery(document).ready(function(){
+		    	jQuery('.color_field').each(function(){
+        			jQuery(this).wpColorPicker();
+    		    });
+		});
+		</script>
+		<div class="pagebox">
+		    <p><?php esc_attr_e('Choose Background Color', 'ticket-seller' ); ?></p>
+		    <input class="color_field" type="hidden" name="tks_color_picker" value="<?php esc_attr_e( $tks_color_picker ); ?>"/>
+		</div>
+		<?php
+}
+
+
+function tks_save_header_meta_box( $post_id ) {
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+	if( !current_user_can( 'edit_pages' ) ) {
+		return;
+	}
+	if ( !isset( $_POST['tks_color_picker'] ) ) {
+		return;
+	}
+
+
+	$tks_color_picker = (isset($_POST['tks_color_picker']) && $_POST['tks_color_picker']!='') ? $_POST['tks_color_picker'] : '';
+	update_post_meta($post_id, 'tks_color_picker', $tks_color_picker);
+}
+
+
+
+
+} // class ends
+
+// CHECK WETHER CLASS EXISTS OR NOT.
+
+if (class_exists('TicketSeller')) {
+	$obj = new TicketSeller();
+}

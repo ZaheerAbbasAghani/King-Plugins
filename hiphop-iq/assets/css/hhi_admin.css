@@ -1,0 +1,49 @@
+#jf_answer_box{
+	clear: both;
+	height: auto;
+	overflow: hidden;
+}
+#jf_answer_box select {
+  font-family: 'FontAwesome', 'sans-serif';
+	margin: 0px 5px 14px 5px !important;
+	border: 1px solid #ddd !important;
+	font-size: 16px !important;
+	color: #000 !important;
+	width:49%; 
+	float:left
+}
+
+#jf_answer_box select option{
+  color: #000;
+  font-size: 17px;
+}
+#jf_answer_box input[type="text"]{
+	padding: 2px 10px;
+	border: 1px solid #ddd !important;
+	margin-bottom:10px;
+	width:49%; 
+	float:left;
+}
+
+
+.dblock{    background: #eee;
+    padding: 14px;
+    box-shadow: 1px 1px 2px #ddd;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.dblock h4{
+	border-bottom: 1px solid #555;
+}
+
+.jfcount{
+	    background: #007cba;
+    padding: 1px 6px;
+    border-radius: 20em;
+    color: #fff;
+}
+
+#delete_all{
+	margin-top: 30px;
+}

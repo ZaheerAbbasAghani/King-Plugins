@@ -1,0 +1,51 @@
+<?php 
+//Create Events
+add_action( 'wp_ajax_bpem_event_form_response', 'bpem_event_form_response' );
+add_action( 'wp_ajax_nopriv_bpem_event_form_response', 'bpem_event_form_response' );
+
+function bpem_event_form_response() {
+//$image_url     = sanitize_text_field($_POST['ev_image']);
+$title 	    	 = sanitize_text_field($_POST['ev_title']); 
+$content 	     = sanitize_textarea_field($_POST['ev_desc']);
+$image_url     	 = sanitize_text_field($_POST['ev_image']);
+$location 	     = sanitize_text_field($_POST['ev_location']);
+$start_date      = sanitize_text_field($_POST['ev_start_date']);
+$start_time      = sanitize_text_field($_POST['ev_start_time']);
+$end_date 	     = sanitize_text_field($_POST['ev_end_date']);
+$end_time 	     = sanitize_text_field($_POST['ev_end_time']);
+$ev_organizer    = sanitize_text_field($_POST['ev_organizer']);
+$ev_organizer_url= sanitize_text_field($_POST['ev_organizer_url']);
+$group 		     = sanitize_text_field($_POST['ev_group']);
+
+$status_all =  get_option( 'bpem_event_status' );
+foreach ($status_all as $st) {
+	$status =  $st;
+}
+
+$post_id = wp_insert_post(array (
+'post_type'	 	=> 'bpem_event',
+'post_title' 	=> 	$title,
+'post_content' 	=> 	$content,
+'post_status' 	=> 	$status
+));
+
+add_post_meta( $post_id, 'evn_location', $location );
+add_post_meta( $post_id, 'evn_startDate', $start_date);
+add_post_meta( $post_id, 'evn_startTime', $start_time);
+add_post_meta( $post_id, 'evn_endDate', $end_date);
+add_post_meta( $post_id, 'evn_endTime', $end_time);
+add_post_meta( $post_id, 'evn_organizer', $ev_organizer);
+add_post_meta( $post_id, 'evn_organizer_url', $ev_organizer_url);
+add_post_meta( $post_id, 'evn_group', $group);
+add_post_meta( $post_id, 'evn_group_slug', sanitize_title($group));
+
+require_once(ABSPATH . 'wp-admin/includes/media.php');
+require_once(ABSPATH . 'wp-admin/includes/file.php');
+require_once(ABSPATH . 'wp-admin/includes/image.php');
+
+$image = media_sideload_image($image_url, $post_id,"Image",'id');
+set_post_thumbnail( $post_id, $image );
+echo __("Success","bp-event-manager");
+
+wp_die();
+}

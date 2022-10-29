@@ -1,0 +1,16 @@
+#send_message label{
+	width:100%;
+    display:block;
+    
+}
+
+#send_message input[type="number"], textarea {
+    margin: 10px 0px !important;
+    border: 1px solid #ddd !important;
+}
+
+#send_message{
+	padding: 20px 10px;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px #ddd, -2px -2px 5px #ddd;
+}

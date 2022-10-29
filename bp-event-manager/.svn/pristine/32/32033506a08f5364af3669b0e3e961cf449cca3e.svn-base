@@ -1,0 +1,330 @@
+jQuery(document).ready(function(){
+
+
+  // Date Picker
+  jQuery("#start_date").datepicker({ dateFormat: "D, M dd, yy"}).datepicker("setDate", new Date());
+  jQuery('#start_time').timepicker({'showDuration': true,'timeFormat': ' g:ia '});
+
+  //Time Picker
+  jQuery("#end_date").datepicker({ dateFormat: "D, M dd, yy"}).datepicker("setDate", new Date());
+  jQuery('#end_time').timepicker({'showDuration': true,'timeFormat': ' g:ia '});
+
+  // AJAX Request to create event
+  jQuery(".create_event").click(function(e){
+
+    e.preventDefault();
+    
+   
+    var ev_title        = jQuery("#event_title").val();
+    var ev_desc         = tinymce.get('event_desc').getContent();
+    var ev_image        = jQuery("#EventUploadImage").val();
+    var ev_location     = jQuery("#event_location").val();
+    var ev_start_date   = jQuery("#start_date").val();
+    var ev_start_time   = jQuery("#start_time").val();
+    var ev_end_date     = jQuery("#end_date").val();
+    var ev_end_time     = jQuery("#end_time").val();
+    var event_organizer = jQuery("#event_organizer").val();
+    var event_organizer_url     = jQuery("#event_organizer_url").val();
+    var ev_group       = jQuery("#evn_group").val();
+
+      
+    if(ev_title == ""){
+        alert("Event title required");
+       return false;
+    }
+    if(ev_desc == ""){
+        alert("Event Description required");
+       return false;
+    }
+    if(ev_location == ""){
+        alert("Event Location required");
+       return false;
+    }
+    if(event_organizer == ""){
+        alert("Event Organiser required");
+       return false;
+    }
+
+    if(ev_start_date == ""){
+        alert("Event Start Date required");
+       return false;
+    }
+
+    if(ev_start_time == ""){
+        alert("Event Start Time required");
+       return false;
+    }
+     if(ev_end_date == ""){
+        alert("Event End Date required");
+       return false;
+    }
+
+    if(ev_end_time == ""){
+        alert("Event End Time required");
+       return false;
+    }
+  
+
+
+
+
+    jQuery(this).hide();
+    jQuery(".loaders").show();
+
+
+
+    var data = {
+    'action': 'bpem_event_form_response',
+    'ev_title':ev_title,
+    'ev_desc': ev_desc,
+    'ev_image': ev_image,
+    'ev_location': ev_location,
+    'ev_start_date':ev_start_date,
+    'ev_start_time':ev_start_time,
+    'ev_end_date':ev_end_date,
+    'ev_end_time':ev_end_time,
+    'ev_organizer':event_organizer,
+    'ev_organizer_url':event_organizer_url,
+    'ev_group':ev_group,
+   };
+
+  // We can also pass the url value separately from ajaxurl for front end AJAX implementations
+
+  jQuery.post(ajax_object.ajax_url, data, function(response) {
+    console.log(response);
+    location.reload();
+  });
+
+});
+
+
+
+jQuery('.bp-events').each(function (index, value) { 
+
+jQuery('#attend_'+index).click(function(){
+
+    jQuery(this).hide();
+    jQuery(".ghoom_"+index).show();
+
+    var event_id  = jQuery(this).attr('data-id');
+    //var user_id   = jQuery(this).attr('data-user-id');
+
+    data = {
+      'action'  : 'bpem_persons_who_attend_event',
+      'event_id': event_id,
+      //'user_id' : user_id,
+    }
+
+
+    jQuery.post(ajax_object.ajax_url, data, function(response) {
+
+     console.log(response);
+     location.reload();
+
+
+
+    });
+
+
+
+
+
+
+
+  });
+
+
+
+});
+
+});
+
+
+jQuery(document).ready(function(){
+  var mediaUploader;
+
+  jQuery("#uploadImage").on('click',function(e){
+  e.preventDefault();
+    if(mediaUploader){
+      mediaUploader.open();
+      return;
+    } //endif
+
+    mediaUploader = wp.media.frames.file_frame = wp.media({
+        title : 'Choose a Event Image',
+        button: {
+          text: 'Choose Image'
+        },
+        multiple:false,
+         library: { 
+           type: 'image' // limits the frame to show only images
+        },
+    });
+
+    mediaUploader.on('select', function(){
+      attachment = mediaUploader.state().get('selection').first().toJSON();
+      jQuery('#EventUploadImage').val(attachment.url);
+      jQuery(".imgshow").css({"background-image":"url("+attachment.url+")","width":"400px","height":"300px","margin":"10px 0px", "border":"6px solid #ddd","background-size":"100% 100%"});
+    });
+
+    mediaUploader.open();
+
+  });
+
+
+
+});
+
+jQuery(document).ready(function(jQuery)
+{
+    if( jQuery('ul').hasClass('sub-menu') )
+    {
+        var parent = jQuery('ul .sub-menu').parent();
+        jQuery('ul .sub-menu').addClass('dropdown-menu');
+        parent.addClass('dropdown');
+        parent.children(':first-child').attr({'href': '#', 'class': 'dropdown-toggle', 'data-toggle': 'dropdown'});
+
+    }
+
+   /* jQuery.noConflict();
+    jQuery(".event-nav").pagination({
+      items: 1,
+      itemsOnPage: 1
+    });*/
+
+
+    jQuery(function(jQuery) {
+    var pageParts = jQuery("#Upcoming .bp-events");
+    var numPages = pageParts.length;
+
+    if(numPages >= 10){
+
+      var perPage = 10;
+      pageParts.slice(perPage).hide();
+      jQuery(".event-nav").pagination({
+          items: numPages,
+          itemsOnPage: perPage,
+          prevText:"",
+          nextText:"",
+          cssStyle: "compact-theme",
+          onPageClick: function(pageNum) {
+              var start = perPage * (pageNum - 1);
+              var end = start + perPage;
+              pageParts.hide()
+              .slice(start, end).show();
+          }
+      });
+  
+    }//endif
+
+    });
+
+    // Upcoming Pagination ends
+
+
+    jQuery(function(jQuery) {
+    var pageParts = jQuery("#Past .bp-events");
+    var numPages = pageParts.length;
+
+    if(numPages >= 10){
+
+      var perPage = 10;
+      pageParts.slice(perPage).hide();
+      jQuery("#Past .event-nav").pagination({
+          items: numPages,
+          itemsOnPage: perPage,
+          prevText:"",
+          nextText:"",
+          cssStyle: "compact-theme",
+          onPageClick: function(pageNum) {
+              var start = perPage * (pageNum - 1);
+              var end = start + perPage;
+              pageParts.hide()
+              .slice(start, end).show();
+          }
+      });
+  
+    }//endif
+
+    });
+
+
+
+
+
+});
+
+
+
+function openCity(evt, eventName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("eventcontainer");
+  //jQuery(".eventcontainer:first-child").css({"display":"block"});
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", ""); 
+  }
+  document.getElementById(eventName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+
+//  Leave Event
+jQuery(document).ready(function() {
+
+  jQuery('.interestedbtn').click(function(){
+
+  if(confirm("Are you sure you want to leave?")){
+
+   /* jQuery(this).hide();
+    jQuery('.interested .loaderss').show();*/
+
+    var event_id  = jQuery(this).attr('data-id');
+    //var user_id   = jQuery(this).attr('data-user-id');
+    
+
+  data = {
+    'action'  : 'bpem_leave_event',
+    'event_id': event_id,
+    //'user_id' : user_id,
+  }
+
+
+  jQuery.post(ajax_object.ajax_url, data, function(response) {
+    console.log(response);
+    location.reload();
+  });
+
+} //end confirm
+
+  });
+});
+
+// Remove attendy
+jQuery(document).ready(function() {
+    jQuery(".remove_attendy").click(function(e){
+      e.preventDefault();
+  if(confirm("Are You Sure! Delete Attendee ?")){
+      var user = jQuery(this).attr('user-id');
+      var event = jQuery(this).attr('event-id');
+      jQuery(this).closest('.box').hide('slow');
+      //console.log(user+' '+event);
+
+      data = {
+        'action' : 'bpem_remove_attendy',
+        'user_id' : user,
+        'event_id': event,
+      }
+
+      jQuery.post(ajax_object.ajax_url, data, function(response) {
+        console.log(response);
+      location.reload();
+      });
+
+  }
+
+    });
+});  

@@ -1,0 +1,119 @@
+.zciWrapper{
+
+	clear: both;
+
+	height: auto;
+
+	overflow: hidden;
+
+}
+
+.zciLeft{
+
+	float: left;
+
+	width: 40%;
+
+}
+
+
+
+.zciRight{
+
+	float: left;
+
+	width: 60%;	
+
+}
+
+
+
+#zci_zip_code_table tr td{
+
+	text-align: center;
+
+}
+
+
+
+#zci_submit {
+
+	margin-top: 10px;
+
+    margin-left: 3px;
+
+}
+
+
+
+#zip_code_message{
+
+	background: #eee;
+
+    padding: 10px;
+
+    border-radius: 4px;
+
+    font-size: 17px;
+
+    margin-right: 10px;
+
+}
+
+
+
+#edit_box {
+
+    background: #ddd;
+
+    position: fixed;
+
+    top: 0px;
+
+    bottom: 0px;
+
+    left: 0px;
+
+    right: 0px;
+
+    z-index: 999;
+
+    text-align: center;
+
+}
+
+
+
+#edit_box  form{ margin: 24% 34%; position: relative;}
+
+#edit_box #cross {
+
+    position: absolute;
+
+    right: 10px;
+
+    cursor: pointer;
+
+    font-size: 24px;
+
+    top: 0px;
+
+}
+
+#edit_zipcode{
+
+        width: 100%;
+
+}
+
+#edit_box label{
+
+        font-size: 15px;
+
+    margin-bottom: 10px;
+
+    display: block;
+
+}
+
+

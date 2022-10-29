@@ -1,0 +1,351 @@
+<?php if(get_option('bpem_allow_user_create_event') == 1){ ?>
+<div class="event_wrapper">	
+<h1>Create Event </h1> <hr>
+<form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
+
+<div class="form-group">
+<label for="eventTitle" class="col-md-2 control-label">Event Title *</label>
+<div class="col-sm-10">
+<input type="text" name="event_title" id="event_title" class="form-control" placeholder="Enter Event Title" required="required">
+</div>
+</div>
+
+<div class="form-group">
+<label for="eventDescription" class="col-sm-2 control-label">Event Description *</label>
+<div class="col-sm-10">
+
+<?php $settings = array( 'media_buttons' => false,  'editor_height' => 150, 'textarea_rows' => 20);	 $content = '';
+$editor_id = 'event_desc';
+wp_editor( $content, $editor_id, $settings ); 
+?>
+</div>
+</div> 
+
+<div class="form-group">
+<label for="uploadImage" class="col-sm-2 control-label">Upload Image</label>
+<div class="col-sm-10">
+<button type="button" id="uploadImage" class="btn btn-default"> Upload Image </button>
+<input type="hidden" id="EventUploadImage" name="" value="">
+<div class="imgshow"></div>
+</div>
+</div>
+
+<div class="form-group">
+<label for="Location" class="col-sm-2 control-label">Location *</label>
+<div class="col-sm-10">
+<input type="text" id="event_location" class="form-control" placeholder="Enter Event Location" required="required">
+</div>
+</div>
+
+<div class="form-group">
+<label for="EventOrganizer" class="col-sm-2 control-label">Event Organiser *</label>
+<div class="col-sm-10">
+<input type="text" id="event_organizer" class="form-control" placeholder="Enter Event organiser" required="required">
+</div>
+</div>
+
+<div class="form-group">
+<label for="EventOrganizerUrl" class="col-sm-2 control-label">Event Organiser URL</label>
+<div class="col-sm-10">
+<input type="url" id="event_organizer_url" class="form-control" placeholder="Enter Event organiser" required="required">
+</div>
+</div>
+
+<div class="form-group">
+<label for="datetime" class="col-sm-2 control-label">Start Date / Time *</label>
+
+<div class="col-sm-10 start_date">
+<input type="text"  id="start_date" class="form-control" style="width: 50%; float: left;" required="required">
+<label> @ </label>
+<input type="text" id="start_time" class="form-control"  style="width: 40%; float: right;" required="required"> 
+</div>
+</div>
+
+<div class="form-group">
+<label for="datetime" class="col-sm-2 control-label">End Date / Time *</label>
+<div class="col-sm-10 end_date">
+<input type="text" id="end_date" class="form-control" style="width: 50%; float: left;" required="required">
+<label> @ </label> 
+<input type="text" id="end_time" class="form-control" style="width: 40%; float: right;" required="required"> 
+</div>
+</div>
+
+<input type="hidden" id="evn_group" value="<?php echo __(bp_get_group_id(),'bp-event-manager'); ?>">
+<div class="form-group">
+<div class="col-sm-2"></div>
+<div class="col-sm-10">
+<input type="submit" value="Submit" class="btn btn-success create_event">
+<img src="<?php echo plugin_dir_url(__FILE__).'images/loaders.gif'; ?>" class="loaders">
+</div>
+</div>
+
+</form>
+</div><!--eventWrapper -->
+<?php } ?>
+
+<?php $current_user = wp_get_current_user(); ?>
+
+<div class="event_list">
+
+<div class="w3-sidebar w3-bar-block w3-light-grey w3-card">
+<button class="w3-bar-item w3-button tablink active" onclick="openCity(event, 'Upcoming')">Upcoming</button>
+<button class="w3-bar-item w3-button tablink" onclick="openCity(event, 'Past')">Past</button>
+</div>
+
+<div class="event_wrap">
+<div id="Upcoming" class="w3-container eventcontainer">
+
+<?php 	$group_name =  bp_get_group_id();
+$args = array(
+'post_type' => array('bpem_event'),
+'post_status'	=> 'publish',
+'meta_key' => 'evn_group',
+'meta_value' => $group_name,
+);
+$events = new WP_Query($args);
+$num=0;
+
+if($events->have_posts()): while($events->have_posts()): $events->the_post(); 
+
+$start_date = get_post_meta( get_the_id(), 'evn_startDate'); 
+$start_time = get_post_meta( get_the_id(), 'evn_startTime');
+$location = get_post_meta( get_the_id(), 'evn_location');
+
+// End Date / Time
+$end_date = get_post_meta(get_the_id(), 'evn_endDate' );
+$end_time = get_post_meta(get_the_id(), 'evn_endTime' );
+$expire =  strtotime($end_date[0].''.$end_time[0]);
+$today = strtotime(date("D, M d, Y g:ia"));
+
+if($expire>$today) {
+?> 
+
+<div class="bp-events">
+
+<div class="date-time"><p><i class="fa fa-clock-o" aria-hidden="true"></i> 
+	<?php echo __($start_date[0],'bp-event-manager'); ?>, <?php echo __($start_time[0],'bp-event-manager'); ?>  </p>
+</div><!-- date-time-->
+
+<div class="title">
+<a href="<?php the_permalink(); ?>"><?php echo __(get_the_title(),'bp-event-manager'); ?> </a>
+</div><!-- title -->
+
+<div class="location">
+<p><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo __($location[0],'bp-event-manager'); ?> </p>
+</div><!-- location -->
+
+<div class="description"><?php echo __(get_the_excerpt(),'bp-event-manager'); ?></div><!-- title -->
+
+<div class="footer clearfix">
+
+<?php  $user_ids =  get_post_meta( get_the_id(), 'event_attend_id'); ?>
+
+<div class="total pull-left">
+
+<?php 
+$i=0;
+foreach (array_slice($user_ids, 0, get_option( 'bpem_number_avatar' )) as $user_id) { 
+$usr = get_user_by('id', $user_ids[$i]); 
+
+
+$avatar =  bp_core_fetch_avatar( array( 'item_id' => $user_id, 'width' => 100,'height' => 100, 'class' => 'avatar','html' => false));
+
+?>
+<?php if(!empty($usr->user_url)){ ?>
+<a href="<?php echo $usr->user_url; ?>" target="_blank">
+<?php } else { ?>
+<a href="<?php echo bp_core_get_user_domain( $user_ids[$i]); ?>" target="_blank">
+<?php  } ?>
+<img src="<?php echo $avatar; ?>">
+
+</a>
+<?php
+
+$i++;
+} ?><a href="<?php the_permalink(); ?>"><p>See all </p></a>
+
+</div><!-- total -->
+
+
+
+<?php $avatar =  bp_core_fetch_avatar( array( 'item_id' => bp_loggedin_user_id(), 'width' => 100,'height' => 100, 'class' => 'avatar','type' => 'full','html' => false));  ?>
+
+
+<?php if(in_array($current_user->ID, $user_ids) ){ ?>
+
+
+<div class="action pull-right interested">
+<div class="cnt">
+
+<a href="<?php the_permalink(); ?>" ><i class="fa fa-comments"></i>  <?php comments_number( '0', '1', '% ' ); ?> </a>
+
+</div>
+
+
+<button class="btn btn-primary pull-right interestedbtn" data-id="<?php echo get_the_id(); ?>"  ><?php if(!empty(get_option('bpem_not_join_event_label'))){ echo get_option('bpem_not_join_event_label'); } else{echo __('Leave Event','bp-event-manager') ;} ?></button>
+
+</div><!-- action -->
+
+<?php } else { 
+
+$link = home_url( '/members/' . bp_core_get_username( get_current_user_id() )  );
+?>
+
+<?php //&& get_option('bpem_allow_user_join_event_without_join_group') == 1  ?>
+<div class="action pull-right">
+<?php if (!groups_is_user_member(get_current_user_id(),bp_get_group_id()) && get_option('bpem_allow_user_join_event_after_join_group') == 1){ ?>
+<p>Join Group To Attend Event  </p>
+
+<?php } elseif(groups_is_user_member(get_current_user_id(),bp_get_group_id())) { ?>
+
+	<div class="commentsCount">
+		<a href="<?php the_permalink(); ?>"><i class="fa fa-comments"></i>  <?php comments_number( '0', '1', '% ' ); ?> 
+		</a>
+	</div>
+	<button class="btn btn-primary" data-id="<?php echo get_the_id(); ?>"  id="attend_<?php echo $num; ?>" ><?php if(!empty(get_option('bpem_join_event_label'))){ echo get_option('bpem_join_event_label'); } else{echo __('Join Event','bp-event-manager'); } ?></button>
+	<img src="<?php echo plugin_dir_url(__FILE__).'images/loaders.gif'; ?>" class="loaderss ghoom_<?php echo $num; ?>">
+
+<?php } elseif( get_option('bpem_allow_user_join_event_after_join_group') == 0){  ?>
+
+	<div class="commentsCount">
+		<a href="<?php the_permalink(); ?>"><i class="fa fa-comments"></i>  <?php comments_number( '0', '1', '% ' ); ?> </a>
+	</div>
+	<button class="btn btn-primary" data-id="<?php echo get_the_id(); ?>" data-user-id="<?php echo get_current_user_id(); ?>" id="attend_<?php echo $num; ?>" ><?php if(!empty(get_option('bpem_join_event_label'))){ echo get_option('bpem_join_event_label'); } else{echo __('Join Event','bp-event-manager'); } ?></button>
+	<img src="<?php echo plugin_dir_url(__FILE__).'images/loaders.gif'; ?>" class="loaderss ghoom_<?php echo $num; ?>">
+
+<?php } ?>
+
+</div><!-- action -->
+<?php } //end else  ?>
+
+</div><!-- footer -->
+
+</div>
+
+<?php }
+
+$num++;
+endwhile;
+
+else:
+echo __("No Events Created Yet.","bp-event-manager");
+endif;
+
+?>
+<div class="event-nav"></div>
+
+</div><!-- Upcoming ends -->
+
+
+<div id="Past" class="w3-container eventcontainer" style="display:none;">
+
+<?php 
+
+$group_name =  bp_get_group_id();
+
+$args = array(
+
+'post_type' => array('bpem_event'),
+'post_status'	=> 'publish',
+'meta_key' => 'evn_group',
+'meta_value' => $group_name,
+
+);
+
+$events = new WP_Query($args);
+
+$i=0;
+
+if($events->have_posts()): while($events->have_posts()): $events->the_post(); 
+
+$start_date = get_post_meta( get_the_id(), 'evn_startDate'); 
+$start_time = get_post_meta( get_the_id(), 'evn_startTime');
+$location = get_post_meta( get_the_id(), 'evn_location');
+
+// End Date / Time
+$end_date = get_post_meta(get_the_id(), 'evn_endDate' );
+$end_time = get_post_meta(get_the_id(), 'evn_endTime' );
+
+$expire =  strtotime($end_date[0].''.$end_time[0]);
+$today = strtotime(date("D, M d, Y g:ia"));
+
+if($expire<$today) {
+
+?> 
+
+
+
+<div class="bp-events">
+
+<div class="date-time"><p><i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo $start_date[0]; ?>, <?php echo $start_time[0]; ?>  </p>
+</div><!-- date-time-->
+
+<div class="title">
+	<a href="<?php the_permalink(); ?>"><?php the_title(); ?> </a>
+</div><!-- title -->
+
+<div class="location">
+	<p><i class="fa fa-map-marker" aria-hidden="true"></i> <?php echo $location[0]; ?> </p>
+</div><!-- location -->
+
+<div class="description"><?php the_excerpt(); ?></div><!-- description -->
+
+<div class="footer clearfix">
+<?php  $user_ids =  get_post_meta( get_the_id(), 'event_attend_id'); ?>
+
+<div class="total pull-left">
+
+<?php 
+$i=0;
+foreach (array_slice($user_ids, 0, get_option( 'bpem_number_avatar' )) as $user_id) { 
+$usr = get_user_by('id', $user_ids[$i]); 
+
+
+$avatar =  bp_core_fetch_avatar( array( 'item_id' => $user_id, 'width' => 100,'height' => 100, 'class' => 'avatar','html' => false));
+
+?>
+<?php if(!empty($usr->user_url)){ ?>
+<a href="<?php echo $usr->user_url; ?>" target="_blank">
+<?php } else { ?>
+<a href="<?php echo bp_core_get_user_domain( $user_ids[$i]); ?>" target="_blank">
+<?php  } ?>
+<img src="<?php echo $avatar; ?>">
+
+</a>
+<?php
+
+$i++;
+} ?><a href="<?php the_permalink(); ?>"><p>See all </p></a>
+
+</div><!-- total -->
+
+<div class="action pull-right">
+<p> <?php comments_number( '0', '1', '% ' ); ?> Comments</p>
+</div><!-- action -->
+</div><!--footer -->
+</div><!-- events -->
+
+
+<?php  }
+
+
+
+$i++;
+
+endwhile;
+
+else:
+echo __("No past event is avaialble.","bp-event-manager");
+
+endif;
+
+
+
+?>
+<div class="event-nav"></div>
+
+</div><!-- Past -->
+
+
+</div>
+</div><!-- event_list -->

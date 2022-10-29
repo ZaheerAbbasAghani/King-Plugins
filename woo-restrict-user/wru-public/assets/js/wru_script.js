@@ -5,13 +5,6 @@
 			source: url,
 			delay: 0,
 			minLength: 3,
-		/*	select: function (event, ui) {
-                var myVal = ui.item.value;
-                var id = myVal.substr ( myVal.indexOf ( '#' ) + 1 );
-                localStorage.setItem("userid", id);
-                
-            }*/
-		
 		});	
 
 	//jQuery("#approve").click(function() {
@@ -20,10 +13,16 @@
 		var post_id = jQuery("#search_user").attr("post-id");
 		var select_access_date = jQuery("#select_access_date").val();
 		var select_variaton = jQuery("#select_variaton").val();
+		console.log(select_variaton);
 		localStorage.getItem("userid");
 		//console.log(select_variaton);	
 		if(user==""){
 			alert("Search User Field is required.");
+			return false;
+		}
+
+		if(!jQuery('#select_variaton').val()) {
+			alert("Variation are required.");
 			return false;
 		}
 
@@ -89,21 +88,21 @@ jQuery(document).ready(function(jQuery) {
 
     });
 
-    //jQuery("#search_user_by_name_email").hide();
+//var variationsss = jQuery('.variationsss').text();
+/*console.log(variationsss);
+jQuery.each(variationsss, function(key, value) {   
+	console.log(value);
+	jQuery(".origina_variations option:contains('"+value+"')").attr("disabled","disabled");
+});*/
+
+jQuery(".variationsss").each(function(key, value){
+	console.log(value);
+	//jQuery(".origina_variations option:contains('"+value+"')").attr("disabled","disabled");
+});
 
 
-	/*jQuery('#request_consult').click(function() {
-		if( jQuery(this).is(':checked')) {
-			jQuery("#search_user_by_name_email").show();
-		} else {
-			jQuery("#search_user_by_name_email").hide();
-		}
-	}); 
+//$("select option:contains('Value b')").attr("disabled","disabled");
 
-	if( jQuery("#request_consult").is(':checked')) {
-		jQuery("#search_user_by_name_email").show();
-	} else {
-		jQuery("#search_user_by_name_email").hide();
-	}*/
+
 
 });

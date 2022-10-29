@@ -1,0 +1,46 @@
+.br_field{
+	margin-bottom: 15px;
+}
+
+.notifications .notification-description a{
+	color: #555 !important;
+}
+
+ul.ui-autocomplete {
+	width: 200px !important;
+    padding: 10px !important;
+    background: #ddd !important;
+}
+
+ul.ui-autocomplete li{
+	padding: 10px 0px 6px 0px !important;
+    color: #555 !important;
+    border-bottom: 1px solid #66666645 !important;
+}
+
+ul.ui-autocomplete li:last-child{
+	border-bottom: none !important; 
+}
+
+.my_relative{
+	background: #4fc1e9;
+    border-radius: 20em;
+    padding: 3px 10px;
+}
+
+.yz-name{
+	margin-bottom: 15px;
+}
+
+.my_relative a{
+	color: #444 !important;
+}
+
+#members-list li .item-title{
+	margin-top: 8px;
+}
+
+#members-list li .item-title a{
+	margin-bottom: 5px;
+    display: block;
+}

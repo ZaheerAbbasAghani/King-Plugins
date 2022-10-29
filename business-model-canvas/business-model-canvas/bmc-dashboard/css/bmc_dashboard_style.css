@@ -1,0 +1,302 @@
+.bmc {
+	background: #fff;
+	box-shadow: 2px 2px 2px #ddd;
+	padding:10px 25px;
+}
+
+.b-widget {
+    width: 100%;
+    max-width: 100% !important;
+    height: auto;
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+    border: 1px solid #ddd3 !important;
+}
+
+.columns {
+width: 20%;
+float: left;
+text-align: center;
+border: 1px solid #eee;
+height: 600px;
+overflow-y: scroll;
+}
+/*
+.columns .stickynote { width: 100% !important; height: auto; }*/
+.card-body{
+padding: 0px;
+}
+
+.child-1,.child-2{height: 200px; }
+.child-2 {
+border-top: 1px solid #eee;
+}
+
+.bottomColumns .myblock {
+
+padding: 0px;
+padding-top: 0px;
+padding-left: 0px;
+height: 200px;
+float: left;
+border-right: 1px solid #eee;
+
+
+}
+
+.myStickyCoulmm .stickynote {
+    width: 150px;
+    height: 150px;
+    padding: .5em;
+    cursor: grab;
+    margin: auto;
+    float: none;
+    overflow: auto;
+    box-shadow: 2px 2px 2px #ddd;
+}
+
+.myStickyCoulmm h3 {
+    color: #888;
+    font-size: 17px;
+    margin: 10px 0px 16px 0px;
+}
+.col-sm {
+border:1px solid #000;
+}
+
+h3 {
+font-size:1em;
+}
+
+.stickynote {
+    padding: .5em;
+    cursor: grab;
+    float: left;
+    margin: 2px 4px;
+    background: #fffa90;
+    color: #fff;
+    position: relative;
+    text-align: center;
+ 
+}
+.notes {
+       width: 97%;
+}
+
+.delete {
+    position: absolute;
+    top: 10%;
+    left: 3px;
+    font-size: 13px;
+    color: rgba(0,0,0,0.6);
+    cursor: pointer;
+    background: rgba(0,0,0,0.2);
+    border-radius: 100%;
+    height: 15px;
+    width: 15px;
+    line-height: 11px;
+}
+
+
+.target .stickynote:hover .delete {
+visibility:visible;
+}
+
+textarea {
+background:transparent;
+width:100%;
+resize:none;
+min-width:100%;
+min-height:100%;
+outline:0!important;
+border:0;
+}
+
+#trash {
+width:100px;
+height:100px;
+bottom:0;
+background-image: url("trash.png");
+background-size: cover;
+font-size:.8em;
+float:left;
+}
+
+.columns h3 {
+    background: #eee6;
+    padding: 10px;
+    font-size: 16px;
+}
+
+
+.bottomColumns h3 {
+background: #eee6;
+padding: 10px;   
+ font-size: 16px;
+}
+
+.columns  .fa {
+/*float: left;*/
+margin-top: 2px;
+}
+
+.bottomColumns .fa {
+/*float: right;*/
+margin-top: 2px;
+}
+
+.card-header h4{
+margin: 0px;
+color: #444;
+font-size: 20px;
+}
+
+.addsticky{ cursor: pointer; }
+.wp-picker-container {
+    position: absolute;
+    top: 4px;
+    right: 0px;
+    z-index: 999;
+}
+
+.wp-color-result-text{
+    display: none;
+}
+
+.addsticky{
+    color: #ccc;
+}
+
+#updateStickynote{
+    position: relative;
+}
+/*
+#updateStickynote:before{
+    content:"\25AE";
+    font-family:FontAwesome;
+}
+*/
+
+/* Bunsiness Canvas Ends here */
+
+
+.child-11, .child-22{
+    height: 300px;
+   
+}
+
+.scrollPlz{
+     overflow: auto;
+}
+
+.columnss {
+    width: 50%;
+    float: left;
+    text-align: center;
+    border: 1px solid #eee;
+    height: 600px;
+}
+
+.columnss h3 {
+    background: #eee6;
+    padding: 10px;
+}
+
+.columnss-container{
+    width: 45%;
+float: left;
+height: 100%;
+position: relative;
+
+}
+
+.columnss-container:nth-child(1)::before {
+    font-family: FontAwesome;
+    content: "\f178";
+    position: absolute;
+    font-size: 40px;
+    top: 49%;
+    width: 40%;
+    color: #ccc;
+}
+
+
+.columnss-container:last-child::before {
+
+    font-family: FontAwesome;
+    content: "\f177";
+    position: absolute;
+    font-size: 40px;
+    top: 49%;
+    left: -7.5%;
+    width: 40%;
+    color: #ccc;
+
+}
+
+
+/*.stickynote {    border: 1px solid #dad55e;
+    background: #fffa90;
+    color: #777620;
+}
+*/
+/* SWOT Analysis */
+.card-body .strengths-cont, .weaknesses-cont, .oppertunities-cont, .threats-cont {
+    width: 25%;
+    float: left;
+    text-transform: uppercase;
+}
+.card-body .strengths,.weaknesses,.oppertunities,.threats .s_title{
+    text-align: center;
+}
+
+.strengths {background: #0071af;padding: 30px 0px 1px 0px;}
+.weaknesses {background: #f98743;padding: 30px 0px 1px 0px;}
+.oppertunities{background: #1fba53;padding: 30px 0px  1px 0px;}
+.threats{background: #6363a9;padding: 30px 0px 1px 0px ;}
+.s_title h1{
+color: #fff;
+font-size: 60px;
+font-weight: bolder;
+}
+
+.s_title p {
+    color: #fff;
+font-weight: bold;
+}
+
+.swot_analysis .expand {
+        height: 400px;
+    background: #fff;
+    border-right: 1px solid #eee;
+    
+    
+}
+
+.bmc_wrapper{
+	background: #eee3;
+box-shadow: 1px 1px 10px #ddd,-1px -1px 8px #ddd;
+padding: 10px;
+margin: 10px;
+}
+
+.bmc_wrapper h1 {
+    font-size: 21px;
+    padding: 5px 12px 0px 18px;
+}
+
+.bmc_wrapper  .nav-tabs li a{
+	color: #000;
+}
+
+.bmc_wrapper  .nav-tabs{margin-left: 16px;}
+
+.nav > li > a:focus {
+    outline:none;
+    box-shadow:none;
+}
+
+.bms_write_here{ box-shadow: none; }
+.bmc_wrapper textarea{ box-shadow: none; }
+

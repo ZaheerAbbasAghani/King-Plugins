@@ -1,0 +1,179 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: BP Event Manager\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-25 10:17+0000\n"
+"PO-Revision-Date: 2019-05-25 10:33+0000\n"
+"Last-Translator: admin <aghanizaheer@gmail.com>\n"
+"Language-Team: Urdu\n"
+"Language: ur\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.2.2; wp-5.2.1"
+
+#: bpem-dash/bpem-post-type.php:7
+msgctxt "تقریبات"
+msgid "Events"
+msgstr "تقریبات"
+
+#: bpem-dash/bpem-post-type.php:9
+msgctxt "تقریب"
+msgid "Event"
+msgstr "تقریب"
+
+#: bpem-dash/bpem-post-type.php:11
+msgctxt "تقریبات"
+msgid "Error, duplicate 1: Events"
+msgstr "تقریبات"
+
+#: bpem-dash/bpem-post-type.php:13
+msgctxt "تقریب"
+msgid "Error, duplicate 1: Event"
+msgstr "تقریب"
+
+#: bpem-dash/bpem-post-type.php:15
+msgctxt "تقریب"
+msgid "Add New"
+msgstr "نئ شامل کریں"
+
+#: bpem-dash/bpem-post-type.php:17
+msgctxt "نئ تقریب شامل کریں"
+msgid "Add New Event"
+msgstr "نئ تقریب شامل کریں"
+
+#: bpem-dash/bpem-post-type.php:19
+msgctxt "نئ تقریب"
+msgid "New Event"
+msgstr "نئ تقریب"
+
+#: bpem-dash/bpem-post-type.php:21
+msgctxt " تقریب میں ترمیم کریں"
+msgid "Edit Event"
+msgstr "تقریب میں ترمیم کریں"
+
+#: bpem-dash/bpem-post-type.php:23
+msgctxt "تقریب دیکھیں"
+msgid "View Event"
+msgstr "تقریب دیکھیں"
+
+#: bpem-dash/bpem-post-type.php:25
+msgctxt "تمام تقریبات"
+msgid "All Events"
+msgstr "تمام تقریبات"
+
+#: bpem-dash/bpem-post-type.php:27
+msgctxt "تقریبات تلاش کریں"
+msgid "Search Events"
+msgstr "تقریبات تلاش کریں"
+
+#: bpem-dash/bpem-post-type.php:29
+msgctxt " مورث تقریبات"
+msgid "Parent Events:"
+msgstr "مورث تقریبات"
+
+#: bpem-dash/bpem-post-type.php:31
+msgctxt "کوئی تقریبات نہیں ملی"
+msgid "No Events found."
+msgstr "کوئی تقریبات نہیں ملی"
+
+#: bpem-dash/bpem-post-type.php:33
+msgctxt "ٹریش میں کوئی تقریب نہیں ملی."
+msgid "No Events found in Trash."
+msgstr "ٹریش میں کوئی تقریب نہیں ملی"
+
+#: bpem-dash/bpem-post-type.php:47
+msgctxt "تفصیل"
+msgid "Description."
+msgstr "تفصیل"
+
+#: bpem-dash/bpem-post-type.php:149
+msgctxt " تقریب کا مقام"
+msgid "Event Location"
+msgstr "تقریب کا مقام"
+
+#: bpem-dash/bpem-post-type.php:169
+msgctxt "شروع کرنے کی تاریخ"
+msgid "Start Date"
+msgstr "شروع کرنے کی تاریخ"
+
+#: bpem-dash/bpem-post-type.php:189
+msgctxt "وقت آغاز"
+msgid "Start Time"
+msgstr "وقت آغاز"
+
+#: bpem-dash/bpem-post-type.php:209
+msgctxt "آخری تاریخ"
+msgid "End Date"
+msgstr "آخری تاریخ"
+
+#: bpem-dash/bpem-post-type.php:229
+msgctxt "آخر وقت"
+msgid "End time"
+msgstr "آخر وقت"
+
+#: bpem-dash/bpem-post-type.php:253
+msgctxt "تقریب آرگنائزر"
+msgid "Event Organiser"
+msgstr "تقریب آرگنائزر"
+
+#: bpem-dash/bpem-post-type.php:273
+msgctxt "آرگنائزر یو آر ایل"
+msgid "Organiser URL"
+msgstr "آرگنائزر یو آر ایل"
+
+#: bpem-front/bpem-event-form.php:833 bpem-front/bpem-user-can-events.php:369
+msgctxt "دلچسپی نہیں"
+msgid "Leave Event"
+msgstr "دلچسپی نہیں"
+
+#: bpem-front/bpem-event-form.php:901 bpem-front/bpem-user-can-events.php:409
+#: bpem-front/bpem-user-can-events.php:425
+msgctxt "تقریب میں شمولیت"
+msgid "Join Event"
+msgstr "تقریب میں شمولیت"
+
+#: bpem-front/bpem-event-form.php:989 bpem-front/bpem-user-can-events.php:461
+msgctxt "ابھی تک کوئی تقریب نہیں بنائ گئ."
+msgid "No Events Created Yet."
+msgstr "ابھی تک کوئی تقریب نہیں بنائ گئ."
+
+#: bpem-front/bpem-event-form.php:1417 bpem-front/bpem-user-can-events.php:675
+msgctxt "کوئی پرانی تقریب نہیں ہے."
+msgid "No past event is available."
+msgstr "کوئی پرانی تقریب نہیں ہے."
+
+#: bpem-front/bpem_leave_event.php:21
+msgctxt "تقریب میں نہیں جا رہا"
+msgid "Event Leave Success"
+msgstr "تقریب میں نہیں جا رہا"
+
+#: bpem-front/bpem_persons_who_attend_event.php:29
+msgctxt "تقریب میں جا رہاہو"
+msgid "Event Attend Success"
+msgstr "تقریب میں جا رہاہو"
+
+#. Name of the plugin
+msgctxt "بي پي ايونٹ مينجر"
+msgid "BP Event Manager"
+msgstr "بي پي ايونٹ مينجر"
+
+#. Description of the plugin
+msgid ""
+"Plug and Play Plugin Development. A person can create events for buddypress "
+"groups."
+msgstr "ایک شخص buddypress گروپوں کے لئے واقعات بنا سکتا ہے."
+
+#. URI of the plugin
+msgid "http://wordpresswithzaheer.blogspot.com/p/plugin.html"
+msgstr ""
+
+#. Author of the plugin
+msgid "Zaheer Abbas Aghani"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://profiles.wordpress.org/zaheer01/"
+msgstr ""

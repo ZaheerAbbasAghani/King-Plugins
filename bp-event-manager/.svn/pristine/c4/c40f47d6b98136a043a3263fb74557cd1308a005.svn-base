@@ -1,0 +1,726 @@
+.event_wrapper {
+
+
+
+	background: #fff;
+
+
+
+	padding: 10px;
+
+
+
+	border: 1px solid #eee;
+
+
+
+}
+
+
+
+.event_wrapper h1 {
+
+    margin: 0px !important;
+
+    font-size: 22px;
+
+}
+
+
+
+
+
+
+
+.event_wrapper .form-horizontal .control-label {
+
+    padding-top: 0px !important;
+
+    font-size: 14px;
+
+    color: #444;
+
+    margin-bottom: 0px;
+
+    margin-top: 10px;
+
+    clear: both;
+
+    display: block;
+
+
+
+}
+
+
+
+
+
+
+
+.event_wrapper input[type="file"] {
+
+
+
+    display: block;
+
+
+
+    border: 1px solid #ddd;
+
+
+
+    padding: 7px;
+
+
+
+    width: 100%;
+
+
+
+    font-size: 14px;
+
+
+
+    color: #999;
+
+
+
+}
+
+
+
+
+
+
+
+.create_event{
+
+
+
+	padding:7px 23px !important;
+
+
+
+	border: none;
+
+
+
+}
+
+
+
+
+
+
+
+.event_list{
+
+
+
+	margin-top: 40px;
+
+
+
+	height: auto;
+
+
+
+}
+
+
+
+
+
+
+
+.event_list .nav {
+
+    box-shadow: 2px 2px 2px #ddd,-2px -2px 2px #ddd;
+
+    background: #fff;
+
+    float: left;
+
+    padding: 10px;
+
+    text-decoration: none;
+
+    list-style: none;
+
+    width: 20%;
+
+}
+
+
+
+
+
+
+
+
+
+.bp-events {
+
+
+
+    box-shadow: 1px 1px 5px #ddd, -1px -1px 5px #ddd;
+
+
+
+    padding: 15px 20px;
+
+
+
+    margin-bottom: 20px;
+
+
+
+    background: #fff;
+
+
+
+}
+
+
+
+.bp-events:hover{
+
+    box-shadow: 1px 1px 12px #ddd,-1px -1px 12px #ddd;
+
+	transition: 1s;
+
+
+
+}
+
+
+
+.bp-events .total  img {width: 40px;
+
+
+
+border-radius: 100%;
+
+
+
+height: 40px;
+
+
+
+float: left;}
+
+
+
+.bp-events .total  p{
+
+float: left;
+
+margin-left: 12px;
+
+margin-top: 6px;
+
+} 
+
+
+
+
+
+.date-time p {
+
+
+
+    font-size: 14px;
+
+
+
+    color: #337ab7;
+
+
+
+    font-weight: 600;
+
+
+
+    letter-spacing: 1px;
+
+
+
+    margin: 0px;
+
+
+
+}
+
+
+
+.bp-events .title a {
+
+
+
+	font-size: 20px;
+
+
+
+	font-weight: bolder;
+
+
+
+}
+
+
+
+
+
+
+
+.bp-events .location p {
+
+
+
+    color: rgba(46,62,72,.6);
+
+
+
+    font-size: 14px;
+
+
+
+}
+
+
+
+
+
+
+
+.bp-events .description p{
+
+
+
+	font-size: 14px;
+
+
+
+	line-height: 1.6;
+
+
+
+	color: #2e3e48;
+
+
+
+}
+
+
+
+
+
+
+
+.tabbable ul li a {
+
+
+
+	border-radius: 0px;
+
+
+
+}
+
+
+
+
+
+
+
+.interested .alert {
+
+
+
+    padding: 3px 10px;
+
+    margin-top: 6px;
+
+    margin-bottom: 0px;
+
+
+
+}
+
+
+
+
+
+
+
+.footer .total {
+
+
+
+    margin-top: 7px;
+
+
+
+}
+
+
+
+
+
+
+
+.bpem_box .box {
+
+    background: #fff;
+
+    width: 20%;
+
+    text-align: center;
+
+    padding: 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+
+    float: left;
+
+    margin-bottom: 20px;
+
+    margin-right: 20px;
+
+ 
+
+}
+
+
+
+
+
+
+
+.bpem_box .box img{
+
+
+
+    height: 72px;
+
+
+
+    width: 72px;
+
+
+
+    border-radius: 100%;
+
+
+
+}
+
+
+
+
+
+
+
+.bpem_box .box p{
+
+
+
+        margin-top: 7px;
+
+
+
+}
+
+
+
+
+
+.fc-content{
+
+    padding: 10px;
+
+}
+
+
+
+.fc-event-container a:hover {
+
+    color: #fff !important;
+
+}
+
+.footer .action .commentsCount {
+
+    float: left;
+
+    padding: 0px 7px;
+
+    color: #555;
+
+}
+
+.interested .cnt {
+
+    float: left;
+
+    padding: 2px 0px;
+
+    color: #555;
+
+}
+
+.interested .alert{
+
+    float: left; 
+
+}
+
+.event_thumb img {margin: auto; margin-bottom: 20px;}
+
+.start_date,.end_date{ text-align: center; }
+
+.create_event{
+
+    margin-top: 20px;
+
+}
+
+.tab-content{float: left;
+
+width: 77%;
+
+margin-left: 3%;}
+
+
+
+.event_list .w3-sidebar {
+
+    width: 20%;
+
+    float: left;
+
+    box-shadow: 1px 1px 5px #ddd, -1px -1px 5px #ddd;
+
+    padding: 15px 20px;
+
+    margin-bottom: 20px;
+
+    background: #fff;
+
+        background-clip: border-box;
+
+}
+
+
+
+.event_wrap {
+
+    float: left;
+
+    width: 78%;
+
+    margin-left: 15px;
+
+}
+
+
+
+.w3-sidebar button {
+
+    border: none !important;
+
+        border-bottom-color: currentcolor;
+
+        border-bottom-style: none;
+
+        border-bottom-width: medium;
+
+    border-bottom: 1px solid #ddd;
+
+    margin-bottom: 11px;
+
+    padding-bottom: 11px;
+
+    display: block;
+
+    width: 100%;
+
+    text-align: left;
+
+}
+
+
+
+.loaders{
+
+    width: 50px;
+
+    display: none;
+
+    margin: 20px;
+
+}
+
+.loaderss{
+
+    width: 50px;
+
+    display: none;
+
+
+
+}
+
+
+
+.w3-red{
+
+    background:#ddd;
+
+}
+
+
+
+.ui-datepicker-prev:before {
+
+    font-family: FontAwesome;
+
+    content: "\f053";
+
+    left: 7px;
+
+    position: absolute;
+
+    top: 1px;
+
+}
+
+
+
+.ui-datepicker-next:after {
+
+    font-family: FontAwesome;
+
+    content: "\f054";
+
+    right: 7px;
+
+    position: absolute;
+
+    top: 1px;   
+
+}
+
+
+
+.bpem_alerts{
+
+    padding: 10px;
+
+    border: 1px solid #ddd;
+
+}
+
+
+
+#EventInformation .inside{
+
+    padding-bottom: 0px;
+
+}
+
+#eventform .controls{
+    position: relative;
+}
+
+#eventform label.error{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: #ff0000b3;
+    padding: 12px;
+    color: #fff;
+}
+
+.bpem_success{
+    background: #ff0000b3;
+    color: #fff;
+    font-size: 20px;
+    padding: 13px;
+    display: none;
+}
+
+/*.form-group .controls .loaders{
+
+}*/
+
+
+@media(min-width:320px) and (max-width:568px){
+
+    
+
+    .event_list .w3-sidebar {
+
+        width: 90%;
+
+    }
+
+
+
+    .event_wrap {
+
+        margin: 0px;
+
+        width: 100%;
+
+    }
+
+    .bp-events .footer .btn-primary {
+
+        width: 100%;
+
+        font-size: 13px;
+
+    }
+
+
+
+    .event_thumbnails {
+
+        height: 90px;
+
+        top: 40px;
+
+    }
+
+
+
+    .bp-events .footer .action {
+
+        width: 35%;
+
+        float: none;
+
+        margin: 70px auto;
+
+    }
+
+
+
+}
+
+
+
+@media(min-width: 768px) and (max-width: 1024px){
+
+    .event_wrap {
+
+        width: 72%;
+
+    }
+
+}
+

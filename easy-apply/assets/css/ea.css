@@ -1,0 +1,319 @@
+@font-face {
+  font-family: myFirstFont;
+  src: url(../fonts/SohoStd-Regular.otf);
+  font-weight: bold;
+}
+
+.vjobs {
+    max-width: 1000px;
+    margin: 40px auto;
+    font-family: myFirstFont;
+}
+.vjobs table tr:hover{
+	background-image: linear-gradient(180deg, #DD5154 0%, #BF2130 100%) !important;
+}
+.vjobs table tr:hover td{
+	color: #fff !important;
+}
+
+
+.vjobs table tr th{
+	 text-align: center;
+	 border: 2px solid #fff;
+}
+
+.vjobs table tr td{
+	 text-align: center;
+	 cursor: pointer;
+}
+
+.vjobs th {
+    padding: 20px;
+    font-family: inherit;
+    font-size: 17px;
+    color: #fff;
+    background-image: linear-gradient(#0f50ca, #0faeee);
+    border-bottom: 4px solid #fff;
+}
+
+.vjobs table tr:nth-child(even) {
+	background: #cfd5ea;
+}
+.vjobs table tr:nth-child(odd) {
+	background: #e9ebf5;
+}
+
+.vjobs table tr td {
+    color: #002278;
+    padding: 10px;
+    border: 2px solid #fff;
+}
+.jobList .inner_blocks{
+	margin: 0px;
+}
+.jobList .inner_blocks li {
+    display: inline-block;
+    text-align: left;
+    width: 210px;
+    font-size: 15px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0px 10px;
+    font-family: myFirstFont;
+}
+.jobList .inner_blocks .title {
+    float: left;
+    background-image: linear-gradient(to right, #0f50ca, #0faeee);
+    text-align: right;
+    color: #fff;
+    border: 2px solid #fff;
+    border-bottom: 0px;
+}
+.jobList .inner_blocks .display {
+    float: left;
+    border: 2px solid #fff;
+    border-left: 0px;
+    border-bottom: 0px;
+    color: #00247e;
+}
+
+.jobList .inner_blocks .link {
+    float: left;
+    background: #c4edfc;
+    text-align: center;
+}
+
+.swal2-html-container{
+	margin: 0px !important;
+	background: #f0f0f0;
+}
+.swal2-popup{
+	padding: 0px !important;
+}
+.inner_blocks_2{
+	clear: both;
+	margin: 0px;
+	list-style:none;
+}
+
+.jobList .inner_blocks_2 li:first-child {
+    text-align: left;
+    width: 210px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0px 10px;
+    font-family: myFirstFont;
+    float: left;
+    height: 350px;
+    text-align: right;
+}
+
+.jobList .inner_blocks_2 li {
+    font-size: 15px;
+    font-family: myFirstFont;
+    line-height: 25px;
+    text-align: left;
+    color: #00247e;
+    float: left;
+    width: 76%;
+}
+
+.jobList .inner_blocks_2 .title {
+    float: left;
+    background-image: linear-gradient(to right, #0f50ca, #0faeee);
+    text-align: right;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.jobList{
+	    clear: both;
+    height: auto;
+    overflow: hidden;
+}
+
+.jobList .inner_blocks .link a{
+	text-decoration: underline;
+	color: #00247e;
+}
+
+.descriptionLabel{
+	padding: 10px;
+}
+.applyformWrap form#submit_application ul{
+	margin: 0px;
+    list-style: none;
+    font-family: myFirstFont;
+    height: auto;
+    overflow: hidden;
+}
+.applyformWrap form#submit_application ul li.heading {
+    font-family: inherit;
+    font-size: 17px;
+    color: #fff;
+    background-image: linear-gradient(#0f50ca, #0faeee);
+}
+
+.applyformWrap form#submit_application ul li {
+    float: left;
+    width: 50%;
+    border: 1px solid #fff;
+    height: 50px;
+    line-height: 50px;
+    color: #002278;
+    font-size: 15px;
+    text-align: right;
+    padding: 0px 12px;
+}
+
+#submit_application ul li:nth-child(2) {
+    text-align: left !important;
+}
+
+#submit_application input[type='text'], input[type='phone'], input[type='email'], textarea {
+    width: 100% !important;
+    border: 1px solid #ddd !important;
+    padding: 5px 10px !important;
+    font-family: inherit;
+    background: rgba(255,255,255,0.6);
+}
+
+#attach_cv_img {
+    border-radius: 10px;
+    margin: 26px 10px 20px 0px;
+    cursor: pointer;
+    width: 230px;
+    position: absolute;
+    left: 11px;
+    bottom: -106px;
+}
+
+#subAppli {
+    width: 230px;
+    height: 72px;
+    border: none;
+    border-radius: 13px;
+    cursor: pointer;
+    font-size: 0;
+    background-size: 100% 100%;
+    position: absolute;
+    right: 11px;
+    bottom: -87px;
+}
+.fullList {
+	display: block;
+    width: 25%;
+    margin: auto;
+    padding: 18px 10px;
+    font-family: "soho std", Sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    fill: #FFFFFF;
+    color: #FFFFFF;
+    background-color: transparent;
+    background:#002278;
+    border-radius: 100px 100px 100px 100px;
+    box-shadow: 0px 0px 11px 0px rgb(0 0 0 / 8%);
+    padding: 14px 15px 14px 15px;
+    text-align: center;
+}
+.fullList:focus{
+	color:#fff;
+}
+.fullList:hover{
+	background:#d6474c;
+	color:#fff;
+}
+
+.shortlist{
+	display: block;
+    width: 25%;
+    margin: auto;
+    padding: 18px 10px;
+    font-family: "soho std", Sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    fill: #FFFFFF;
+    color: #FFFFFF;
+    background-color: transparent;
+    background:#002278;
+    border-radius: 100px 100px 100px 100px;
+    box-shadow: 0px 0px 11px 0px rgb(0 0 0 / 8%);
+    padding: 14px 15px 14px 15px;
+    text-align: center;
+}
+
+.shortlist:hover{
+	background:#d6474c;
+	color:#fff;
+}
+
+.shortlist:focus{
+	color:#fff;
+}
+
+@media(min-width: 320px) and (max-width: 568px){
+	.vjobs {
+    	overflow: scroll;
+	}
+	.inner_blocks {
+		margin-top: 50px;
+	}
+	.inner_blocks li {
+	    width: 100% !important;
+	    text-align: center !important;
+	}
+	.jobList .inner_blocks_2 li:first-child{
+	    height: auto !important;
+	    width: 100%;
+	    text-align: center;
+	}
+	.jobList .inner_blocks_2 li {
+		width: 100%;
+	}
+
+	.applyDirect{
+		display:none !important; 
+	}
+
+	.applyDirectMobile{
+		display:block !important; 
+	}
+	.applyDirectMobile{
+		height: 100px;
+    	width: 100%;
+	}
+	#attach_cv_img {
+		border-radius: 10px;
+		margin: 26px 10px 20px 0px;
+		cursor: pointer;
+		width: 180px;
+		position: absolute;
+		left: 11px;
+		bottom: -90px;
+	}
+	
+	#subAppli {
+		width: 167px;
+		height: 56px;
+		border: none;
+		border-radius: 13px;
+		cursor: pointer;
+		font-size: 0;
+		background-size: 100% 100%;
+		position: absolute;
+		right: 5px;
+		bottom: -70px;
+	}
+	.applyDirectMobile {
+		width:100% !important;
+	}
+	.fullList {
+		width: 100%;
+	}
+	.shortlist {
+     width: 100%;
+	}
+}

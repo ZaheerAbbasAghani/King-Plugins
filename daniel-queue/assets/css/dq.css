@@ -1,0 +1,99 @@
+#create_salon_wrapper input[type="text"],input[type="file"],textarea{
+	padding: 7px !important;
+	display: block;
+    margin-bottom: 10px;
+}
+.dq_my_salon{
+    height: auto;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    box-shadow: 2px 2px 2px #ddd;
+    padding: 10px;
+    background: #fff;
+    margin-bottom: 20px !important;
+}
+.dq_my_salon p {
+    margin-left: 17%;
+    padding-top: 0px;
+    margin-bottom: 0px;
+}
+
+.dq_my_salon img{
+    width: 80px;
+    border-radius: 50em;
+    height: 90px;
+    float: left;
+    margin-top: 6px;
+}
+
+.dq_my_salon .mini_salon {
+    float: left;
+    font-family: monospace;
+}
+.join_queue {
+    float: right;
+    margin: 40px 0px;
+    text-align: center;
+}
+.join_queue_btn{
+        padding: 10px;
+    font-size: 14px;
+}
+.delete_queue_btn{
+    padding: 10px;
+    font-size: 14px;   
+    background: black;
+}
+.dq_my_salon .my_mini_salon {
+    float: left;
+    width: 75%;
+}
+
+.dq_my_salon .my_mini_salon p {
+    margin-left: 22%;
+    padding-top: 0px;
+    margin-bottom: 0px;
+}
+
+.delete_queue {
+    float: right;
+    margin: 40px 0px;
+    text-align: center;
+}
+#dq_queue{background: #fff;}
+#dq_queue tr{
+    text-align: center;
+}
+.queue_man {
+    margin: auto;
+    width: 60px;
+    border-radius: 20em;
+    box-shadow: 1px 1px 5px #ddd;
+}
+#remove_customer {
+    background: #ddd;
+    padding: 14px 10px 14px 10px;
+    color: #000;
+    text-decoration: none;
+    line-height: 8px;
+    font-size: 14px !important;
+}
+#remove_customer_disabled{
+    background: #eee;
+    padding: 14px 10px 14px 10px;
+    color: #000;
+    text-decoration: none;
+    line-height: 8px;
+    font-size: 14px !important;   
+    cursor: default;
+}
+
+#remove_customer:hover{
+    background: red;
+    color: #fff;
+}
+.delete_queue1{
+    text-align: center;
+}

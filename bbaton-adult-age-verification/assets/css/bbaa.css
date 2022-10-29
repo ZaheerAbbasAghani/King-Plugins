@@ -1,0 +1,48 @@
+.bbaa {
+    text-align: center;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: #f6f6f6fc;
+    padding-top: 12%;
+    z-index: 999999;
+}
+
+.bbaa h3 {
+    width: 57% !important;
+    margin: auto !important;
+    font-size: 19px !important;
+    color: #0071bc !important;
+}
+
+.bbaa .bbaa19{
+	width: 150px;
+    margin-bottom: 50px;
+}
+
+.bbaa .num_headings {
+    display: inline-flex;
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 5%;
+    padding-top: 5px;
+}
+
+.bbaa .num_headings h2{
+    color:#0071bc !important;
+    float:left;
+    font-size: 60px !important;
+    margin-bottom:30px !important;
+}
+.bbaa .num_headings h1 {
+    color: #0071bc !important;
+    float: left;
+    margin: -17px 0px;
+    font-size: 80px !important;
+}
+
+.confirm_done h3{
+        margin-top: 10%;
+}

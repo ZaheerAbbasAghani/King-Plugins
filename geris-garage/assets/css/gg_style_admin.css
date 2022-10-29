@@ -1,0 +1,32 @@
+#accordion h3{
+	background: #eee;
+    padding: 15px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.dataTables_wrapper .dataTables_length select{
+	width: 60% !important; 
+}
+
+.gg_reset_now{
+	background: red;
+    padding: 13px 10px;
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    width: 12%;
+    margin: 20px auto;
+    border-radius: 4px;
+}
+
+.gg_reset_now:hover{
+	color: #fff;
+}
+
+.gg_reset_now:active,.gg_reset_now:focus{
+	color: #fff;
+	outline: none;
+}

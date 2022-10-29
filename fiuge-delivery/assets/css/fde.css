@@ -1,0 +1,30 @@
+.woocommerce-checkout-review-order label{
+	display: block;
+    margin-bottom: 20px;
+}
+
+.swal2-html-container {
+    text-align: left !important;
+}
+
+.swal2-html-container .pickupDateTime {
+    display: block;
+    padding: 10px;
+    width: 100%;
+    margin: 10px 0px;
+}
+
+.swal2-html-container form label{
+	    width: 100%;
+}
+
+.delivery_option_process input[type='submit']{
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	box-shadow: 2px 2px 6px #ddd;
+}
+
+.woocommerce-Price-amount{
+	display: block !important;
+}

@@ -1,0 +1,85 @@
+.calendar .event-container{
+	padding: 72px 5px 5px 5px !important;
+}
+
+.calendar td {
+    padding: .8em .1em;
+    font-size: 15px;
+}
+
+.event-hour{
+	display: none;
+}
+
+.calendar {
+    text-transform: inherit !important;
+}
+
+.calendar .event-container .event-date {
+    margin-bottom:0px !important;
+    font-weight: bold;
+    font-size: 20px;
+}
+.summary{
+	color: #000 !important;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    margin-top: 11px;
+}
+.event-container .event-date{ display: none; }
+.event-summary span{ font-size: 18px;
+    font-weight: bolder; }
+
+
+#post-wrapper .post-column article.sticky{
+    background: #eee;
+    box-shadow: 1px 1px 2px #ddd, -1px -1px 2px #ddd;
+    padding: 10px;
+}
+.jac_widget_posts .post-categories{
+    padding: 0px !important;
+}
+.jac_widget_posts ul.post-categories li{
+    list-style: none;
+}
+.jac_widget_posts .meta-tags ul{
+    padding: 0px !important;
+}
+.jac_widget_posts .meta-tags ul li{
+    list-style: none;
+}
+.jac_widget_posts .asc_dsc_filters{
+    display: none !important;
+}
+#jac_subscribe {
+    text-decoration: none;
+    width: 100%;
+    padding: 7px 0px !important;
+}
+
+.sidebar #text-4 p {
+    margin: 0px !important;
+}
+
+#jac_subscribe label{
+	font-size: 14px !important;
+    line-height: 1;
+}
+
+#frmbtn{
+    width:100%;padding:4px !important;
+}
+
+.subscribe_here {
+    width: 50%;
+    background: #B7CBE5;
+    padding: 10px 20px;
+    box-shadow: 1px 1px 1px #ddd;
+    line-height : 150%; 
+}
+
+.subscribe_here p{
+    margin: 0px !important;
+}

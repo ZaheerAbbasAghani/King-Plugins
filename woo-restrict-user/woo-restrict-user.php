@@ -17,8 +17,8 @@ class WooRestrictUser {
 function __construct() {
 	add_action('init', array($this, 'bpem_start_from_here'));
 	add_action('wp_enqueue_scripts', array($this, 'wru_enqueue_script_front'));
-	//add_action('init', array($this, 'rudr_instagram_api_curl_connect'));
 	add_action('admin_enqueue_scripts', array($this, 'wru_enqueue_admin'));
+	//add_filter( 'woocommerce_variation_is_active', array($this,'bbloomer_grey_out_variations_out_of_stock'), 10, 2 );
 	
 
 }
@@ -58,10 +58,19 @@ wp_localize_script( 'wru-script', 'MyAutocomplete', array( 'url' => admin_url( '
 
 function wru_enqueue_script_front(){
 	wp_enqueue_style('front-style', plugins_url('wru-public/assets/css/wru_style.css', __FILE__),'1.0.0','all');
+	if( is_user_logged_in()) {
+		wp_enqueue_script('front-js', plugins_url('wru-public/assets/js/wru_front.js', __FILE__),'1.0.0','all');
+	}
 }
 
 
+ 
+/*function bbloomer_grey_out_variations_out_of_stock( $is_active, $variation ) {
+    if ( ! $variation->is_in_stock() ) return false;
+    return $is_active;
+}
 
+*/
 
 /*add_action( 'wp_head', 'react2wp_is_shop_remove_add_to_cart_button');
 function react2wp_is_shop_remove_add_to_cart_button() {

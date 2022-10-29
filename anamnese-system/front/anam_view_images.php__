@@ -1,0 +1,25 @@
+<?php 
+if ( defined( 'XMLRPC_REQUEST' ) || defined( 'REST_REQUEST' ) || ( defined( 'WP_INSTALLING' ) && WP_INSTALLING ) || wp_doing_ajax() ) {
+    @ini_set( 'display_errors', 1 );
+}
+
+add_action( 'wp_ajax_nopriv_anam_view_images', 'anam_view_images' );
+add_action( 'wp_ajax_anam_view_images', 'anam_view_images' );
+function anam_view_images() {
+	
+//	print_r($_POST);
+	
+$wp_upload_dir =  wp_upload_dir();
+
+
+$custom_upload_folder= $wp_upload_dir['basedir'].'/anam_users/'.$_POST['user_id'].'/'.$_POST['doc_id'];
+$images = glob($custom_upload_folder . "/*.{jpeg,jpg,gif,png}", GLOB_BRACE);
+echo "<div class='doc_images'>";
+foreach($images as $image)
+{
+	echo "<img src='".$wp_upload_dir['baseurl'].'/anam_users/'.$_POST['user_id'].'/'.$_POST['doc_id'].'/'.basename($image)."'/>";
+}
+echo "</div>";
+
+	wp_die();
+}

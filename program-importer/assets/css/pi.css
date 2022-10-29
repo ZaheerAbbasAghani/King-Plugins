@@ -1,0 +1,32 @@
+.extvs-advance-detail .extvs-advance-program ul li{
+	height: 170px !important;
+}
+.ex-tvs-advance .item-tvs{
+	overflow-x: scroll;
+}
+
+.ex-tvs-advance .extvs-advance-parent .extvs-advance-chanel{
+	padding-top: 0px !important;
+}
+
+.extvs-advance-chanel .extvs-chanel-name {
+    display: block !important;
+    float: none !important;
+    width: 100% !important;
+    text-align: right;
+    font-size: 13px !important;
+}
+
+.extvs-advance-chanel ul li{
+	display: block !important;
+}
+
+.ex-tvs-advance.style-2 .extvs-advance-chanel ul{
+	border: none !important;
+	margin-top: -23px !important; 
+    margin-right: 6px;
+}
+
+.extvs-advance-detail .extvs-advance-timeline ul li .extvs-time-hour{
+	top: 0px !important;
+}

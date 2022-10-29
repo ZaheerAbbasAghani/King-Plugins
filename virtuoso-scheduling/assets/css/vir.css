@@ -1,0 +1,18 @@
+td{
+	vertical-align: middle !important;
+}
+
+.fc-scroller-harness-liquid .fc-scroller{
+	overflow: hidden !important;
+}
+.fc-scrollgrid-sync-table tr th {
+	font-size: 15px;
+}
+
+.fc-scrollgrid-sync-table tr td {
+	font-size: 15px;
+}
+
+.fc .fc-scrollgrid-section table{
+	margin: 0px;
+}

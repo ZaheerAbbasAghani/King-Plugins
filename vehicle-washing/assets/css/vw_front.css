@@ -1,0 +1,10 @@
+.ListImages{
+	margin: 0px;
+}
+
+.ListImages li {
+    list-style: none;
+    display: inline-table;
+    width: 24%;
+    margin: 4px;
+}

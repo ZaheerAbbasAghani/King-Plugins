@@ -1,0 +1,362 @@
+.dixBox {
+    width: 197px;
+    height: 350px;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 20%);
+    border-radius: 10px;
+    overflow: hidden;
+    display: inline-block;
+    margin: 5px;
+    background-color: #FFFFFF;
+    position: relative;
+    z-index: 1;
+}
+
+.dixBox img {
+    height: 160px !important;
+    position: relative;
+    background-color: white;
+    margin: 30px auto 20px auto;
+    width: auto !important;
+    margin-top: 50px;
+}
+.dixBox .detail-box {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    padding: 5px 5px;
+    box-sizing: border-box;
+    font-family: poppins;
+    z-index: 120;
+    position: absolute;
+    bottom: 2px;
+}
+.dixBox .detail-box a {
+    color: #222222;
+    font-size: 14px;
+    line-height: 20px;
+    display: block;
+}
+
+.dixBox  .detail-box  p {
+    font-size: 12px;
+    width: 100%;
+}
+
+
+.owl-carousel .owl-prev.disabled,
+.owl-carousel .owl-next.disabled {
+  pointer-events: none !important;
+  opacity: 0.25 !important;
+}
+.owl-carousel .owl-prev {
+    left: -16px !important;
+}
+.owl-carousel .owl-next {
+  right: -20px !important;
+}
+.owl-carousel .owl-nav [class*=owl-] {
+    color: #000 !important;
+    font-size: 25px !important;
+    border-radius: 3px !important;
+    position: absolute;
+    top: 185px;
+    width: 30px;
+    height: 50px;
+    line-height: 54px !important;
+}
+.owl-carousel .prev-carousel:hover {
+  background-position: 0px -53px !important;
+}
+.owl-carousel .next-carousel:hover {
+  background-position: -24px -53px !important;
+}
+
+.arrow-right{
+
+    background-color: red;
+    height: 40px;
+    left: 0px;
+    position: absolute;
+    top: 0px;
+    text-align: center;
+    right: 0px;
+    width: 100%;
+    color: #fff;
+    line-height: 40px;
+}
+
+/*.arrow-right {
+    background-color: red;
+    height: 190px;
+    right: -46px;
+    position: absolute;
+    top: -65px;
+    width: 100px;
+    -webkit-transform: rotate(-45deg);
+}
+
+.arrow-right span {
+    color: #f5f5f5;
+    font-family: sans-serif;
+    font-size: 16px;
+    right: 38px;
+    top: 66px;
+    position: absolute;
+    width: 80px;
+    -webkit-transform: rotate(90deg);
+    font-family: inherit;
+    font-weight: 500;
+    text-align: center;
+}
+*/
+.detail-box H2 {
+    color: #222222;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    font-size: 16px !important;
+    margin: 10px 0px;
+}
+
+.owl-filter-bar {
+    display: block;
+    margin-bottom: 30px;
+    padding: 0px;
+    text-align: center;
+}
+
+.owl-filter-bar .item {
+    background-color: #D0CCD6;
+    padding: 0px 15px;
+    font-size: 15px;
+    border-radius: 20em;
+    margin: 0px 0px;
+    color: #2C085A;
+}
+.dix_active {
+    background-color: #2C085A !important;
+    color: #D0CCD6 !important;
+}
+
+.owl-filter-bar .item:hover{
+    background-color: #2C085A;
+     color: #D0CCD6;
+}
+
+/*.dixBox .buyNow {
+    height: 200px;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+}*/
+
+.dixBox .buyNow {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 200px;
+    background-color: rgba(43, 12, 90, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    display: none;
+}
+
+.dixBox .buyNow a {
+    width: 140px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    color: #2C085A;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 30px rgb(0 0 0 / 20%);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.dixBox .buyNow a:hover{
+    color: #FFFFFF;
+    background-color: #1A0042;
+    transition: all ease 0.3s;
+}
+
+.dixBox:hover .buyNow{
+    display: flex !important;
+    transition: 1s;
+}
+
+#dixQuery {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    color: #fff;
+    padding: 12px;
+    font-size: 14px;
+}
+#dixQuery:focus-visible{
+    outline: none;
+}
+
+#searchform .elementor-search-form__submit {
+    position: absolute;
+    top: -8px;
+    right: 2px;
+    background: none;
+    padding: 0px;
+    font-size: 24px;
+    margin-top: 15px;
+    color: rgba(255,255,255,0.8);
+}
+
+
+#searchform  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var( --e-global-color-primary ) !important;
+  opacity: 0.7;
+}
+
+#searchform  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: var( --e-global-color-primary ) !important;
+  opacity: 0.7;
+}
+
+#searchform  ::-ms-input-placeholder { /* Microsoft Edge */
+  color: var( --e-global-color-primary ) !important;
+  opacity: 0.7;
+}
+
+/*.dixGridWrapper .dixBoxSearch {
+    position: relative;
+    border: 1px solid #ddd;
+    height: auto;
+    overflow: hidden;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 5px rgb(0 0 0 / 20%);
+    border-radius: 10px;
+}
+
+.dixLeftSide ul li {
+    margin-top: 14px;
+    color: #222222;
+    font-size: 15px;
+    line-height: 20px;
+    display: block;
+}
+
+.dixRightSide ul li {
+    margin-top: 14px;
+    color: #222222;
+    font-size: 15px;
+    line-height: 20px;
+    display: block;
+}
+
+.dixRightSide ul{
+    margin: 0px;
+}
+
+.dixBoxSearch .buyNow {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 180px;
+    height: 100%;
+    background-color: rgba(43, 12, 90, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    display: none;
+}
+
+.dixBoxSearch .buyNow a {
+    width: 140px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    color: #2C085A;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 30px rgb(0 0 0 / 20%);
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 110px;
+    margin-left: 20px;
+}
+
+.dixBoxSearch .buyNow a:hover{
+    color: #FFFFFF;
+    background-color: #1A0042;
+    transition: all ease 0.3s;
+}
+
+.dixBoxSearch:hover .buyNow{
+    display: block !important;
+    transition: 1s;
+}*/
+
+.newsWrapper h3{
+    margin: 12px 0px;
+}
+
+.newsWrapper h3 a{
+    color: var( --e-global-color-secondary );
+    font-family: var( --e-global-typography-primary-font-family ), Sans-serif;
+    font-weight: var( --e-global-typography-primary-font-weight );
+    font-size: 17px;
+}
+
+.newsWrapper p{
+    margin: 0;
+    line-height: 1.5em;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.newsWrapper a {
+    color: #61ce70;
+    font-size: 13px;
+    font-weight: bold;
+    display: block;
+    margin: 10px 0px 25px 0px;
+}
+
+.dixGridWrapper .dixBox{
+    width: 23% !important;
+}
+
+@media(min-width: 320px) and (max-width: 568px){
+   .dixGridWrapper .dixBox {
+        width: 46% !important;
+    }
+    .dixRightSide {
+        width: 100% !important;
+        margin-top: 0px !important;
+        text-align: center;
+    }
+}
+
+@media(min-width: 820px) and (max-width: 1180px){
+    .dixGridWrapper .dixBox {
+        width: 31% !important;
+    }
+    .dixRightSide {
+        width: 70% !important;
+    }
+}
+
+@media (max-width : 420px) {
+  .owl-carousel .owl-prev {
+    margin-left: 40px;
+	}
+	.owl-carousel .owl-next {
+  margin-right: 40px;
+	}
+}

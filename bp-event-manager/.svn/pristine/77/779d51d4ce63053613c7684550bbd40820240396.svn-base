@@ -1,0 +1,24 @@
+<?php 
+//Create Events
+add_action( 'wp_ajax_bpem_leave_event', 'bpem_leave_event' );
+add_action( 'wp_ajax_nopriv_bpem_leave_event', 'bpem_leave_event' );
+
+function bpem_leave_event() {
+//$image_url     = sanitize_text_field($_POST['ev_image']);
+$event_id 	= sanitize_text_field($_POST['event_id']); 
+$user_id 	= sanitize_text_field($_POST['user_id']);
+/*$avatar     = $_POST['avatar'];
+$dp_name    = sanitize_text_field($_POST['dp_name']);
+$link    	= sanitize_text_field($_POST['link']);
+$attend     = sanitize_text_field($_POST['attend']);*/
+
+delete_post_meta( $event_id, 'event_attend_id', $user_id, false );
+/*delete_post_meta( $event_id, 'event_attend_avatar', $avatar, false );
+delete_post_meta( $event_id, 'event_attend_person',$dp_name, false );
+delete_post_meta( $event_id, 'event_user_link',$link, false );
+delete_post_meta( $event_id, 'event_attend_status',$attend, false );*/
+
+echo "Event Leave Success";
+
+wp_die();
+}

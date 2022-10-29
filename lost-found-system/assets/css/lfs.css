@@ -1,0 +1,62 @@
+#lfs_advertisement_form{
+    font-family: Trocchi;
+}
+#lfs_pictures{
+	padding-bottom: 33px;
+}
+#lfs_advertisement_form .user_info {
+    background: #eee;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    box-shadow: 1px 1px 2px #ddd, -1px -1px 2px #ddd;
+}
+#lfs_advertisement_form .user_info h6{
+	margin-top: 10px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 
+}
+#lfs_list .img_wrapper {
+    height: 170px;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+#lfs_list h4 {
+    font-size: 16px;
+}
+#lfs_list .img_wrapper img{
+    width: 100%;
+    height: 100%;
+}
+#lfs_list .img_wrapper img:hover{
+    transform: scale(1.1,1.1);
+    transition: 1s;
+}
+
+.missing_details{
+    font-family: Trocchi;
+}
+
+.missing_contact{
+    width: 150px;
+    text-align: center;
+    padding: 12px;   
+}
+
+.missing_contact:hover{
+    text-decoration: none;
+}
+.owner_contact{
+    display: none;
+}
+.missing_details form input[type="text"],textarea,input[type="email"]{
+    width: 100%;
+    display: block;
+    margin-bottom: 10px !important;
+}
+
+.page-id-1335 .search-form{
+        text-align: center;
+    margin-bottom: 30px;
+}

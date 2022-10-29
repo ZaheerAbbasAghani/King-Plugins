@@ -1,0 +1,12 @@
+.cart_item .product-name{
+    position: relative;
+}
+.cart_item .product-name ul{
+    margin-top: 10px;
+}
+
+.woocommerce-checkout-review-order-table .product-quantity {
+    position: absolute;
+    top: 16px;
+    right: 0px;
+}

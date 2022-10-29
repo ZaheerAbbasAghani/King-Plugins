@@ -1,0 +1,3 @@
+<?php 
+
+// License is golden

@@ -1,0 +1,204 @@
+.example {
+    width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.example .menu #nav{
+	padding:0px !important;
+}
+/* main menu styles */
+.menu {
+    text-align: center;
+    width: 100%;
+    height: auto;
+    
+    display: block;
+}
+.menu > span {
+    display:inline-block;
+    margin:0 auto;
+}
+#nav {
+    display:inline;
+    text-align:left;
+    position:relative;
+    list-style-type:none;
+}
+#nav > li:first-child{
+	border-left: 1px solid #ddd;
+}
+#nav > li {
+    float: left;
+    padding: 15px 10px;
+    list-style: none;
+    position: relative;
+    width: 25%;
+    text-align: center;
+    border-right: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+#nav > li > a {
+    border: 1px solid transparent;
+    color: #4F4F4F;
+    display: block;
+    font-size: 17px;
+    padding: 0px 10px;
+    position: relative;
+    text-decoration: none;
+}
+#nav > li > span{    font-size: 17px;
+    color: #4F4F4F;
+}
+#nav li div {
+    position:relative;
+}
+#nav li div div {
+    background-color: #FFFFFF;
+    border: 1px solid #ddd;
+    padding: 0px 0;
+    display: none;
+    font-size: 0.75em;
+    margin: 0;
+    position: absolute;
+    top: 16px;
+    z-index: 99;
+    width: 100%;
+    left: -10px !important;
+}
+
+#nav .sep {
+    left:190px;
+    border-left:1px solid #E3E3E3;
+    bottom:0;
+    height:auto;
+    margin:15px 0;
+    position:absolute;
+    top:0;
+    width:1px;
+}
+#nav li div ul {
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+    width: 100%;
+    list-style-type: none;
+    padding: 0px !important;
+}
+#nav li div ul li {
+    margin:0;
+    padding:0;
+}
+#nav li div ul li h3 {
+    border-bottom:1px solid #E3E3E3;
+    color:#4F4F4F;
+    font-weight:bold;
+    margin:0 5px 4px;
+    font-size:0.95em;
+    padding-bottom:3px;
+    padding-top:3px;
+}
+#nav li ul ul {
+    padding:0 0 8px;
+}
+#nav li ul ul li {
+    margin:0;
+    padding:0;
+}
+#nav li ul ul li a {
+    color: #444;
+    display: block;
+    margin-bottom: 1px;
+    padding: 10px 5px 10px 5px;
+    text-decoration: none;
+    font-size: 17px;
+    border-bottom: 1px solid #ddd;
+}
+#nav li ul ul li a:hover{
+    background-color:#0060a6;
+    color:#fff;
+}
+.ptcf_box {
+    clear: both;
+    height: auto;
+    overflow: hidden;
+    display: block;
+    padding: 22px 20px;
+    border: 1px solid #ddd;
+	display:none;
+}
+.ptcf_box p{
+	padding-bottom:0px !important;
+}
+.ptcf_box .content{
+	margin:3px 0px 8px 0px;
+}
+
+.misha_loadmore{
+	    background: #00277e;
+    padding: 16px 10px;
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.ptcf_box h3 a {
+	    letter-spacing: 1px;
+    font-size: 20px;
+}
+
+.nothingFound{
+    clear: both;
+    padding-top: 40px;
+    font-size: 15px;
+    padding-bottom: 40px;
+}
+.choosenValue{
+    display: none;
+}
+
+.innerBox {
+    width: 74%;
+    float: left;
+}
+.innerBoxImg {
+    width: 25%;
+    float: left;
+    height: 140px;
+}
+.innerBoxImg img {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.vlog-featured-item{
+    width: 330px !important;
+}
+
+@media(min-width: 320px) and (max-width: 568px){
+    #nav > li {
+        width: 100%;
+        border-left: 1px solid #ddd;
+    }
+
+    #nav li div div {
+        width:100% !important;
+    }
+
+    .innerBox {
+        width: 100%;
+    }
+    .innerBoxImg {
+        width:100%;
+        height: 180px;
+    }
+
+}

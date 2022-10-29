@@ -1,0 +1,12 @@
+.details { margin: 0px !important; }
+.details li{
+    list-style: none;
+    display: inline-block;
+    margin: 0px 20px;
+    text-align: center;
+}
+
+.cv19{
+	padding: 10px;
+}
+

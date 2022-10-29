@@ -1,0 +1,19 @@
+div#dark-mode-container #dark-mode svg {
+    width: 16px;
+    height: 16px;
+    fill: #323232;
+}
+
+div#dark-mode-container #dark-mode svg:hover {
+	cursor: pointer;
+}
+
+#dark-mode-container{
+	position: fixed;
+    background: #ddd;
+    top: 0px;
+    right: 0px;
+    z-index: 99999;
+    padding: 10px;
+    bottom: 0px;
+}

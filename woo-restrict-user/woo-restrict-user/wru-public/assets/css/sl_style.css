@@ -1,0 +1,31 @@
+.search_wrapper{
+    position: relative;
+}
+
+
+#UserListing{
+	width: 100%;
+}
+
+#UserListing tr td,th{
+    text-align: center;
+    border: 1px solid #eee;
+    padding: 12px;
+}
+
+#search_user_by_name_email .search_wrapper input[type="text"]{
+    width: 100%;
+    padding: 7px;
+    margin-top: 4px;
+    margin-bottom: 15px
+}
+
+#search_user_by_name_email .search_wrapper select{
+	width: 100%;
+	margin-top: 4px;
+    margin-bottom: 15px
+}
+
+.search_wrapper label{
+	    font-size: 15px;
+}

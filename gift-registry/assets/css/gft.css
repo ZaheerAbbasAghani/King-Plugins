@@ -1,0 +1,75 @@
+.product-details{
+	position: unset !important;
+}
+div.type-product .fa-gift:not(body.single-product div.type-product .fa-gift){
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+}
+
+.fa-gift{
+    padding: 10px;
+    background: #510253;
+    color: #fff;
+    z-index: 999;
+    cursor: pointer;
+}
+
+body.single-product p.price bdi{
+	margin-right: 10px;
+}
+
+.gift_registry_list table{
+	text-align:center;
+	border: 1px solid #eee;
+	box-shadow: 1px 1px 5px #ddd;
+}
+
+.gift_registry_list table th, td {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.loginUrlMessage{
+	text-align: center;
+	display: block;
+}
+
+.no_gift_registry{
+	text-align: center;	
+	display: block;
+}
+
+.send_gift_registry_link{
+	background: #000;
+    padding: 10px;
+    display: block;
+    text-align: center;
+    width: 25%;
+    margin: auto;
+    color: #fff;
+    box-shadow: 2px 2px 2px #555;
+    border-radius: 2px;
+}
+
+.gwrap{
+	background: #510253;
+    padding: 10px 17px 10px 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.gwrap:hover{
+	background: #000;
+}
+
+.gift_registry_list td img{
+	width: 100px;
+}
+
+@media(min-width: 320px) and (max-width: 568px){
+	.send_gift_registry_link{
+		    width: 100%;
+	}
+}

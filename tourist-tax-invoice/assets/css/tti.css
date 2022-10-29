@@ -1,0 +1,138 @@
+.wrap{ font-family: 'Roboto', sans-serif;}
+#myForm{
+	width: 50%;
+    float: left;
+}
+
+#myForm input[type="text"], input[type="number"] {
+    width: 100%;
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 7px;
+    outline: none;
+    padding: 4px 10px;
+    transition: border 0.4s;
+    border: 2px solid #1e73be;
+    border-radius: 2px;
+    border: 3px solid #eee;
+}
+
+#myForm .button{
+	font-size: 16px;
+}
+
+#myForm label{
+	font-size: 20px;
+}
+
+#myForm select {
+    width: 68%;
+    color: #555;
+    font-size: 16px;
+    outline: none;
+    padding: 4px 10px;
+    transition: border 0.4s;
+     border: 3px solid #eee;
+    border-radius: 2px;
+    float: right;
+    line-height: 30px;
+}
+
+#myForm span.titles {
+    font-size: 20px;
+    display: block;
+    background: #eee;
+    padding: 10px;
+    margin: 30px 0px 10px 0px;
+}
+.bwrap {
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.pdetails .season {
+    color: #ff0000e3;
+    font-size: 15px;
+    display: block;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.tti_settings {
+    width: 44%;
+    float: left;
+    margin-left: 29px;
+    margin-top: 53px;
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+.tti_settings #logo {
+    height: 50px;
+    width: 150px;
+    margin-top: 20px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.wrap_live_invoice table tr {
+    border: 1px solid #ddd;
+
+}
+
+.wrap_live_invoice table tr td{
+        font-size: 20px;
+}
+
+.tti_invoice {
+    margin: 10px 0px;
+    height: auto;
+    overflow: hidden;
+    text-align: left;
+}
+
+.tti_invoice ul li {
+    margin-bottom: 20px;
+    line-height: 25px;
+}
+
+.swal2-container {
+    z-index: 9999 !important;
+}
+
+.swal2-html-container{
+    text-align: left !important;
+}
+.wrap_live_invoice{
+ font-family: 'Roboto', sans-serif;   
+}
+
+#example_wrapper table tr td a{
+    text-decoration: none;
+    color: #000;
+}
+
+#example_wrapper table tr td a:focus{
+    text-shadow: none !important;
+    outline: none !important;
+}
+
+#invoice-meta {
+position: absolute;
+right: 42px;
+text-align: right;
+top: 42px;
+width: 250px;
+}
+
+#invoice-meta span {
+float: left;
+}
+
+footer {
+font-size: 12px;
+margin-top: 61px;
+text-align: center;
+}

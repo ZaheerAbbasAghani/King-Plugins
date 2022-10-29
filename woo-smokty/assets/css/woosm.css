@@ -1,0 +1,22 @@
+.woosm #_custom_width{
+	max-width: 72% !important;	
+}
+.woosm #_custom_height{
+	max-width: 71% !important;	
+}
+
+#ac{
+	    margin-top: 15px !important; 
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

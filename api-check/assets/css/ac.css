@@ -1,0 +1,25 @@
+.houseNo{
+	display: none;
+}
+
+#billing_country_field .select2-container{
+	margin-bottom: 15px;
+	display: block;
+}
+
+#billing_country_field .select2-container{
+	margin-bottom: 15px;
+	display: block;
+}
+
+#billing_postcode_field{
+	display: none !important;
+}
+
+#house_no{
+	margin-bottom: 15px;
+}
+.loadinggif {
+    background: url(/wp-content/plugins/api-check/front/ajax-loader.gif) no-repeat right center;
+    background-size: 6%;
+}

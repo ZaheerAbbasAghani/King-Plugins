@@ -1,0 +1,81 @@
+.gstl_thumb li {
+    float: left;
+    width: 30%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.gstl_read_more{
+	    background: #ddd;
+    padding: 10px;
+    border-radius: 4px;
+}
+.members_details .box {
+    width: 14%;
+    float: left;
+    text-align: center;
+    padding: 15px 10px;
+    margin: 8px;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    text-transform: capitalize;
+    height: 154px;
+    line-height: 38px;
+}
+
+.membox {
+    width: 18%;
+    float: left;
+    text-align: center;
+    padding: 15px 10px;
+    margin: 8px;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+    text-transform: capitalize;
+    height: 154px;
+    line-height: 38px;
+}
+.membox h4 {
+    padding-top: 10px !important;
+    font-size: 20px;
+    color: #000 !important;
+    margin-bottom: 20px !important;
+}
+
+.members_details .box h4 {
+    padding-top: 10px !important;
+    font-size: 20px;
+    color: #fff !important;
+    margin-bottom: 20px !important;
+}
+.gstl_post_list {
+    width: 84%;
+    margin:auto !important;
+}
+
+.gstl_post_list h3{
+    color: #000 !important;
+}
+
+.box a.gstl_member{
+    font-size: 15px;
+    background: #000;
+    color: #ddd !important;
+    border-radius: 3px;
+    border: none;
+}
+
+.box a.gstl_member_delete{
+    font-size: 15px;
+    border-radius: 3px;
+    border: none;
+}
+.btn_insert {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 130px !important;
+    font-size: 18px !important;
+}
+#member_insert_form{
+    position: relative;
+}

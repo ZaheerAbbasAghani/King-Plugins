@@ -1,0 +1,108 @@
+.syotimer-cell {
+  display: inline-block;
+  margin: 0 5px;
+  text-align: center;
+  width: 79px;
+  background: url('https://valevni.fo/wp-content/plugins/campaign-manager/assets/images/timer.png') no-repeat 0 0;
+}
+.syotimer-cell__value {
+  font-size: 35px;
+  color: #80a3ca;
+
+  height: 81px;
+  line-height: 81px;
+
+  margin: 0 0 5px;
+}
+.syotimer-cell__unit {
+  font-family: Arial, serif;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+#simple-timer .syotimer-cell_type_day,
+#periodic-timer_period_days .syotimer-cell_type_hour,
+#layout-timer_only-seconds .syotimer-cell_type_second,
+#layout-timer_mixed-units .syotimer-cell_type_minute {
+  width: 120px;
+  background-image: url('https://valevni.fo/wp-content/plugins/campaign-manager/assets/images/timer_long.png');
+}
+
+.option {
+  font-weight: 700;
+}
+
+.toggle-source-code {
+  width: 650px;
+  margin: 10px auto;
+  text-align: right;
+}
+.toggle-source-code:before {
+  font-size: 0.9em;
+  color: #666666;
+  border-bottom: 1px dashed #666666;
+}
+.toggle-source-code_action_show:before {
+  content: "Show code";
+}
+.toggle-source-code_action_hide:before {
+  content: "Hide code";
+}
+
+.candidate_list {
+    list-style: none;
+    padding: 0px !important;
+}
+
+.candidate_list li {
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.candidate_list li p{
+     padding: 10px;
+    border: 1px solid #ddd;
+    margin: 0px 10px 15px 0px;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    line-height: 72px;
+    text-transform: capitalize;
+    box-shadow: 1px 1px 2px #ddd;
+}
+
+.candidate_list li .campVote{
+  background: #ddd;
+  padding: 6px 15px;
+  margin: 12px 0px;
+  clear: both;
+  text-decoration: none;
+  color: #000;
+  border-radius: 5px;
+}
+
+.candidate_list li .campVoteDone {
+    background: #eee;
+    padding: 6px 15px;
+    margin: 12px 0px;
+    text-decoration: none;
+    color: #999;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.candidate_list .voted p{
+  background: green;
+  color: #fff;
+}
+
+.candidate_list li.voted a{
+   background: green;
+  padding: 6px 15px;
+  margin: 12px 0px;
+  clear: both;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
+}

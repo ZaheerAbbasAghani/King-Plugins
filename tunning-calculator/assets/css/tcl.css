@@ -1,0 +1,198 @@
+.tcl_dropdown_list{
+	width: 100% !important;
+max-width: 90%;
+    text-align: center;
+}
+.tcl_dropdown_list select {
+    margin-right: 10px;
+    width: 30%;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-family: inherit;
+}
+
+.tcl_dropdown_list a{
+	display: block;
+    width: 25%;
+    margin: 30px auto 70px auto;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.tcl_dropdown_list .js-gauge {
+    width: 25%;
+    float: left; 
+    font-size: 20px;
+    position: relative;
+    text-align: center;
+    font-family:inherit;
+}
+.tcl_dropdown_list .js-gauge h4 {
+    position: absolute;
+    bottom: -40px;
+    width: 100%;
+    font-family:inherit;
+}
+.labls{
+      width: 20%;
+    float: left;
+    font-size: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.mb20{
+   margin: 7px 20px;
+}
+
+.cdev div {
+      position: absolute;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    left: 61px;
+}
+ 
+.cdev div span {
+    position: absolute;
+    font-family: inherit;
+    font-size: 17px;
+    line-height: 75px;
+    height: 75px;
+    width: 75px;
+    left: 12.5px;
+    top: 12.5px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: white;
+    font-weight: bold;
+}
+ 
+.cdev .background { background-color: #b3cef6; }
+ 
+.cdev .rotate {
+  clip: rect(0 50px 100px 0);
+  background-color: #4b86db;
+}
+ 
+.cdev .left {
+  clip: rect(0 50px 100px 0);
+  opacity: 1;
+  background-color: #b3cef6;
+}
+ 
+.cdev .right {
+  clip: rect(0 50px 100px 0);
+  transform: rotate(180deg);
+  opacity: 0;
+  background-color: #4b86db;
+}
+
+.tcl_dropdown_list .power {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom:0px !important;
+}
+.gauge h5{
+    font-size: 24px;
+    color: #444;
+    
+}
+@keyframes
+toggle {  0% {
+ opacity: 0;
+}
+ 100% {
+ opacity: 1;
+}
+}  
+
+.js-gauge--3{
+    display: none;
+}
+.js-gauge--7{
+    display: none;
+}
+
+.gauge span{
+    font-size: 20px;
+    font-weight: bold;
+    display:block;
+}
+
+.js-gauge text{
+	font-family:inherit !important;
+}
+
+.tcl_dropdown_list .power:nth-child(1){margin-top:-15px !important;}
+
+@media(min-width: 320px) and (max-width: 568px){
+    .tcl_dropdown_list select {
+        margin-right: 10px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .tcl_dropdown_list a {
+        width: 100%;
+    }
+
+    .tcl_dropdown_list .js-gauge {
+        width: 100%;
+    }
+
+    .tcl_dropdown_list .power {
+        padding-top: 0px;
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 0px;
+        height: 50px;
+    }
+    #gauge-3:before {
+        content: "Stock";
+        position: absolute;
+        width: 83%;
+        text-align: center;
+        font-size: 24px;
+        color: #444;
+        font-weight: bold;
+	}
+
+    #gauge-4:before {
+        content: "Stage 1";
+         position: absolute;
+        width: 83%;
+        text-align: center;
+        font-size: 24px;
+        color: #444;
+        font-weight: bold;
+    }
+
+    #gauge-5:before {
+        content: "Stage 2";
+        position: absolute;
+         width: 83%;
+        text-align: center;
+        font-size: 24px;
+        color: #444;
+        font-weight: bold;
+    }
+
+    .js-gauge--7:before {
+        content: "Price";
+      
+        text-align: center;
+        font-size: 24px;
+        color: #444;
+    }
+    .gauge h5{
+    	margin: 0px !important;
+        
+    }
+    .js-gauge--0 span{
+    	display:none !important;
+    }
+    .tcl_dropdown_list {
+    	max-width: 98% !important;
+	}
+}

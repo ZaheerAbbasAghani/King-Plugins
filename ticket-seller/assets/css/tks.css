@@ -1,0 +1,29 @@
+.tksWrapper li {
+    list-style-type: none;
+    display: inline-block;
+    width: 48%;
+    background: #8b0000;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 6px;
+}
+.tksWrapper li h3 {
+    margin: 0px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.tksWrapper li p{
+	 margin: 0px;
+    color: #fff;
+}
+
+#ppc-button{
+    visibility: hidden;
+}
+
+@media(min-width: 320px) and (max-width: 568px){
+	.tksWrapper li{
+		width: 100%;
+	}
+}

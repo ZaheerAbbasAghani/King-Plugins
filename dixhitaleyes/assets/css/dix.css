@@ -1,0 +1,11 @@
+.LeftSide {
+    width: 45%;
+    float: left;
+    padding: 10px 10px;
+    border: 1px solid #ddd;
+}
+
+.RightSide {
+    width: 52%;
+    float: right;
+}

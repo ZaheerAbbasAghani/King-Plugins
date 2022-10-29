@@ -1,0 +1,43 @@
+.dialog-btn .dialog-btn-confirm{
+	display: none !important;
+}
+.dialog-btn .dialog-btn-cancel{
+  visibility: hidden !important;
+}
+.dialog-btn .dialog-btn-cancel:after {
+	content: 'OK' !important;
+    visibility: visible !important;
+    display: block !important;
+    position: absolute !important;
+    background-color: #0984e3 !important;
+    padding: 10px 10px 10px 10px !important;
+    bottom: 8px !important;
+    border-radius: 7px;
+}
+
+#btn-dialogBox .dialog-box-content{
+	visibility: hidden !important;
+}
+#btn-dialogBox .dialog-box-content:after {
+content: 'You have been inactive for over ten minutes please log back in' !important;
+    visibility: visible !important;
+    display: block !important;
+    position: absolute!important;
+    top: 13px;
+    width: 85%;
+    white-space: break-spaces;
+}
+
+#btn-dialogBox{
+	    width: 270px !important;
+}
+
+.yes_custom{
+	background: var(--ldx-btn-primary-bg-color);
+    border-radius: 20em;
+    font-size: 17px;
+    display: block;
+    color: #fff;
+ 	padding: 5px 10px;
+ 	font-weight: 700;   
+}

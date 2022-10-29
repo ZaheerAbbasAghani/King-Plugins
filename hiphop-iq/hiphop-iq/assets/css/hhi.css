@@ -1,0 +1,162 @@
+.fs-form-wrap {
+	clear: both;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    height: 620px;
+        background: #252424;
+}
+.fs-fields > li .fs-radio-custom span {
+    height: 68px;
+    letter-spacing: 1px;
+    border: 2px solid #f3f3f3;
+    line-height: 0px;
+    width: 100% !important;
+}
+.fs-fields > li .fs-radio-custom span:hover{
+	border-color: #c50006 !important; 
+}
+
+.fs-fields > li .fs-radio-custom span:hover label{
+    color:#c50006 !important; 
+}
+
+.fs-radio-group{
+	text-align: center;
+}
+
+.fs-form-overview{
+    padding: 0px 50px;
+}
+.fs-form-overview .fs-field-label{
+    font-size: 2em;
+}
+
+.fs-form-overview .fs-fields input {
+    height: 70px;
+}
+
+.faqMainBanner {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: #252424;
+    z-index: 999;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 800px;
+}
+
+.faqMainBanner h1 {
+    color: #fff;
+    text-align: center;
+    padding-top: 30px;
+    text-transform: uppercase;
+    font-size: 34px;
+    margin-bottom: 30px;
+}
+.faqMainBanner p {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 26px;
+}
+
+.faqMainBanner .primary{
+    color: #fff;
+    background-color: #c50006;
+    border-radius: 5px;
+    font-size: 25px;
+    padding:10px 60px;
+}
+
+.faqMainBanner .primary:hover{
+    background-color: #fff;
+    color: #000;
+    transition: 1s;
+}
+
+#faqProducts .jfcolumn {
+    width: 30%;
+    display: inline-table;
+    margin-left: 2%;
+    text-align: center;
+    color: #fff;
+    border: 1px solid #a8a8a8;
+    border-radius: 7px;
+    padding: 15px;
+    height: 210px;
+    margin-bottom: 50px;
+}
+.jfcolumn p{
+    color: #fff;
+
+}
+.jfcolumn h3{
+    color: #fff;
+}
+
+.jf_view_more{
+    background: #c50006;
+    padding: 10px;
+    display: block;
+    font-size: 17px;
+    color: #fff;
+    width: 60%;
+    border-radius: 5px;
+    margin: auto;
+    font-family: 'Oswald';
+}
+
+#faqProducts h1{
+    text-align: center;
+    color: #fff;
+    margin-bottom: 0px;
+    font-weight: 600;
+    padding-bottom: 20px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+
+.fs-form-full{
+    width: 41% !important;
+}
+
+#myform ol li label{
+    font-size: 20px;
+    margin-top: 22px;
+}
+
+.wintshirt{
+    width: 370px;
+    margin: 20px auto;
+    display: block;
+    border-radius: 6px;
+}
+#faqProducts p{
+        color: #fff;
+    font-size: 15px;
+    text-align: center;
+    border-bottom: 1px solid #444; 
+    padding-bottom: 20px;
+}
+
+.jfcolumn img{
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+
+@media(min-width: 320px) and (max-width: 568px){
+    .fs-fields > li .fs-radio-custom span {
+        width: 100% !important;
+    }
+    .faqMainBanner .primary{
+        margin-top: 0px !important;
+    }
+    .fs-form{
+        top: 0em !important;
+    }
+}

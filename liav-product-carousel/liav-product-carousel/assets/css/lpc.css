@@ -1,0 +1,258 @@
+.carousel-wrap {
+  margin: 90px auto;
+  padding: 0 5%;
+  width: 100%;
+  position: relative;
+}
+
+/* fix blank or flashing items on carousel */
+.owl-carousel .item {
+  position: relative;
+  z-index: 100; 
+  -webkit-backface-visibility: hidden; 
+}
+
+/* end fix */
+.owl-nav > div {
+  margin-top: -26px;
+  position: absolute;
+  top: 50%;
+  color: #cdcbcd;
+}
+
+.owl-nav i {
+  font-size: 52px;
+}
+
+.owl-nav .owl-prev {
+  left: -30px;
+}
+
+.owl-nav .owl-next {
+  right: -30px;
+}
+.small_product .item {
+    height: 225px !important;
+    padding-bottom: 60px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.small_product .item a img {
+    width: 50%;
+    float: left;
+}
+
+#jmeta {
+    position: absolute;
+    bottom: 0px;
+    right: 6px;
+    text-align: right;
+    width: 46%;
+    padding: 0px;
+}
+.carousel-wrap .owl-stage .owl-item {
+  border: 1px solid #eee;
+    height: 480px;
+    position: relative;
+}
+
+.carousel-wrap .owl-stage .item {
+    height: 480px;
+    position: relative;
+}
+
+#myprice{
+  margin-bottom: 0px !important;
+  padding: 10px 8px 10px 8px; 
+  display: block;
+}
+
+#jmeta p{
+  margin-bottom: 0px;
+}
+
+#jmeta a{
+    color: #000;
+}
+
+#jmeta a:hover{
+  text-decoration: none;  
+}
+
+.carousel-wrap .single_add_to_cart_button {
+  padding: 12px 14px 9px 14px;
+    margin: 0px 7px 10px 10px;
+    color: #fff !important;  
+    width: 70%;
+    float: right;
+}
+
+.carousel-wrap ul li{
+  list-style: none;
+}
+
+.carousel-wrap .single_add_to_cart_button {
+  display: none;
+}
+.carousel-wrap ul li:hover .single_add_to_cart_button{
+  display: block;
+  transition: 2s;
+}
+
+.owl-carousel,
+.bx-wrapper { direction: ltr; }
+.owl-carousel .owl-item { direction: rtl; }
+.leftLinks{
+  float: left;
+}
+
+.leftLinks a {
+    font-size: 50px;
+    color: #000;
+}
+.leftLinks a:hover{
+  text-decoration: none;
+}
+
+.owl-carousel .owl-nav .owl-prev:before {
+ display: none;
+}
+
+.owl-carousel .owl-nav .owl-next:before {
+ display: none;
+}
+
+.owl-carousel .owl-nav {
+    top: -30px !important;
+    left: 21px !important;
+    width: auto !important;
+    flex: auto !important;
+}
+
+.owl-nav button a{
+  color: #000;
+  font-size: 50px;
+}
+.rightTitle{
+      margin-right: 43px;
+}
+/* JSlider 
+
+.jcarousel-wrapper{
+  margin-top: 0px !important;
+}
+.jcarousel-wrapper .jcarousel {
+    padding: 10px 80px 10px 0px;
+    overflow: hidden;
+}
+.jcarousel li {
+    margin: 0px 6px 0px 11px;
+    width: 390px !important;
+    position: relative;
+    border:1px solid #eee !important;
+    height: 460px;
+} 
+
+
+.jcarousel ul{
+  left: 158807px !important;
+}
+.jcarousel li p{
+  margin-bottom: 0px;
+  padding: 10px 8px 0px 20px;
+}
+.jcarousel li #myprice{
+  margin-bottom: 0px !important;
+  padding: 10px 8px 10px 8px; 
+  display: block;
+}
+.jcarousel-wrapper{
+  border: none !important;
+  box-shadow: none !important;
+}
+.jnav {
+    clear: both;
+    height: auto;
+    overflow: hidden; 
+}
+
+.jnav a{
+  color: #000;
+  font-size: 40px;
+}
+
+.jnav a:hover{
+  text-decoration: none;  
+}
+p.jtitle{
+  margin-bottom: 30px;
+    position: relative;
+    margin-right: -20px;
+}
+.jnav .leftLinks{
+  float: left;
+}
+
+.jnav .rightTitle{
+  float: right;
+}
+.jcarousel ul li a:hover{
+  text-decoration: none;
+}
+.carousel_wrapper {
+    
+    margin: auto;
+    overflow: hidden;
+    max-width: 1500px;
+}
+.jcarousel li a{
+  color: #000;
+}
+#jmeta{
+  position: absolute;
+    bottom: 0px;
+    width: 54%;
+}
+.jcarousel  .single_add_to_cart_button {
+  padding: 12px 14px 9px 14px;
+    margin: 0px 7px 10px 10px;
+    color: #fff;  
+    width: 70%;
+}
+.jcarousel-wrapper .single_add_to_cart_button {
+  display: none;
+}
+.jcarousel ul li:hover .single_add_to_cart_button{
+  display: block;
+  transition: 2s;
+}
+@media(min-width: 320px) and (max-width: 568px){
+  .jnav{ padding: 0px 0px; }
+  .jcarousel ul{
+  left: 129673px !important;
+  }
+  .jcarousel li p {
+  padding: 10px 20px 0px 31px;
+  }
+  .jcarousel li #myprice {
+  padding: 10px 20px 10px 8px;
+  }
+
+    .jcarousel li {
+      padding: 0px 30px 0px 80px;
+      margin: 0px 6px 0px -15px;
+      height: 432px;
+  }
+  .jcarousel .small_product  li {
+      margin-bottom: 60px;
+  }
+  #jmeta {
+      width: 100%;
+  }
+
+  .small_product li a img {
+      width: 100%;
+  }
+
+}
+*/

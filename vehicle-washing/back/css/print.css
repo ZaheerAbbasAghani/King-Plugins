@@ -1,0 +1,72 @@
+.invoice_wrapper{
+	background: #f5f5f5;
+	color: #000;
+	height: auto;
+	overflow: hidden;
+	padding: 20px;
+	clear: both;
+}
+
+.logo{
+	width: 500px;
+	margin-top: 25px;
+	margin-left: 20px;
+}
+
+.invoice_header_left{
+	float: left;
+	width: 200px;
+}
+
+.invoice_header_right{
+	float: right;
+	width: 200px;
+	text-align: right;
+	margin-right: 25px;
+}
+
+.invoice_header_right h1{
+	margin-bottom: 10px;
+}
+
+.invoice_body{
+	text-align: center;
+}
+
+.invoice_body table	{
+	width: 700px;
+	margin:80px auto 20px auto;
+}
+
+.invoice_body table	tr,th,td{
+	text-align: center;
+	padding: 10px;
+}
+
+.bottomDetails{
+	margin-left: 47px;
+}
+
+h1.beforeAfter{
+	margin-left: 47px;
+	margin-top: 85px;
+}
+
+
+.invoice_header_right h1{
+	margin-top: 10px;
+}
+
+
+.listofImages{
+	padding: 0px;
+	margin-left: 47px;
+	list-style: none;
+
+}
+
+.listofImages li{
+	float:left;
+	width: 250px;
+	margin: 10px 10px;
+}

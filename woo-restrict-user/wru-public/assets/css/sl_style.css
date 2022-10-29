@@ -17,7 +17,8 @@
     width: 100%;
     padding: 7px;
     margin-top: 4px;
-    margin-bottom: 15px
+    margin-bottom: 15px;
+    border:1px solid #ddd;
 }
 
 #search_user_by_name_email .search_wrapper select{

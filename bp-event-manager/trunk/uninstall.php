@@ -1,0 +1,1 @@
+<?phpif( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) exit();$posts = get_posts('numberposts=-1&post_type=post&post_status=any' );foreach ($posts as $post) {	//wp_delete_post($post->ID, true);	delete_post_meta( $post->ID, 'dp_day_of_year_number');}?>

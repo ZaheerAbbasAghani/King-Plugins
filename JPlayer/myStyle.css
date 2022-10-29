@@ -1,0 +1,313 @@
+.jp-video-270p {
+      width: 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 999;
+}
+
+#jquery_jplayer_1{
+	float: left;
+}
+
+.jp-controls-holder{
+	    width: 1200px !important;
+}
+
+
+.jp-video .jp-type-playlist .jp-controls {
+    width: 134px;
+    margin-left: 43px !important;  
+    position: relative;
+}
+
+
+.jp-volume-controls	 {
+    width: 120px !important;
+}
+
+.jp-video .jp-type-playlist .jp-controls{
+	width: 800px !important;
+}
+
+.jp-controls button {
+    padding: 0px !important;
+}
+
+.jp-details, .jp-playlist {
+    border-top: none !important;
+}
+.jp-volume-bar-value{ background: #000; }
+.jp-audio, .jp-audio-stream, .jp-video{
+	border-top: 3px solid #ddd !important;
+    border-bottom: 3px solid #ddd;
+    background: #efefef;
+    border-left: 0px;
+    border-right: 0px;
+}
+.jp-playlist{
+	display: none;
+}
+.jp-volume-bar {
+    top: 7px;
+    left: 15px;
+    width: 55px;
+    height: 2px;
+}
+#jtitle,#jartist,#jalbum{
+    width: 100%;
+    margin-left: 11px;
+    float: left;
+    color: #444;
+    font-size: 13px;
+    margin-bottom: 0px;
+    margin-top: 4px;
+}
+
+.jp-progress{
+	display: none;
+}
+
+.jp-jplayer {
+    margin-left:25px;
+}
+
+#jp_container_1 {
+    padding: 15px 0px;
+    height: 80px;
+}
+
+.jp-video .jp-interface{
+	border:none !important;
+}
+
+.jp-video .jp-toggles{
+	display: none;
+}
+
+.jp-duration{
+	display: none !important;
+}
+
+.jp-type-playlist{
+	 width: 70%;
+    margin: auto;
+}
+
+.jp-video .jp-current-time {
+    /*margin-left: 20px;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+    left: 16px;*/
+    display: none;
+}
+
+.jp-video-270p .jp-video-play{
+	display: none !important;
+}
+
+.wrap_descript{
+	   float: left;
+    width: 30%;
+    position: relative;
+    margin-top: 10px;
+}
+
+.wrap_descript2{
+    float: left;
+    width: 25%;
+    position: relative;
+    margin-top: 18px;
+    text-align: center;
+}
+
+.wrap_descript3{
+    float: left;
+    width: 26%;
+    position: relative;
+    margin-top: 18px;
+}
+
+.wrap_descript3 a.share{
+    position: absolute;
+    left: 55px;
+    color: #000;
+}
+
+.wrap_descript3 a.like_dislike{
+    color: #000;
+}
+
+.wrap_descript3 .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    float: left;
+    margin-left: 20px;
+}
+.wrap_descript3 .tooltip .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left:12px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.wrap_descript3 .tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.wrap_descript3 .tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+.jp-controls-holder{
+	overflow: unset !important;
+}
+
+.jp-interface .jp-controls {
+    overflow: unset !important;
+}
+
+.jp-video .jp-volume-controls{
+      left: auto !important;
+      top: 25px;
+      right: 0px;
+}
+.jp-volume-controls .jp-mute{
+
+}
+
+.jp-controls .jp-play{
+    width: 30px !important;
+    height: 34px !important;
+}
+.cssbutton{
+      float: left;
+    color: #000;
+    font-size: 40px;
+    margin-top: -2px;
+}
+
+.wrap_descript2 span{
+  background: #cc0101;
+    padding: 8px 30px;
+    border-radius: 20em;
+    color: #fff;
+    font-size: 15px;
+}
+
+.tooltiptext a:first-child{
+    background: #3b5998;
+    padding: 6px;
+    display: block;
+    color: #fff;
+}
+
+.tooltiptext a:nth-child(2){
+    background: #09a1da;
+    padding: 6px;
+    display: block;
+    color: #fff;
+}
+
+.mathekha{
+  top: 7px !important;
+}
+.wrap_descript3 .counter{
+    margin-left: 4px;
+  }
+
+.jp-volume-bar {
+  background: #444;
+  cursor: pointer;
+  position: relative;
+  height: 4px;
+  width: 75px;
+  overflow: initial;
+  margin-left: 7px;
+}
+
+.jp-volume-max{
+      margin-left: 35px;
+}
+
+.jp-volume-bar-value {
+  position: relative;
+  background: #cc181e;
+  height: 100%;
+}
+
+.jp-volume-bar-knob {
+    position: absolute;
+    right: 0px;
+    margin-top: -3px;
+    z-index: 50;
+    height: 10px;
+    width: 10px;
+    background: #fff;
+    border-radius: 20em;
+    border: 1px solid #00000096;
+}
+
+@media(min-width: 320px) and (max-width: 568px){
+	.jp-type-playlist{
+		width: 100%;
+	}	
+	.jp-video .jp-type-playlist .jp-controls {
+    	margin-left: 10px !important;
+	}
+	.jp-controls button{
+		margin-right: 10px !important;
+	}
+	.jp-jplayer {
+    	margin-left: 8px;
+	}
+	#jtitle, #jartist, #jalbum{
+		font-size: 12px;
+	}
+	.jp-video .jp-current-time {
+	    margin-left: -16px;
+	    left: 16px;
+	    bottom: 16px;
+	}
+  .wrap_descript {
+    width: 19%;
+  }
+  .wrap_descript2{display: none;}
+  .wrap_descript3 .tooltip {
+    margin-left: -12px;
+  }
+  .wrap_descript3 a.like_dislike {
+    margin-left: 18px;
+  }
+
+.wrap_descript3 .tooltip .tooltiptext{
+    width: 48px;
+    left: 27%;
+    margin-left: 30px;
+}
+
+.wrap_descript3 a.share{
+      left: 71px;
+}
+  
+	
+}

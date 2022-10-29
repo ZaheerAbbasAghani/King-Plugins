@@ -1,0 +1,28 @@
+.twilio_settings {
+    background: #fff;
+    padding: 20px;
+}
+
+.twilio_settings input[type="text"]{
+    width: 100%;
+    padding: 3px;
+    border: 1px solid #ddd;
+}
+
+.twilio_settings input[type="phone"]{
+     width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#wpcf7-new-setting-panel{
+	width: 86%;
+}
+
+
+.cf7_items{
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+}

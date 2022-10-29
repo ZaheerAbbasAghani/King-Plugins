@@ -1,0 +1,104 @@
+.evn_meta{
+
+	height: auto;
+
+overflow: hidden;
+
+display: block;
+
+}
+
+.evn_meta label {
+
+    
+
+    font-size: 14px;
+
+    float: left;
+
+    width: 100%;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+.evn_meta label  span {
+
+	vertical-align: -moz-middle-with-baseline;
+
+}
+
+.evn_meta input[type="text"] {
+
+    display: block;
+
+    padding: 10px;
+
+    width: 86%;
+
+    clear: both;
+
+    float: right;
+
+}
+
+.bmep_wrap{
+    background: #fff;
+    padding: 10px 16px;
+    box-shadow: 1px 1px 5px #ddd,-1px -1px 5px #ddd;
+}
+
+
+
+.box_attendee img {
+    border-radius: 100%;
+    width: 100%;
+}
+
+.wrap_bx{
+    clear: both;
+    height: auto;
+    overflow: hidden;
+}
+
+.box_attendee p{
+    margin:0px;
+}
+
+.wrap_bx a:active,a:focus{
+    text-decoration: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+.attandees{
+    margin: 0px 0px 15px 0px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.wrap_bx .box {
+    position: relative;
+    width: 20%;
+    float: left;
+    margin-right: 8px;
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.wrap_bx .box .remove_attendy {
+    position: absolute;
+    background: #f009;
+    padding: 5px 3px 8px 3px;
+    line-height: 0px;
+    font-size: 10px;
+    bottom: -9px;
+    color: #000;
+    text-decoration: none;
+    left: 21px;
+    font-weight: bold;
+}

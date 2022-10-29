@@ -1,0 +1,36 @@
+.prox_wrapper{
+	width: 100%;
+	max-width: 100% !important;	
+}
+.prox_wrapper .prox_box {
+    background: #fff;
+    padding: 10px 20px 30px 20px;
+    box-shadow: 2px 2px 12px #ddd, -2px -2px 12px #ddd;
+    margin-bottom: 20px;
+    height: auto;
+}
+.proxDabo{
+	clear: both;
+}
+.proxDabo p{
+	float: left;
+	margin-top: 0px;
+	margin-left: 10px;
+}
+
+@media(min-width:320px) and (max-width:568px){
+.answer1{
+	width: 100% !important;
+    margin-bottom: 10px !important;
+}	
+.answer2{
+	width: 100% !important;
+    margin-bottom: 10px !important;
+}	
+
+.answer3{
+	width: 100% !important;
+    margin-bottom: 10px !important;
+}	
+
+}

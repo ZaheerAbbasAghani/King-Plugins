@@ -1,0 +1,96 @@
+.avi_form_wrapper {
+    width: 90%;
+    margin: auto;
+    text-align: left;
+    padding: 30px 0px;
+}
+
+.avi_form_wrapper h3{
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+#avi_aviation_weather_process{
+        width: 100%;
+    position: relative;
+}
+
+#avi_search_box{
+    width: 100%;
+}
+
+#avi_aviation_weather_process input[type="submit"]{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 11px;
+}
+
+.badge {
+    background-color: #171659;
+    padding: 4px 15px;
+    color: #fff;
+    font-family: inherit;
+}
+
+.avi_response .LeftSide {
+    width: 47%;
+    float: left;
+    margin: 20px 0px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.card-header {
+    background: #171659;
+    color: #fff;
+    padding: 15px 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: auto;
+    overflow: hidden;
+}
+.card-header h3 {
+    font-weight: bold;
+    margin-bottom: 0px !important;
+    color: #fff;
+    float: left;
+    font-size: 20px;
+    margin-top: 4px;
+}
+.card-header p{
+        float: right;
+}
+
+.LeftSide table.table th {
+    font-weight: 500;
+    color: #5f5f5f;
+    padding: 20px 30px;
+    background: #fff;
+    box-shadow: 1px 1px 5px #ddd;
+}
+
+.LeftSide .card-body th{
+    font-size: 17px !important;
+    border: 1px solid #ddd;
+}
+
+.LeftSide .card-body td {
+    font-size: 17px;
+    border: 1px solid #ddd;
+}
+
+.LeftSide .col-md-6{
+    margin-bottom: 10px;
+}
+
+.avi_print_wrapper{
+    clear: both;
+    text-align: center;
+}
+
+@media(min-width: 320px) and (max-width: 568px){
+    .avi_response .LeftSide{
+        width: 100%;
+    }
+}

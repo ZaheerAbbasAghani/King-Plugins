@@ -1,0 +1,33 @@
+.calendar .event-container{
+	padding: 72px 5px 5px 5px !important;
+}
+
+.calendar td {
+    padding: .8em .1em;
+    font-size: 15px;
+}
+
+.event-hour{
+	display: none;
+}
+
+.calendar {
+    text-transform: inherit !important;
+}
+
+.calendar .event-container .event-date {
+    margin-bottom:0px !important;
+    font-weight: bold;
+    font-size: 20px;
+}
+.summary{
+	color: #000 !important;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    margin-top: 11px;
+}
+.event-container .event-date{ display: none; }
+.event-summary span{ font-size: 18px;
+    font-weight: bolder; }

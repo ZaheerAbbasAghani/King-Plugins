@@ -1,0 +1,27 @@
+.offWrapper #off_form input[type="text"]{
+	border: 1px solid rgba(0,0,0,0.15);
+}
+
+.offWrapper #off_form textarea{
+	border: 1px solid rgba(0,0,0,0.15);
+}
+
+.offWrapper .LeftSide{
+    padding: 10px;
+    border-radius: 7px;
+    float: left;
+    background: #ffffff94;
+}
+
+.offWrapper .LeftSide{
+   padding: 20px 0px;
+}
+
+#lms-calendar {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.fc-scroller{
+   overflow: hidden;
+}

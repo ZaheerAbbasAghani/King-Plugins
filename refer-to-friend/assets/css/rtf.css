@@ -1,0 +1,100 @@
+.rtf_refer_to_friend_wrapper{
+	text-align: center;
+}
+
+.rtf_refer_to_friend_wrapper a {
+    fill: var( --e-global-color-33b79964 );
+    color: var( --e-global-color-33b79964 );
+    background-color: var( --e-global-color-662f2bba );
+    border-style: solid;
+    border-width: 2px 2px 2px 2px;
+    border-color: var( --e-global-color-662f2bba );
+    border-radius: 12px 12px 12px 12px;
+    padding: 20px 30px 20px 30px;
+    font-family: var( --e-global-typography-accent-font-family ), Sans-serif;
+    font-weight: var( --e-global-typography-accent-font-weight );
+    font-size: 15px;
+}
+
+.rtf_refer_to_friend_wrapper a:hover{
+	background: transparent;
+	color: #fff;
+}
+.swal2-html-container input[type="email"], input[type="text"], textarea, select {
+    display: block;
+    width: 100%;
+    padding: 10px 20px !important;
+    border-radius: 10px;
+    margin-top: 5px !important;
+}
+.swal2-html-container textarea {
+    width: 100%;
+    margin: 7px 0px 0px 0px !important;
+    background-color: rgba(255,255,255,0.7);
+    padding: 15px 20px !important;
+}
+.swal2-confirm{
+	display: inline-block;
+    padding: 7px 20px;
+    font-size: 14px;
+}
+
+#refer_form {
+    padding: 30px 10px 25px 10px;
+    width: 100%;
+    margin:0px auto;
+    border-radius: 30px;
+}
+.swal2-html-container form label {
+    text-align: left;
+    display: block;
+    font-size: 20px;
+    margin: 20px 0px;
+}
+.swal2-html-container form  input[type="email"]::placeholder{
+    color: #000;
+}
+
+
+.swal2-html-container form  input[type="text"]::placeholder{
+    color: #000;
+}
+
+.swal2-html-container form  textarea::placeholder{
+    color: #000;
+}
+
+#refer_form input[type="submit"] {
+    fill: var( --e-global-color-33b79964 );
+    color: var( --e-global-color-33b79964 );
+  /*  background-color: var( --e-global-color-662f2bba );
+    border-style: solid;
+    border-width: 2px 2px 2px 2px;
+    border-color: var( --e-global-color-662f2bba );
+    border-radius: 12px 12px 12px 12px;*/
+    padding: 20px 30px 20px 30px;
+    font-family: var( --e-global-typography-accent-font-family ), Sans-serif;
+    font-weight: var( --e-global-typography-accent-font-weight );
+    font-size: 15px;
+}
+
+.swal2-close{
+    color: #fff !important;
+        margin-top: 10px;
+    margin-right: 10px;
+}
+
+.swal2-close:focus{
+   box-shadow: none !important;
+}
+
+.swal2-popup {
+    border-radius: 30px !important;
+}
+
+.rtf_accordion {
+        background: #eee;
+    padding: 1px 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+}
